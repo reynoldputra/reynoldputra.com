@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("../../public/fonts/Inter/Inter Web/inter.css");
+@import url("../../public/fonts/Mono/ibm.css");
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -25,3 +28,4 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+

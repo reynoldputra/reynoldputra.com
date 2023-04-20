@@ -5,6 +5,7 @@ const SVGComponent = (props) => (
     height="100%"
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
+    className="p-2"
     {...props}
     stroke="#F4F6F9"
   >

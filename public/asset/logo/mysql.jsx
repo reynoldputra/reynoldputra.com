@@ -6,6 +6,7 @@ const MysqlLogo = (props) => (
     viewBox="0 0 84 84"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className="p-2"
     {...props}
   >
     <g clipPath="url(#clip0_34_13)">

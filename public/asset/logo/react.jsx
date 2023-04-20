@@ -7,8 +7,9 @@ const ReactLogo = (props) => (
     style={{
       strokeWidth: 14,
       fill: "none",
+      stroke:"#F4F6F9"
     }}
-    stroke="#F4F6F9"
+    className="p-2"
   >
     <path
       className="cls-1"

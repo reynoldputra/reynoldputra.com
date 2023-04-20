@@ -11,8 +11,16 @@
   -webkit-text-fill-color: transparent;
 }
 
+.change-stroke:hover{
+  stroke : #5FE9D2 
+}
+
+.svg-stroke {
+  stroke : #F4F6F9
+}
+
 @media only screen and (min-width: 1024px) {
   .text-rotate {
     writing-mode: vertical-rl;
   }
-}
+} 

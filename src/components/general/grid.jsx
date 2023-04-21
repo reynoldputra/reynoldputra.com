@@ -7,18 +7,18 @@ const Grid = ({contentStart = true, children, className, screenHeight = true, ..
 
     grid-cols-4
     gap-x-[16px]
-    mx-[16px]
+    px-[16px]
 
-    sm:mx-[24px]
+    sm:px-[24px]
     sm:grid-cols-4
     sm:gap-x-[20px]
 
     md:grid-cols-12
-    md:mx-[40px]
+    md:px-[40px]
     md:gap-[16px]
 
     xl:grid-cols-12
-    xl:mx-[100px]
+    xl:px-[100px]
     xl:gap-[20px]
 
     relative

@@ -25,17 +25,17 @@ module.exports = {
       mono : ['IBM Plex Mono']
     },
     fontSize : {
-      xs : ['12px', {lineHeight: '0.635rem'}],
-      sm : ['13px', {lineHeight: '0.812rem'}],
-      md : ['16px', {lineHeight: '1rem'}],
-      lg : ['20px', {lineHeight: '1.250rem'}],
-      xl : ['24px', {lineHeight: '1.562rem'}],
-      '2xl' : ['32px', {lineHeight: '1.938rem'}],
-      '3xl' : ['36px', {lineHeight: '2.438rem'}],
-      '4xl' : ['48px', {lineHeight: '3.062rem'}],
-      '6xl' : ['76px', {lineHeight: '4.750rem', fontWeight: "600"}],
-      '5xl' : ['64px', {lineHeight: '3.812rem', fontWeight: "600"}],
-      '7xl' : ['96px', {lineHeight: '5.938rem', fontWeight: "700"}],
+      xs : ['12px', {lineHeight: '14px'}],
+      sm : ['13px', {lineHeight: '16px'}],
+      md : ['16px', {lineHeight: '19px'}],
+      lg : ['20px', {lineHeight: '24px'}],
+      xl : ['24px', {lineHeight: '29px'}],
+      '2xl' : ['32px', {lineHeight: '38px'}],
+      '3xl' : ['36px', {lineHeight: '43px'}],
+      '4xl' : ['48px', {lineHeight: '58px'}],
+      '6xl' : ['76px', {lineHeight: '77px', fontWeight: "600"}],
+      '5xl' : ['64px', {lineHeight: '91px', fontWeight: "600"}],
+      '7xl' : ['96px', {lineHeight: '115px', fontWeight: "700"}],
     },
     extend: {
       backgroundImage: {

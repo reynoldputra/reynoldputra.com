@@ -2,12 +2,14 @@ import Cell from "../../general/cell";
 import Grid from "../../general/grid";
 import Image from "next/image"
 import projects from "@/data/my-project.js"
+import NextIcon from "../../../asset/icon/next";
+import Link from "next/link";
 
 export default function MyPorject(){
   return (
     <Grid>
       <Cell cols="1_full" className="relative h-[40vh] flex flex-col justify-center">
-        <div className="absoulte w-fit flex justify-start gap-8 overflow-hidden -rotate-6">
+        <div className="absoulte w-fit flex justify-start gap-8 overflow-hidden ">
           {
             projects.map((project, idx) => {
               return (
@@ -30,7 +32,12 @@ export default function MyPorject(){
       </Cell>
       <Cell cols="1_full" className="h-[50vh] font-mono flex flex-col justify-center items-end" >
         <p className="pb-4 text-2xl md:text-3xl text-spray-400 text-right">Project showcase</p> 
-        <button className="border border-rockblue-50 w-fit px-6 rounded-md">see more</button>
+        <Link href="/projects">
+          <button className="border border-rockblue-50 w-fit px-6 rounded-md flex py-2 gap-3">
+            <p>see more</p>
+            <NextIcon className="mt-1" />
+          </button>
+        </Link>
       </Cell>
     </Grid>
   )

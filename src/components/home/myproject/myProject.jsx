@@ -7,7 +7,7 @@ export default function MyPorject(){
   return (
     <Grid>
       <Cell cols="1_full" className="relative h-[40vh] flex flex-col justify-center">
-        <div className="absoulte w-fit flex justify-start gap-8 overflow-hidden">
+        <div className="absoulte w-fit flex justify-start gap-8 overflow-hidden -rotate-6">
           {
             projects.map((project, idx) => {
               return (

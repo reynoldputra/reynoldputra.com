@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function TechStack() {
   const [select, setSelect] = useState(-1)
   const [group, setGroup] = useState("language")
+
   return (
     <Grid contentStart={false}>
       <Cell cols="1_full" colsLg="2_full" rowsLg="1_1">
@@ -31,10 +32,10 @@ export default function TechStack() {
       </Cell>
       <Cell cols="1_full" colsLg="2_5" rowsLg="2_1">
         <div className="mt-12">
-          <StackGroup title="Language" items={data.language} setSelect={setSelect} setGroup={setGroup} group="language" />
+          <StackGroup title="Language" items={data.language} setSelect={setSelect} setGroup={setGroup} group="language" selectedIndex={select} selectedGroup={group} />
         </div> 
         <div className="">
-          <StackGroup title="Tool & framework" items={data.tool} setSelect={setSelect} setGroup={setGroup} group="tool" />
+          <StackGroup title="Tool & framework" items={data.tool} setSelect={setSelect} setGroup={setGroup} group="tool" selectedIndex={select} selectedGroup={group} />
         </div> 
       </Cell>
     </Grid>

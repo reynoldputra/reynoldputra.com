@@ -5,20 +5,26 @@ import ProjectImage from "./projectImage";
 
 export default function ProjectSection() {
   return (
-    <Grid>
-      <Cell cols="1_full" className="text-center font-mono text-5xl h-screen flex items-center justify-center">
-        <p>
-          My <span className="text-spray-400">Projects</span>
-        </p>
-      </Cell>
-      {
-        projects.map((project, idx) => {
-          const left = (idx % 2 != 0 && true)
-          return (
-            <ProjectImage img={project.image} name={project.name} year={project.year} left={left} /> 
-          )
-        }) 
-      }
-    </Grid>
+    <>
+      <Grid>
+        <Cell cols="1_full" className="text-center font-mono text-5xl h-screen flex items-center justify-center">
+          <p>
+            My <span className="text-spray-400">Projects</span>
+          </p>
+        </Cell>
+        {
+          projects.map((project, idx) => {
+            const left = (idx % 2 != 0 && true)
+            return (
+              <ProjectImage img={project.image} name={project.name} year={project.year} left={left} /> 
+            )
+          }) 
+        }
+      </Grid>
+      <div className="hidden fixed md:flex flex-col justify-center items-center h-screen w-1/2 top-0 right-0">
+        <p>Title</p>
+        <p>Desc</p>
+      </div>
+    </>
   )
 }

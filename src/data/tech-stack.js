@@ -67,14 +67,14 @@ const data = {
       {
         title : "mysql",
         desc : "A JavaScript library for building user interfaces. It's popular for its component-based architecture and virtual DOM, which make it easy to build fast and scalable web applications.",
-        logo : <MysqlLogo className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer"/>
+        logo : <MysqlLogo className="p-2 pt-3 transition-all duration-300 svg-stroke change-stroke cursor-pointer"/>
       },
       {
         title : "mongo db",
         desc : "A popular open-source NoSQL document database. It's known for its flexibility, scalability, and ease of use, and is often used in web development for its ability to store and retrieve unstructured data.",
         logo : <MongoLogo className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer"/>
       },
-        {
+      {
         title : "firebase",
         desc : "A mobile and web application development platform developed by Google. It provides a variety of tools and services for building, deploying, and managing web and mobile applications, including hosting, real-time database, cloud functions, and authentication.",
         logo : <FirebaseLogo className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer"/>

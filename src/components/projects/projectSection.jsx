@@ -4,7 +4,7 @@ import projects from "../../data/my-project.js"
 import ProjectImage from "./projectImage";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger)
 export default function ProjectSection() {
@@ -13,7 +13,6 @@ export default function ProjectSection() {
   useLayoutEffect(() =>{
     let ctx = gsap.context(() => {
       const sections = gsap.utils.toArray('.container .section')
-      console.log(sections)
       gsap.to(sections, {
         xPercent: -100 * (projects.length - 1),
         ease: "none",
@@ -29,8 +28,6 @@ export default function ProjectSection() {
     }, component)
     return () => ctx.revert()
   })
-  useEffect(()=> {
-  }, [])
 
   return (
     <div ref={component}>

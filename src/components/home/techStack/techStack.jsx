@@ -21,12 +21,12 @@ export default function TechStack() {
           select == -1 ?
             <div className="text-right pt-12 font-mono lg:p-0">
               <p className="text-spray-400 text-lg">/ {data.main.title} /</p>
-              <p className="text-sm pt-4">{data.main.desc}</p>
+              <p className="text-sm font-sans pt-4">{data.main.desc}</p>
             </div>
           :
             <div className="text-right pt-12 font-mono lg:p-0">
               <p className="text-spray-400 text-lg">/ {data[group][select].title} /</p>
-              <p className="text-sm pt-4">{data[group][select].desc}</p>
+              <p className="text-sm font-sans pt-4">{data[group][select].desc}</p>
             </div>
         }
       </Cell>

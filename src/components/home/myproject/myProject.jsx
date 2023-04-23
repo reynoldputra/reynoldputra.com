@@ -52,8 +52,8 @@ export default function MyPorject(){
               projects.map((project, idx) => {
                 if(idx < projects.length/2) {
                   return (
-                    <div className="aspect-video w-52 lg:w-80 relative">
-                      <Image src={"/asset/my-project/" + project.image} fill className="object-cover" key={idx}/>
+                    <div className="aspect-video w-52 lg:w-80 relative" key={idx}>
+                      <Image src={"/asset/my-project/" + project.image} fill className="object-cover" key={idx} alt="project image"/>
                     </div>
                   )
                 } 
@@ -66,8 +66,8 @@ export default function MyPorject(){
               projects.map((project, idx) => {
                 if(idx >= projects.length/2) {
                   return (
-                    <div className="aspect-video w-52 md:w-48 lg:w-80 relative">
-                      <Image src={"/asset/my-project/" + project.image} fill className="object-cover" key={idx}/>
+                    <div className="aspect-video w-52 md:w-48 lg:w-80 relative" key={idx}>
+                      <Image src={"/asset/my-project/" + project.image} fill className="object-cover" key={idx} alt="project image"/>
                     </div>
                   )
                 } 

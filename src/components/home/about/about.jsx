@@ -70,7 +70,7 @@ export default function About() {
         <Cell cols="1_3" colsMd="3_full">
           <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48">
             <p>Hello,</p>
-            <p className="text-spray-400">I'm Reynold</p>
+            <p className="text-spray-400">I&apos;m Reynold</p>
           </div>
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
@@ -85,7 +85,7 @@ export default function About() {
             name.map((c, idx) => {
               const even = idx % 2 == 0 ? true : false
               return (
-                <div className="w-fit relative">
+                <div className="w-fit relative" key={idx}>
                   <p className="text-[26vw] font-bold text-center -translate-x-[1.5vw] text-stroke opacity-10 w-fit">
                     {c}
                   </p>

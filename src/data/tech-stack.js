@@ -19,7 +19,7 @@ const data = {
     language : [
       {
         title : "javascript",
-        desc : "JavaScript is a programming language that allows developers to create dynamic web content and add interactivity to websites. It is primarily used for client-side web development, which means it runs in a user's web browser and can manipulate the content of a web page in real-time. I usually use this for front end and back end",
+        desc : "JavaScript is a programming language that allows developers to create dynamic web content and add interactivity to websites. It is primarily used for client-side web development, which means it runs in a user&apos;s web browser and can manipulate the content of a web page in real-time. I usually use this for front end and back end",
         logo : <JavascriptLogo  className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer" />
       },
       {
@@ -46,32 +46,32 @@ const data = {
       },
       {
         title : "react js",
-        desc : "A JavaScript library for building user interfaces. It's popular for its component-based architecture and virtual DOM, which make it easy to build fast and scalable web applications.",
+        desc : "A JavaScript library for building user interfaces. It&apos;s popular for its component-based architecture and virtual DOM, which make it easy to build fast and scalable web applications.",
         logo : <ReactLogo className="p-1 mt-1 transition-all duration-300 svg-stroke change-stroke cursor-pointer" />
       },
       {
         title : "next js",
-        desc : "A popular React framework that provides server-side rendering, static site generation, and other useful features out of the box. It's often used for building fast and SEO-friendly web applications.",
+        desc : "A popular React framework that provides server-side rendering, static site generation, and other useful features out of the box. It&apos;s often used for building fast and SEO-friendly web applications.",
         logo : <NextLogo className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer" />
       },
       {
         title : "vue js",
-        desc : "A JavaScript library for building user interfaces. It's popular for its component-based architecture and virtual DOM, which make it easy to build fast and scalable web applications.",
+        desc : "A JavaScript library for building user interfaces. It&apos;s popular for its component-based architecture and virtual DOM, which make it easy to build fast and scalable web applications.",
         logo : <VueLogo className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer" />
       },
       {
         title : "nest js",
-        desc : "A TypeScript-based back-end framework for building scalable and maintainable server-side applications. It's built on top of Express and provides a modular architecture and many useful features out of the box.",
+        desc : "A TypeScript-based back-end framework for building scalable and maintainable server-side applications. It&apos;s built on top of Express and provides a modular architecture and many useful features out of the box.",
         logo : <NestLogo className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer"/>
       },
       {
         title : "mysql",
-        desc : "A JavaScript library for building user interfaces. It's popular for its component-based architecture and virtual DOM, which make it easy to build fast and scalable web applications.",
+        desc : "A JavaScript library for building user interfaces. It&apos;s popular for its component-based architecture and virtual DOM, which make it easy to build fast and scalable web applications.",
         logo : <MysqlLogo className="p-2 pt-3 transition-all duration-300 svg-stroke change-stroke cursor-pointer"/>
       },
       {
         title : "mongo db",
-        desc : "A popular open-source NoSQL document database. It's known for its flexibility, scalability, and ease of use, and is often used in web development for its ability to store and retrieve unstructured data.",
+        desc : "A popular open-source NoSQL document database. It&apos;s known for its flexibility, scalability, and ease of use, and is often used in web development for its ability to store and retrieve unstructured data.",
         logo : <MongoLogo className="p-2 transition-all duration-300 svg-stroke change-stroke cursor-pointer"/>
       },
       {

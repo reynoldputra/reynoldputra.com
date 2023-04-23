@@ -13,21 +13,42 @@ export default function About() {
   const containerRef = useRef()
   const name = ["R", "e", "y", "n", "o", "l", "d"]
   useLayoutEffect(() => {
+    const triggerOption= {
+          scrub: 1,
+          start : "250px 50%",
+          end : "400px 50%"
+    }
+
     let ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray('.containerName .char')
-      const tl = gsap.timeline({
+      const sectionsHor = gsap.utils.toArray('.containerName .char-hor')
+      const tlHor = gsap.timeline({
         scrollTrigger : {
           trigger: containerRef.current,
-          markers: true,
-          scrub: 1
+          ...triggerOption
         }
       })
-      tl.fromTo(sections, 
+      tlHor.fromTo(sectionsHor, 
         {
           width : "100%"
         },
         {
           width : 0
+        },
+      )
+
+      const sectionsVer = gsap.utils.toArray('.containerName .char-ver')
+      const tlVer = gsap.timeline({
+        scrollTrigger : {
+          trigger: containerRef.current,
+          ...triggerOption
+        }
+      })
+      tlVer.fromTo(sectionsVer, 
+        {
+          height : "100%"
+        },
+        {
+          height : 0
         },
       )
     }, containerRef)
@@ -61,14 +82,17 @@ export default function About() {
       <div className="absolute hidden w-full h-full md:flex justify-center items-center top-0 left-0 z-10">
         <div className="w-full flex containerName">
           {
-            name.map(c => (
-              <div className="w-fit relative">
-                <p className="text-[26vw] font-bold text-center -translate-x-[1.5vw] text-stroke opacity-10 w-fit">
-                  {c}
-                </p>
-                <div className="absolute char border border-red-200 h-full w-full bg-primary-950 top-0 right-0"></div> 
-              </div>
-            ))
+            name.map((c, idx) => {
+              const even = idx % 2 == 0 ? true : false
+              return (
+                <div className="w-fit relative">
+                  <p className="text-[26vw] font-bold text-center -translate-x-[1.5vw] text-stroke opacity-10 w-fit">
+                    {c}
+                  </p>
+                  <div className={"absolute h-full w-full bg-primary-950 top-0 right-6 " + (even ? "char-hor" : "char-ver")}></div> 
+                </div>
+              )
+            })
           }
         </div>
       </div>

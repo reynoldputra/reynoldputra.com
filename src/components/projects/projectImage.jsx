@@ -14,10 +14,10 @@ export default function ProjectImage({project}) {
             </div>
             <div className="flex justify-between text-sm md:text-md">
               <p>{project.year}</p>
-              <button className="flex gap-2 border-b border-rockblue-50">
+              <a className="flex gap-2 border-b border-rockblue-50 cursor-pointer" target="_blank" href={"https://" + project.link}>
                 <p >{project.link}</p>
                 <NextIcon className="pt-1 float-right"/>
-              </button>
+              </a>
             </div>
           </div>
         </Cell>

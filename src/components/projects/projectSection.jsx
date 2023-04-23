@@ -19,7 +19,6 @@ export default function ProjectSection() {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          markers: true,
           scrub: 1,
           snap: 1 / (projects.length - 1),
           end: "+=3000"

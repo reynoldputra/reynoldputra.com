@@ -29,7 +29,7 @@ const Grid = ({contentStart = true, children, className, screenHeight = true, ..
 
   return (
     <>
-      <div className={clsx(baseCN, className)} {...rest}>
+      <div className={clsx(className, baseCN)} {...rest}>
         {children}
       </div>
     </>

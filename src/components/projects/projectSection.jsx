@@ -5,25 +5,44 @@ import ProjectImage from "./projectImage";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
 import { useLayoutEffect, useRef } from "react";
+import ProjectDetail from "./projectDetail";
 
-gsap.registerPlugin(ScrollTrigger)
 export default function ProjectSection() {
+  gsap.registerPlugin(ScrollTrigger)
   const containerRef = useRef(null)
   const component = useRef(null)
   useLayoutEffect(() =>{
     let ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray('.container .section')
-      gsap.to(sections, {
-        xPercent: -100 * (projects.length - 1),
-        ease: "none",
+      const panels = gsap.utils.toArray('.detail-panel')
+      const images = gsap.utils.toArray('.image-panel')
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: ".sections",
+          start: "top top",
+          end: () => "+=" + 100 * panels.length + "%",
           pin: true,
-          scrub: 1,
-          snap: 1 / (projects.length - 1),
-          end: "+=3000"
+          scrub: true,
+          markers: true
         }
-    })
+      });
+      panels.forEach((panel, index) => {
+        tl.from(
+          panel,
+          {
+            yPercent: 100,
+            ease: "none",
+          },
+          "+=0.25"
+        );
+        tl.from(
+          images[index],
+          {
+            xPercent: -100,
+            ease: "none",
+          },
+          "<"
+        );
+      });
     }, component)
     return () => ctx.revert()
   })
@@ -37,16 +56,29 @@ export default function ProjectSection() {
           </p>
         </Cell>
       </Grid>
-      <div className="container flex relative h-screen w-fit overflow-x-hidden" ref={containerRef}>
-          <div className="absolute border-b border-rockblue-50 bottom-12 w-32 md:w-72 lg:w-96 left-4 md:left-28 lg:left-52"></div>
-          {
-            projects.map((project, idx) => {
-              return (
-                <ProjectImage key={idx} project={project} /> 
-              )
-            }) 
-          }
-      </div>
+      <div className="relative pt-8" ref={containerRef}>
+            <Grid className="sections h-screen w-screen pt-16 md:pt-24">
+              <div className="absolute border-b border-rockblue-50 bottom-12 w-32 md:w-72 lg:w-96 left-4 md:left-28 lg:left-52"></div>
+              <Cell cols="1_full" colsMd='2_5' rows="1_1" className="font-mono relative h-96 overflow-hidden">
+                {
+                  projects.map((project, idx) => {
+                    return (
+                      <ProjectImage key={idx} project={project} /> 
+                    )
+                  }) 
+                }
+              </Cell>
+              <Cell rows="2_1" rowsMd="1_1" cols="1_full" colsMd="8_4" className="pt-12 md:pt-0 md:flex flex-col justify-center relative h-64 overflow-hidden">
+                {
+                  projects.map((project, idx) => {
+                    return (
+                      <ProjectDetail key={idx} project={project} /> 
+                    )
+                  }) 
+                }
+              </Cell>
+            </Grid>
+          </div>
     </div>
   )
 }

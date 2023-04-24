@@ -22,7 +22,13 @@ export default function ProjectSection() {
           end: () => "+=" + 100 * panels.length + "%",
           pin: true,
           scrub: true,
-          markers: true
+          // markers: true,
+          snap: {
+            snapTo: 1 / (images.length),
+            duration: 1,
+            delay: 0.2,
+            ease: "power1.inOut"
+          },
         }
       });
       panels.forEach((panel, index) => {
@@ -59,7 +65,7 @@ export default function ProjectSection() {
       <div className="relative pt-8" ref={containerRef}>
             <Grid className="sections h-screen w-screen pt-16 md:pt-24">
               <div className="absolute border-b border-rockblue-50 bottom-12 w-32 md:w-72 lg:w-96 left-4 md:left-28 lg:left-52"></div>
-              <Cell cols="1_full" colsMd='2_5' rows="1_1" className="font-mono relative h-96 overflow-hidden">
+              <Cell cols="1_full" colsMd='1_6' colsLg="2_5" rows="1_1" className="font-mono w-full relative h-[30vh] md:h-96 overflow-hidden">
                 {
                   projects.map((project, idx) => {
                     return (
@@ -68,7 +74,7 @@ export default function ProjectSection() {
                   }) 
                 }
               </Cell>
-              <Cell rows="2_1" rowsMd="1_1" cols="1_full" colsMd="8_4" className="pt-12 md:pt-0 md:flex flex-col justify-center relative h-64 overflow-hidden">
+              <Cell rows="2_1" rowsMd="1_1" cols="1_full" colsMd="7_6" colsLg="8_4" className="pt-12 md:pt-0 md:flex flex-col justify-center relative h-64 overflow-hidden">
                 {
                   projects.map((project, idx) => {
                     return (

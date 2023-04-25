@@ -21,7 +21,7 @@ export default function ProjectSection() {
           start: "top top",
           end: () => "+=" + 100 * panels.length + "%",
           pin: true,
-          scrub: true,
+          scrub: 0.5,
           // markers: true,
           snap: {
             snapTo: 1 / (images.length),
@@ -74,7 +74,7 @@ export default function ProjectSection() {
                   }) 
                 }
               </Cell>
-              <Cell rows="2_1" rowsMd="1_1" cols="1_full" colsMd="7_6" colsLg="8_4" className="pt-12 md:pt-0 md:flex flex-col justify-center relative h-64 overflow-hidden">
+              <Cell rows="2_1" rowsMd="1_1" cols="1_full" colsMd="7_6" colsLg="8_4" className="pt-12 h-96 md:pt-0 md:flex flex-col justify-center relative overflow-hidden">
                 {
                   projects.map((project, idx) => {
                     return (

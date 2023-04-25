@@ -7,11 +7,13 @@ import Cell from "../../general/cell";
 import Grid from "../../general/grid";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
+import Link from "next/link";
  
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
   const containerRef = useRef()
   const name = ["R", "e", "y", "n", "o", "l", "d"]
+
   useLayoutEffect(() => {
     const triggerOption= {
           scrub: 1,
@@ -61,10 +63,18 @@ export default function About() {
         <div className="absolute bottom-0 right-0 py-8 px-4 flex w-full md:block md:left-0 md:right-auto md:w-16">
           <div className="w-full border border-rockblue-50 h-0 m-auto mr-6 md:w-0 md:h-64 md:mr-auto md:mb-6"></div>
           <div className="flex gap-2 md:flex-col items-center">
-            <GithubLogo />
-            <LinkedinLogo />
-            <EmailLogo />
-            <InstagramLogo />
+            <a target="_blank" href="https://github.com/reynoldputra">
+              <GithubLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer" />
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/reynoldputra">
+              <LinkedinLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer" />
+            </a>
+            <a target="_blank" href="mailto:reynoldputra1@gmail.com">
+              <EmailLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer"/>
+            </a>
+            <a target="_blank" href="https://www.instagram.com/reynoldputra/">
+              <InstagramLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer"/>
+            </a>
           </div>
         </div>
         <Cell cols="1_3" colsMd="3_full">
@@ -74,8 +84,8 @@ export default function About() {
           </div>
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
-          <p className="pt-16 text-md">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo,
+          <p className="pt-16 text-sm">
+            I am an information technology undergraduate student at the Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I have an interest in improving backend skills, but lately I've been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make the best use of resources and complete tasks efficiently. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows.
           </p>
         </Cell>
       </Grid>

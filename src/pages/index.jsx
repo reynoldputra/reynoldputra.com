@@ -3,16 +3,15 @@ import Layout from "../components/general/layout";
 import Grid from "../components/general/grid";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Index() {
-  const router = useRouter()
+  // const router = useRouter()
   const gsapComponent = useRef(null)
 
   useLayoutEffect(() =>{
     let ctx = gsap.context(() => {
-      //gsap animation here
       const tl = gsap.timeline({ repeat: -1 });
       // const tl = gsap.timeline({
         // onComplete: () => {

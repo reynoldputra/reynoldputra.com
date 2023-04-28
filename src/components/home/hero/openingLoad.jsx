@@ -12,7 +12,7 @@ export default function OpeningLoad({onCompleteHandle}) {
     <Terminal className="w-full min-h-[400px] pt-8">
           {
             messages.map((message, idx) => (
-              <div>
+              <div key={idx}>
                 <TermHeading className={(idx == 0 || showItems[idx-1]) ? "" : "hidden"}/>
                 <TermRegular key={idx} className={(idx == 0 || showItems[idx-1]) ? "" : "hidden"}>
                   <div className="block">

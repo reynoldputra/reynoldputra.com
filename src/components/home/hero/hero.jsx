@@ -24,8 +24,21 @@ export default function Hero() {
       <Cell cols="2_2" colsMd="4_6" className="h-screen flex z-20 relative">
         <p className="m-auto text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
           {/* Bring your <span className="text-spray-400 font-mono">website</span> to life. */}
-          <Typed strings={['Bring your <span className="text-spray-400 font-mono">website</span> to life.']}>
-          </Typed>
+          <div className="flex flex-wrap">
+            <Typed 
+              showCursor={false}
+              strings={['Bring your&nbsp;']}
+            />
+            <Typed 
+              strings={['website&nbsp;']}
+              showCursor={false}
+              className="font-mono text-spray-400"
+            />
+            <Typed 
+              strings={['to life. ']}
+              showCursor={false}
+            />
+          </div>
         </p>
       </Cell>
     </Grid>

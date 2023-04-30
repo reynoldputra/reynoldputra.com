@@ -7,7 +7,6 @@ import Cell from "../../general/cell";
 import Grid from "../../general/grid";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
-import Link from "next/link";
  
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {

@@ -3,54 +3,55 @@ import TermHeading from "../../general/terminal/termHeading";
 import TermRegular from "../../general/terminal/termRegular";
 import Typed from "react-typed"
 import messages from "@/data/opening-terminal.ts"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function OpeningLoad({onCompleteHandle}) {
   const [showItems, setShowItems] = useState([])
+  const [typedTimeline, setTimeline] = useState([])
   
+  const typingCompleteHandle = (idx) => {
+    const newTimeline = [...typedTimeline]
+    newTimeline[idx] = true 
+    setTimeline(newTimeline)
+  }
+
   return (
     <Terminal className="w-full min-h-[400px] pt-8">
-          {
-            messages.map((message, idx) => (
-              <div key={idx}>
-                <TermHeading className={(idx == 0 || showItems[idx-1]) ? "" : "hidden"}/>
-                <TermRegular key={idx} className={(idx == 0 || showItems[idx-1]) ? "" : "hidden"}>
-                  <div className="block">
-                    {
-                      message.map((msg, idx2) => {
-                        if(idx2 == 0) {
-                          return (
-                            <Typed 
-                              strings={[
-                                msg
-                              ]}    
-                              typeSpeed={200}
-                              startDelay={idx ? idx * 3000 + 1200 : 3000}
-                              onComplete={() => {
-                                const newShowItems = [...showItems];
-                                newShowItems[idx] = true;
-                                setShowItems(newShowItems);
-                                if(idx == messages.length - 1) {
-                                  setTimeout(() => {
-                                    onCompleteHandle() 
-                                  }, 2000)
-                                }
-                              }}
-                              key={idx2}
-                              showCursor={false}
-                            >
-                            </Typed>
-                          )
-                        } else {
-                          return (<p key={idx2} className={showItems[idx] ? "" : "hidden"}>{msg}</p>)
-                        }
-                      })
-                    }
+              <div>
+                <TermHeading/>
+                <TermRegular>
+                  <div className="block w-full">
+                    <div>
+                      <Typed
+                        strings={["start prod"]}
+                        showCursor={false}
+                        onComplete={() => typingCompleteHandle(0)}
+                      /> 
+                    </div>
+                    <div>
+                      {
+                        typedTimeline[0] &&
+                        <>
+                          <pre 
+                            style={{
+                              whiteSpace: "pre-wrap"   
+                            }}
+                          >
+                            _                     _ _             <br/>
+                           | |                   | (_)            <br/>
+                           | |     ___   __ _  __| |_ _ __   __ _ <br/>
+                           | |    / _ \ / _` |/ _` | | '_ \ / _` |<br/>
+                           | |___| (_) | (_| | (_| | | | | | (_| |<br/>
+                           |______\___/ \__,_|\__,_|_|_| |_|\__, |<br/>
+                                                             __/ |<br/>
+                                                            |___/ <br/>
+                          </pre>
+</>
+                      }
+                    </div>
                   </div>
                 </TermRegular>
               </div>
-            ))
-          } 
     </Terminal>
   )
 }

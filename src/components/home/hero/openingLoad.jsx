@@ -28,25 +28,27 @@ export default function OpeningLoad({onCompleteHandle}) {
                         onComplete={() => typingCompleteHandle(0)}
                       /> 
                     </div>
+                    <div className="hidden md:block">
+                      {
+                        typedTimeline[0] &&
+                        <>
+                          <pre>  _                     _ _             <br/></pre>
+                          <pre> | |                   | (_)            <br/></pre>
+                          <pre> | |     ___   __ _  __| |_ _ __   __ _ <br/></pre>
+                          <pre> | |    / _ \ / _` |/ _` | | '_ \ / _` |<br/></pre>
+                          <pre> | |___| (_) | (_| | (_| | | | | | (_| |<br/></pre>
+                          <pre> |______\___/ \__,_|\__,_|_|_| |_|\__, |<br/></pre>
+                          <pre>                                   __/ |<br/></pre>
+                          <pre>                                  |___/ <br/></pre>
+                        </>
+                      }
+                    </div>
                     <div>
                       {
                         typedTimeline[0] &&
                         <>
-                          <pre 
-                            style={{
-                              whiteSpace: "pre-wrap"   
-                            }}
-                          >
-                            _                     _ _             <br/>
-                           | |                   | (_)            <br/>
-                           | |     ___   __ _  __| |_ _ __   __ _ <br/>
-                           | |    / _ \ / _` |/ _` | | '_ \ / _` |<br/>
-                           | |___| (_) | (_| | (_| | | | | | (_| |<br/>
-                           |______\___/ \__,_|\__,_|_|_| |_|\__, |<br/>
-                                                             __/ |<br/>
-                                                            |___/ <br/>
-                          </pre>
-</>
+                          <pre> {} loading ...</pre> 
+                        </>
                       }
                     </div>
                   </div>

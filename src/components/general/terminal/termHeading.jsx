@@ -4,7 +4,7 @@ import { FaNodeJs } from "react-icons/fa"
 
 export default function TermHeading({className}) {
   return (
-    <div className={"flex flex-wrap items-center gap-x-2 " + className}>
+    <div className={"flex flex-wrap items-center gap-x-2 mb-2 " + className}>
       <p className="text-terminal-blue">reynoldputra.com</p> 
       <p>on</p>
       <IoGitBranch className="h-4 w-auto text-terminal-purple" />

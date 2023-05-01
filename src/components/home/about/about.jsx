@@ -83,8 +83,8 @@ export default function About() {
           </div>
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
-          <p className="pt-16 text-sm">
-            I am an information technology undergraduate student at the Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I have an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make the best use of resources and complete tasks efficiently. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows.
+          <p className="pt-16 text-sm text-justify">
+            I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows.
           </p>
         </Cell>
       </Grid>

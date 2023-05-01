@@ -1,14 +1,16 @@
-import Terminal from "./terminal/terminal";
 import { gsap } from "gsap";
-import { useEffect, useState } from "react";
-import Typed from "react-typed"
+import { useEffect, useRef, useState } from "react";
+import FullOverlay from "./fullOverlay";
 
-export default function Loading () {
+export default function Loading ({setLoading}) {
   const [iconLoading, setIconLoading] = useState("-")
   const [countLoading, setCountLoading] = useState(0)
+
+  const component = useRef()
     
   let i = 1 
   const icons = ["-", "\\", "|", "/"]
+
   
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -20,6 +22,7 @@ export default function Loading () {
       setCountLoading(count)
       count++
       if (count > 100) {
+        onloadingComplete()
         clearInterval(countIntervalId)
       }
     }, 3000/100)
@@ -31,21 +34,23 @@ export default function Loading () {
   }, [])
 
   const onloadingComplete = () => {
+    console.log(component.current)
     gsap.to(component.current, {
-      y: "-100%",
+      opacity : 0,
       ease: "power1.inOut",
-      duration: 1
+      duration: 1,
+      onComplete: () => {setLoading(false)}
     })
   }
 
   return (
-    <div className="fixed bg-primary-950 w-screen h-screen z-50 flex justify-center items-center font-mono text-md text-rockblue-50">
-      <div className="text-center">
-        <p>{iconLoading} loading ...</p>
-        <p>{countLoading}%</p>
+    <FullOverlay >
+      <div className="h-full w-full relative flex flex-col justify-center" ref={component}>
+        <div className="text-center">
+          <p>{iconLoading} loading ...</p>
+          <p className="font-sans pt-2">{countLoading}%</p>
+        </div>
       </div>
-      {/* <Terminal> */}
-      {/* </Terminal> */}
-    </div>
+    </FullOverlay>
   ) 
 }

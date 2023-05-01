@@ -4,10 +4,14 @@ import TermRegular from "../../general/terminal/termRegular";
 import Typed from "react-typed"
 import messages from "@/data/opening-terminal.ts"
 import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 export default function OpeningLoad({onCompleteHandle}) {
   const [showItems, setShowItems] = useState([])
   const [typedTimeline, setTimeline] = useState([])
+
+  const welcomeElement = useRef()
+  const terminalElement = useRef()
   
   const typingCompleteHandle = (idx) => {
     const newTimeline = [...typedTimeline]
@@ -15,45 +19,42 @@ export default function OpeningLoad({onCompleteHandle}) {
     setTimeline(newTimeline)
   }
 
+  const welcomeHandling = () => {
+    gsap.fromTo(welcomeElement.current, {
+      opacity : 0,
+      ease: "power1.inOut",
+      duration: 0.5
+    }, {
+      opacity : 1
+    })
+  }
+
   return (
-    <Terminal className="w-full min-h-[400px] pt-8">
-              <div>
-                <TermHeading/>
-                <TermRegular>
-                  <div className="block w-full">
-                    <div>
-                      <Typed
-                        strings={["start prod"]}
-                        showCursor={false}
-                        onComplete={() => typingCompleteHandle(0)}
-                      /> 
+    <div ref={terminalElement}>
+      <Terminal className="w-full max-w-[800px] z-50 absolute top-0 left-0 right-0 mx-auto" >
+                <div>
+                  <TermHeading/>
+                  <TermRegular>
+                    <div className="block w-full">
+                      <div>
+                        <Typed
+                          strings={["yarn start"]}
+                          showCursor={false}
+                          onComplete={() => welcomeHandling()}
+                        /> 
+                      </div>
+                      <div className="opacity-0 text-[8px] leading-none font-bold sm:text-xs md:text-md overflow-hidden" ref={welcomeElement}>
+                          {/* <pre>               _                          <br/></pre> */}
+                          {/* <pre>              | |                         <br/></pre> */}
+                          {/* <pre> __      _____| | ___ ___  _ __ ___   ___ <br/></pre> */}
+                          {/* <pre> \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \<br/></pre> */}
+                          {/* <pre>  \ V  V /  __/ | (_| (_) | | | | | |  __/<br/></pre> */}
+                          {/* <pre>   \_/\_/ \___|_|\___\___/|_| |_| |_|\___|<br/></pre> */}
+                      </div>
                     </div>
-                    <div className="hidden md:block">
-                      {
-                        typedTimeline[0] &&
-                        <>
-                          <pre>  _                     _ _             <br/></pre>
-                          <pre> | |                   | (_)            <br/></pre>
-                          <pre> | |     ___   __ _  __| |_ _ __   __ _ <br/></pre>
-                          <pre> | |    / _ \ / _` |/ _` | | '_ \ / _` |<br/></pre>
-                          <pre> | |___| (_) | (_| | (_| | | | | | (_| |<br/></pre>
-                          <pre> |______\___/ \__,_|\__,_|_|_| |_|\__, |<br/></pre>
-                          <pre>                                   __/ |<br/></pre>
-                          <pre>                                  |___/ <br/></pre>
-                        </>
-                      }
-                    </div>
-                    <div>
-                      {
-                        typedTimeline[0] &&
-                        <>
-                          <pre> {} loading ...</pre> 
-                        </>
-                      }
-                    </div>
-                  </div>
-                </TermRegular>
-              </div>
-    </Terminal>
+                  </TermRegular>
+                </div>
+      </Terminal>
+    </div>
   )
 }

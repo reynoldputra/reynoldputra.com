@@ -4,18 +4,22 @@ import projects from "../../data/my-project.js"
 import ProjectImage from "./projectImage";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ProjectDetail from "./projectDetail";
 import Typed from "react-typed"
+import {BsFillArrowDownCircleFill} from "react-icons/bs"
 
 export default function ProjectSection() {
+  const [selectedProject, setSelectedProject] = useState(0)
   gsap.registerPlugin(ScrollTrigger)
   const containerRef = useRef(null)
   const component = useRef(null)
-  useLayoutEffect(() =>{
+  useEffect(() =>{
+    console.log("test")
     let ctx = gsap.context(() => {
       const panels = gsap.utils.toArray('.detail-panel')
       const images = gsap.utils.toArray('.image-panel')
+      const menu = gsap.utils.toArray('.menu')
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".sections",
@@ -23,13 +27,16 @@ export default function ProjectSection() {
           end: () => "+=" + 100 * panels.length + "%",
           pin: true,
           scrub: 0.5,
-          // markers: true,
+          markers: true,
           snap: {
             snapTo: 1 / (images.length),
-            duration: 1,
+            duration: 0.6,
             delay: 0.2,
             ease: "power1.inOut"
           },
+          onSnapComplete: ({progress}) => {
+            setSelectedProject(progress * images.length - 1)
+          }
         }
       });
       panels.forEach((panel, index) => {
@@ -37,27 +44,30 @@ export default function ProjectSection() {
           panel,
           {
             yPercent: 100,
-            ease: "none",
           },
           "+=0.25"
         );
         tl.from(
           images[index],
           {
-            xPercent: -100,
-            ease: "none",
+            xPercent: -100
           },
           "<"
         );
       });
+
     }, component)
     return () => ctx.revert()
-  })
+  }, [setSelectedProject])
 
   return (
     <div ref={component}>
       <Grid>
         <Cell cols="1_full" className="text-center font-mono text-5xl h-screen flex items-center justify-center">
+            <div className="absolute animate-bounce bottom-10 left-0 right-0 mx-auto flex flex-col justify-center gap-2">
+              <p className="text-md font-normal font-sans">Keep scrolling</p>
+              <BsFillArrowDownCircleFill className="h-6 w-auto" /> 
+            </div>
             <Typed
               showCursor={false}
               typeSpeed={50}
@@ -86,6 +96,17 @@ export default function ProjectSection() {
                   }) 
                 }
               </Cell>
+              <div className="absolute bottom-12 right-10 md:right-28 lg:right-52 overflow-hidden hidden md:block">
+                <div className="menu w-full">
+                  {
+                    projects.map((project, idx) => {
+                      return (
+                        <p className={"text-right transition-all " + (idx == selectedProject ? "font-bold text-lg text-rockblue-50" : "text-sm text-rockblue-400")} key={idx}>{project.name}</p>
+                      )
+                    })
+                  }
+                </div>
+              </div>
             </Grid>
           </div>
     </div>

@@ -1,9 +1,9 @@
 export default function StackGroup({title, items, setSelect, setGroup, group, selectedIndex, selectedGroup}) {
   return (
-    <div className="relative mt-6">
+    <div className="relative mt-6" data-aos="fade-up">
       <p className="text-sm font-mono lg:text-center lg:-left-8 lg:absolute lg:top-0 lg:bottom-0 lg:m-0 text-rotate lg:rotate-180"
       >{title}</p>
-      <div className="border-t border-t-rockblue-50 grid grid-cols-4 py-8 lg:border-t-transparent lg:border-l lg:border-l-rockblue-50 gap-y-8">
+      <div className="border-t border-t-rockblue-50 grid grid-cols-4 py-8 lg:border-t-transparent lg:border-l lg:border-l-rockblue-50 gap-y-8" data-aos="fade-up">
         {
           items.map((item, idx) => {
             const active = (group == selectedGroup && selectedIndex == idx)

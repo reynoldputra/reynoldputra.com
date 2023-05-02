@@ -11,11 +11,13 @@ import { ScrollTrigger } from "gsap/dist/all";
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
   const containerRef = useRef()
+  const lineRef = useRef()
   const name = ["R", "e", "y", "n", "o", "l", "d"]
 
   useLayoutEffect(() => {
     const triggerOption= {
           scrub: 1,
+          markers: true,
           start : "250px 50%",
           end : "400px 50%"
     }
@@ -41,9 +43,10 @@ export default function About() {
       const tlVer = gsap.timeline({
         scrollTrigger : {
           trigger: containerRef.current,
-          ...triggerOption
+          ...triggerOption,
         }
       })
+
       tlVer.fromTo(sectionsVer, 
         {
           height : "100%"
@@ -52,6 +55,18 @@ export default function About() {
           height : 0
         },
       )
+
+      gsap.from(lineRef.current, {
+        scrollTrigger : {
+          trigger: containerRef.current,
+          ...triggerOption,
+          start: "200px 50%",
+          end: "+=80px"
+        },
+        height: 0,
+      })
+
+
     }, containerRef)
     return () => ctx.revert()
   })
@@ -59,31 +74,33 @@ export default function About() {
   return (
     <div className="relative" ref={containerRef}>
       <Grid className="z-20">
-        <div className="absolute bottom-0 right-0 py-8 px-4 flex w-full md:block md:left-0 md:right-auto md:w-16">
-          <div className="w-full border border-rockblue-50 h-0 m-auto mr-6 md:w-0 md:h-64 md:mr-auto md:mb-6"></div>
+        <div className="absolute bottom-0 right-0 py-8 px-4 flex w-full md:block md:left-0 md:right-auto md:w-16 ">
+          <div className="w-full h-0 md:h-64 md:mb-4">
+            <div className="w-full border border-rockblue-50 h-0 m-auto mr-6 md:w-0 md:h-64 md:mr-auto md:mb-6" ref={lineRef}></div>
+          </div>
           <div className="flex gap-2 md:flex-col items-center">
-            <a target="_blank" href="https://github.com/reynoldputra">
+            <a target="_blank" href="https://github.com/reynoldputra" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-pointer">
               <GithubLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer" />
             </a>
-            <a target="_blank" href="https://www.linkedin.com/in/reynoldputra">
+            <a target="_blank" href="https://www.linkedin.com/in/reynoldputra" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom">
               <LinkedinLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer" />
             </a>
-            <a target="_blank" href="mailto:reynoldputra1@gmail.com">
+            <a target="_blank" href="mailto:reynoldputra1@gmail.com" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom">
               <EmailLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer"/>
             </a>
-            <a target="_blank" href="https://www.instagram.com/reynoldputra/">
+            <a target="_blank" href="https://www.instagram.com/reynoldputra/" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom">
               <InstagramLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300 cursor-pointer"/>
             </a>
           </div>
         </div>
         <Cell cols="1_3" colsMd="3_full">
-          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48">
+          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48" data-aos="fade-right" data-aos-anchor-placement="top-center">
             <p>Hello,</p>
             <p className="text-spray-400">I&apos;m Reynold</p>
           </div>
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
-          <p className="pt-16 text-sm text-justify">
+          <p className="pt-16 text-sm text-justify" data-aos="fade-right" data-aos-anchor-placement="top-center">
             I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows.
           </p>
         </Cell>

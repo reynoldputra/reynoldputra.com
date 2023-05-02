@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
 import { useLayoutEffect, useRef } from "react";
 import ProjectDetail from "./projectDetail";
+import Typed from "react-typed"
 
 export default function ProjectSection() {
   gsap.registerPlugin(ScrollTrigger)
@@ -57,9 +58,11 @@ export default function ProjectSection() {
     <div ref={component}>
       <Grid>
         <Cell cols="1_full" className="text-center font-mono text-5xl h-screen flex items-center justify-center">
-          <p>
-            My <span className="text-spray-400">Projects</span>
-          </p>
+            <Typed
+              showCursor={false}
+              typeSpeed={50}
+              strings={[`My <span style="font-family: IBM Plex Mono; color: #2FD2BD;">projects</span>`]}
+            />
         </Cell>
       </Grid>
       <div className="relative pt-8" ref={containerRef}>

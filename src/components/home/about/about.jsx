@@ -17,7 +17,7 @@ export default function About() {
   useLayoutEffect(() => {
     const triggerOption= {
           scrub: 1,
-          markers: true,
+          // markers: true,
           start : "250px 50%",
           end : "400px 50%"
     }

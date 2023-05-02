@@ -11,7 +11,7 @@ export default function TechStack() {
   return (
     <Grid contentStart={false}>
       <Cell cols="1_full" colsLg="2_full" rowsLg="1_1">
-        <div className="w-full text-right lg:text-left lg:flex text-3xl md:text-4xl lg:text-5xl font-mono " dat-aos="fade-right">
+        <div className="w-full text-right lg:text-left lg:flex text-3xl md:text-4xl lg:text-5xl font-mono " data-aos="fade-right">
           <p>Tech</p>
           <p>&nbsp;- stack</p>
         </div>

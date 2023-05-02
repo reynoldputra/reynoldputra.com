@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import FullOverlay from "./fullOverlay";
+import Announcement from "./announcement";
 
 export default function Loading ({setLoading}) {
   const [iconLoading, setIconLoading] = useState("-")
@@ -25,7 +26,7 @@ export default function Loading ({setLoading}) {
         onloadingComplete()
         clearInterval(countIntervalId)
       }
-    }, 3000/100)
+    }, 6000/100)
     
     return () => {
       clearInterval(intervalId)
@@ -49,6 +50,9 @@ export default function Loading ({setLoading}) {
         <div className="text-center">
           <p>{iconLoading} loading ...</p>
           <p className="font-sans pt-2">{countLoading}%</p>
+        </div>
+        <div className="w-full h-auto bottom-12 absolute">
+          <Announcement />
         </div>
       </div>
     </FullOverlay>

@@ -11,11 +11,11 @@ import {BsFillArrowDownCircleFill} from "react-icons/bs"
 
 export default function ProjectSection() {
   const [selectedProject, setSelectedProject] = useState(0)
+  const [isTyping, setTyping] = useState(true)
   gsap.registerPlugin(ScrollTrigger)
   const containerRef = useRef(null)
   const component = useRef(null)
   useEffect(() =>{
-    console.log("test")
     let ctx = gsap.context(() => {
       const panels = gsap.utils.toArray('.detail-panel')
       const images = gsap.utils.toArray('.image-panel')
@@ -64,13 +64,17 @@ export default function ProjectSection() {
     <div ref={component}>
       <Grid>
         <Cell cols="1_full" className="text-center font-mono text-5xl h-screen flex items-center justify-center">
-            <div className="absolute animate-bounce bottom-10 left-0 right-0 mx-auto flex flex-col justify-center gap-2">
-              <p className="text-md font-normal font-sans">Keep scrolling</p>
-              <BsFillArrowDownCircleFill className="h-6 w-auto" /> 
-            </div>
+            {
+              !isTyping &&
+              <div className="absolute animate-bounce bottom-10 left-0 right-0 mx-auto flex flex-col justify-center gap-2" data-aos="fade-up">
+                <p className="text-md font-normal font-sans">Keep scrolling</p>
+                <BsFillArrowDownCircleFill className="h-6 w-auto" /> 
+              </div>
+            }
             <Typed
               showCursor={false}
-              typeSpeed={50}
+              onComplete={() => setTyping(false)}
+              typeSpeed={30}
               strings={[`My <span style="font-family: IBM Plex Mono; color: #2FD2BD;">projects</span>`]}
             />
         </Cell>

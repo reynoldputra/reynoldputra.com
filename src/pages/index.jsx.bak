@@ -1,5 +1,5 @@
-import Cell from "../components/general/cell";
 import Layout from "../components/general/layout";
+import Cell from "../components/general/cell";
 import Grid from "../components/general/grid";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";

@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import Navbar from "./navbar/navbar";
 
 export default function Layout({children, ...rest}) {
   const cursorRef = useRef()
@@ -20,8 +21,14 @@ export default function Layout({children, ...rest}) {
       y: mouseY  + 'px'
     });
   }
+
+  useEffect(() => {
+    console.log("Hello devs !")
+  }, [])
+
   return (
     <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden hidden md:block md:cursor-none" {...rest} onMouseMove={handleMouseMove}>
+      <Navbar />
       <div className="h-6 w-6 -translate-x-1/2 -translate-y-1/2 bg-spray-400 absolute rounded-full mix-blend-difference z-50 custome-cursor" style={{pointerEvents : "none"}} ref={cursorRef}></div>
       <div className="h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-rockblue-50 absolute rounded-full z-50" style={{pointerEvents : "none"}} ref={smallCursorRef}></div>
       {children}

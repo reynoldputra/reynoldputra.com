@@ -69,7 +69,7 @@ export default function About() {
 
     }, containerRef)
     return () => ctx.revert()
-  })
+  }, [])
 
   return (
     <div className="relative" ref={containerRef}>

@@ -4,7 +4,7 @@ import projects from "../../data/my-project.js"
 import ProjectImage from "./projectImage";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProjectDetail from "./projectDetail";
 import Typed from "react-typed"
 import {BsFillArrowDownCircleFill} from "react-icons/bs"
@@ -12,14 +12,24 @@ import {BsFillArrowDownCircleFill} from "react-icons/bs"
 export default function ProjectSection() {
   const [selectedProject, setSelectedProject] = useState(0)
   const [isTyping, setTyping] = useState(true)
+
   gsap.registerPlugin(ScrollTrigger)
   const containerRef = useRef(null)
   const component = useRef(null)
-  useEffect(() =>{
+  const lineProgress = useRef(null)
+
+  const progressHandle = (progress) => {
+    gsap.to(lineProgress.current, {
+      width: progress * 100 + "%",
+      ease: "power1.inOut"
+    })
+  }
+
+  useEffect(() => {
     let ctx = gsap.context(() => {
       const panels = gsap.utils.toArray('.detail-panel')
       const images = gsap.utils.toArray('.image-panel')
-      const menu = gsap.utils.toArray('.menu')
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".sections",
@@ -36,9 +46,15 @@ export default function ProjectSection() {
           },
           onSnapComplete: ({progress}) => {
             setSelectedProject(progress * images.length - 1)
+          },
+          onUpdate: ({progress}) => {
+            let progressParse = progress / (1/images.length) % 1
+            if(progressParse == 0) progressParse = 1
+            progressHandle(progressParse)
           }
         }
       });
+
       panels.forEach((panel, index) => {
         tl.from(
           panel,
@@ -81,7 +97,9 @@ export default function ProjectSection() {
       </Grid>
       <div className="relative pt-8" ref={containerRef}>
             <Grid className="sections h-screen w-screen pt-16 md:pt-24">
-              <div className="absolute border-b border-rockblue-50 bottom-12 w-32 md:w-72 lg:w-96 left-4 md:left-28 lg:left-52"></div>
+              <div className="absolute bottom-12 w-32 md:w-72 lg:w-96 left-4 md:left-28 lg:left-52 overflow-hidden">
+                <div ref={lineProgress} className="border-b border-rockblue-50 w-0"></div> 
+              </div>
               <Cell cols="1_full" colsMd='1_6' colsLg="2_5" rows="1_1" className="font-mono w-full relative h-[30vh] md:h-96 overflow-hidden">
                 {
                   projects.map((project, idx) => {

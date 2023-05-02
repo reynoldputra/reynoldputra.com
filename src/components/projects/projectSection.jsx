@@ -27,7 +27,7 @@ export default function ProjectSection() {
           end: () => "+=" + 100 * panels.length + "%",
           pin: true,
           scrub: 0.5,
-          markers: true,
+          // markers: true,
           snap: {
             snapTo: 1 / (images.length),
             duration: 0.6,

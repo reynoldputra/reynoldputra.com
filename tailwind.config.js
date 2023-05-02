@@ -82,7 +82,14 @@ module.exports = {
           800 : "#125D58",
           900 : "#144D4A",
           950 : "#042F2E"
-        } 
+        },
+        terminal : {
+          blue : "#7DCFFF",
+          purple : "#BB9AF7",
+          red : "#F7768E",
+          green : "#9ECE6A",
+          yellow : "#9ECE6A"
+        }
       },
 
     },

@@ -12,7 +12,7 @@ export default function ProjectDetail({project}) {
               }) 
             } 
           </div>
-         <p className="text-sm pt-4">{project.desc}</p>
+         <p className="text-sm text-justify pt-4">{project.desc}</p>
       </div>
     </div>
   )

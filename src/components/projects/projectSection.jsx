@@ -20,8 +20,7 @@ export default function ProjectSection() {
 
   const progressHandle = (progress) => {
     gsap.to(lineProgress.current, {
-      width: progress * 100 + "%",
-      ease: "power1.inOut"
+      width: progress * 100 + "%"
     })
   }
 
@@ -48,9 +47,7 @@ export default function ProjectSection() {
             setSelectedProject(progress * images.length - 1)
           },
           onUpdate: ({progress}) => {
-            let progressParse = progress / (1/images.length) % 1
-            if(progressParse == 0) progressParse = 1
-            progressHandle(progressParse)
+            progressHandle(progress)
           }
         }
       });
@@ -96,41 +93,44 @@ export default function ProjectSection() {
         </Cell>
       </Grid>
       <div className="relative pt-8" ref={containerRef}>
-            <Grid className="sections h-screen w-screen pt-16 md:pt-24">
-              <div className="absolute bottom-12 w-32 md:w-72 lg:w-96 left-4 md:left-28 lg:left-52 overflow-hidden">
-                <div ref={lineProgress} className="border-b border-rockblue-50 w-0"></div> 
-              </div>
-              <Cell cols="1_full" colsMd='1_6' colsLg="2_5" rows="1_1" className="font-mono w-full relative h-[30vh] md:h-96 overflow-hidden">
-                {
-                  projects.map((project, idx) => {
-                    return (
-                      <ProjectImage key={idx} project={project} /> 
-                    )
-                  }) 
-                }
-              </Cell>
-              <Cell rows="2_1" rowsMd="1_1" cols="1_full" colsMd="7_6" colsLg="8_4" className="pt-12 h-96 md:pt-0 md:flex flex-col justify-center relative overflow-hidden">
-                {
-                  projects.map((project, idx) => {
-                    return (
-                      <ProjectDetail key={idx} project={project} /> 
-                    )
-                  }) 
-                }
-              </Cell>
-              <div className="absolute bottom-12 right-10 md:right-28 lg:right-52 overflow-hidden hidden md:block">
-                <div className="menu w-full">
-                  {
-                    projects.map((project, idx) => {
-                      return (
-                        <p className={"text-right transition-all " + (idx == selectedProject ? "font-bold text-lg text-rockblue-50" : "text-sm text-rockblue-400")} key={idx}>{project.name}</p>
-                      )
-                    })
-                  }
-                </div>
-              </div>
-            </Grid>
+        <Grid className="sections h-screen w-screen pt-24 md:pt-32">
+          <div className="absolute bottom-12 left-0 right-0 mx-auto md:mx-0 w-72 lg:w-96 md:left-28 lg:left-52">
+            <div className="border-b border-rockblue-50 w-full aboslute top-0 bottom-0 my-auto z-20"></div> 
+            <div className="w-32 md:w-72 lg:w-96 relative z-50">
+              <div ref={lineProgress} className="border-b-2 border-spray-400 absolute top-0 bottom-0 my-auto translate-y-[0.01px] w-0 "></div> 
+            </div>
           </div>
+          <Cell cols="1_full" colsMd='1_6' colsLg="2_5" rows="1_1" className="font-mono w-full relative h-[30vh] md:h-96 overflow-hidden">
+            {
+              projects.map((project, idx) => {
+                return (
+                  <ProjectImage key={idx} project={project} /> 
+                )
+              }) 
+            }
+          </Cell>
+          <Cell rows="2_1" rowsMd="1_1" cols="1_full" colsMd="7_6" colsLg="8_4" className="pt-12 h-72 md:h-96 md:pt-0 md:flex flex-col justify-center relative overflow-hidden">
+            {
+              projects.map((project, idx) => {
+                return (
+                  <ProjectDetail key={idx} project={project} /> 
+                )
+              }) 
+            }
+          </Cell>
+          <div className="absolute bottom-12 right-10 md:right-28 lg:right-52 overflow-hidden hidden md:block">
+            <div className="menu w-full">
+              {
+                projects.map((project, idx) => {
+                  return (
+                    <p className={"text-right transition-all " + (idx == selectedProject ? "font-bold text-lg text-rockblue-50" : "text-sm text-rockblue-400")} key={idx}>{project.name}</p>
+                  )
+                })
+              }
+            </div>
+          </div>
+        </Grid>
+      </div>
     </div>
   )
 }

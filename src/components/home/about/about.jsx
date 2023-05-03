@@ -18,7 +18,7 @@ export default function About() {
     const triggerOption= {
           scrub: 1,
           // markers: true,
-          start : "250px 50%",
+          start : "200px 50%",
           end : "400px 50%"
     }
 

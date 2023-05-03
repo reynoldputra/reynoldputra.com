@@ -16,7 +16,7 @@ export default function Index() {
   }, [])
 
   return (
-    <Layout >
+    <Layout isLoading={isLoading} >
       {isLoading && <Loading setLoading={setLoading} /> }
       {!isLoading && 
         <>

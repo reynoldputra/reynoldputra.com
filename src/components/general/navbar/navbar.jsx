@@ -3,14 +3,21 @@ import Cell from "../cell"
 import {HiMenuAlt1} from "react-icons/hi"
 import {IoCloseSharp} from "react-icons/io5"
 import OutlineLogo from "../../../../public/asset/outlineLogo";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Terminal from "../terminal/terminal.jsx"
 import TermHeading from "../terminal/termHeading";
 import Link from "next/link";
+import { RiArrowRightSLine } from "react-icons/ri"
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false)
+
+  const router = useRouter()
+  const {pathname} = router
+
+  const navbarRef = useRef()
 
   const items = [
     {
@@ -22,32 +29,35 @@ export default function Navbar() {
       href : "/projects"
     }
   ]
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  useEffect(() => {
-    let currentScrollPos = window.pageYOffset;
-    setPrevScrollPos(currentScrollPos);
 
-    const handleScroll = () => {
-      currentScrollPos = window.pageYOffset;
+  const mouseEnterHandle = () => {
+    const cursor = gsap.utils.toArray('.custome-cursor')
+    gsap.to(cursor, {
+      height: "60px",
+      width: "60px"
+    })
+  }
 
-      if (prevScrollPos > currentScrollPos) {
-        gsap.to(".navbar", { top: "0px", duration: 0.2 });
-      } else {
-        gsap.to(".navbar", { top: "-100px", duration: 0.2 });
-      }
+  const mouseLeaveHandle = () => {
+    const cursor = gsap.utils.toArray('.custome-cursor')
+    gsap.to(cursor, {
+      height: "24px",
+      width: "24px",
+    })
+  }
 
-      setPrevScrollPos(currentScrollPos);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos]);
+  const closeNavbar = () => {
+    gsap.to(".navbar-modal", {
+      opacity: 0,
+      y: "-200px",
+      onComplete: () =>  setNavbar(false)
+    }) 
+  }
 
   return (
-    <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar">
+    <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar" data-aos="fade-down" ref={navbarRef}>
       <Grid screenHeight={false}>
-        <Cell cols="2_10" className="flex justify-between w-full">
+        <Cell cols="1_full" colsMd="2_10" className="flex justify-between w-full">
           <div className="w-10 h-10 relative p-1 cursor-pointer">
             <Link href="/">
               <OutlineLogo  />
@@ -61,19 +71,25 @@ export default function Navbar() {
       </Grid>
       {
         navbar &&  
-        <div className="absolute h-screen w-screen top-6 z-[100] flex justify-center items-center" data-aos="fade-down">
+        <div className="navbar-modal absolute h-screen w-screen bg-primary-950/90 top-0 z-50 flex justify-center items-center" data-aos="fade-down" onClick={closeNavbar}>
           <Terminal className="h-[500px] w-[400px]">
-            <div className="w-full flex justify-end">
-              <IoCloseSharp className="h-6 w-6 cursor-pointer" onClick={() => setNavbar(false)}/>
+            <div className="w-full flex justify-between">
+              <TermHeading className="text-sm w-full " />
+              <IoCloseSharp className="h-6 w-6 cursor-pointer" onClick={closeNavbar}/>
             </div>
-            <TermHeading className="text-sm w-full flex justify-center pt-6" />
               <div className="h-full flex flex-col justify-center px-6">
                 {
                   items.map((item, idx) => {
                     return (
-                      <div className="text-2xl pt-8" onClick={() => setNavbar(false)}>
-                        <Link key={idx} href={item.href}>
-                          <button >{item.tag}</button>
+                      <div key={idx} className="text-2xl pt-8 flex items-center" onClick={closeNavbar} onMouseOver={mouseEnterHandle} onMouseLeave={mouseLeaveHandle}>
+                        <div className="w-8">
+                          {
+                            (pathname == item.href) &&
+                            <RiArrowRightSLine className="text-terminal-green h-8 w-8 mt-[1px] i-translate-x-1" /> 
+                          }
+                        </div>
+                        <Link href={item.href}>
+                          <button>{item.tag}</button>
                         </Link>
                       </div>
                     )

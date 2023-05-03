@@ -26,7 +26,7 @@ export default function Loading ({setLoading}) {
         onloadingComplete()
         clearInterval(countIntervalId)
       }
-    }, 6000/100)
+    }, 3000/100)
     
     return () => {
       clearInterval(intervalId)
@@ -51,9 +51,9 @@ export default function Loading ({setLoading}) {
           <p>{iconLoading} loading ...</p>
           <p className="font-sans pt-2">{countLoading}%</p>
         </div>
-        <div className="w-full h-auto bottom-12 absolute">
-          <Announcement />
-        </div>
+        {/* <div className="w-full h-auto bottom-12 absolute"> */}
+        {/*   <Announcement /> */}
+        {/* </div> */}
       </div>
     </FullOverlay>
   ) 

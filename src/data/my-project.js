@@ -24,7 +24,7 @@ const projects = [
     image : "irpro.png" 
   },
   {
-    name : "ITS EXPO 2023",
+    name : "ITS Expo 2023",
     link : "expo-its.com",
     year : 2023,
     desc : "ITS EXPO is an annual big event held by Institut Teknologi Sepuluh Nopember Surabaya that exhibits artworks and technology innovations of ITS Students to be shown to the public with remarkable closing with various artists at the end of the show. I joined as backend expert staff within the team of 8 people. We developed backend service using Laravel.",

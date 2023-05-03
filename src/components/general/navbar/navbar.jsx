@@ -3,7 +3,7 @@ import Cell from "../cell"
 import {HiMenuAlt1} from "react-icons/hi"
 import {IoCloseSharp} from "react-icons/io5"
 import OutlineLogo from "../../../../public/asset/outlineLogo";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import Terminal from "../terminal/terminal.jsx"
 import TermHeading from "../terminal/termHeading";
@@ -72,7 +72,7 @@ export default function Navbar() {
       {
         navbar &&  
         <div className="navbar-modal absolute h-screen w-screen bg-primary-950/90 top-0 z-50 flex justify-center items-center" data-aos="fade-down" onClick={closeNavbar}>
-          <Terminal className="h-[500px] w-[400px]">
+          <Terminal className="h-[500px] w-[320px] md:w-[400px]">
             <div className="w-full flex justify-between">
               <TermHeading className="text-sm w-full " />
               <IoCloseSharp className="h-6 w-6 cursor-pointer" onClick={closeNavbar}/>

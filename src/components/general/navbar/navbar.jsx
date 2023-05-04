@@ -10,6 +10,7 @@ import TermHeading from "../terminal/termHeading";
 import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri"
 import { useRouter } from "next/router";
+import NavbarItems from "../../../data/navbar-items.json"
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false)
@@ -19,16 +20,7 @@ export default function Navbar() {
 
   const navbarRef = useRef()
 
-  const items = [
-    {
-      tag : "Home",
-      href : "/"
-    },
-    {
-      tag : "Projects",
-      href : "/projects"
-    }
-  ]
+  const items = NavbarItems.data
 
   const mouseEnterHandle = () => {
     const cursor = gsap.utils.toArray('.custome-cursor')
@@ -63,7 +55,7 @@ export default function Navbar() {
               <OutlineLogo  />
             </Link>
           </div>
-          <div className="flex items-center gap-2" onClick={() => setNavbar(true)}>
+          <div className="flex items-center gap-2 hover:text-spray-400 duration-300" onClick={() => setNavbar(true)}>
             <p className="text-md font-mono">Menu</p>
             <HiMenuAlt1 className="w-6 h-6" />
           </div>
@@ -72,7 +64,7 @@ export default function Navbar() {
       {
         navbar &&  
         <div className="navbar-modal absolute h-screen w-screen bg-primary-950/90 top-0 z-50 flex justify-center items-center" data-aos="fade-down" onClick={closeNavbar}>
-          <Terminal className="h-[500px] w-[320px] md:w-[400px]">
+          <Terminal className="h-[500px] w-[320px] md:w-[400px] relative">
             <div className="w-full flex justify-between">
               <TermHeading className="text-sm w-full " />
               <IoCloseSharp className="h-6 w-6 cursor-pointer" onClick={closeNavbar}/>
@@ -97,6 +89,7 @@ export default function Navbar() {
                 }
                 <div className="h-20"></div>
               </div>
+              <div className="text-sm text-rockblue-600 absolute bottom-4">This website is still under development, some parts may not work properly.</div>
           </Terminal>
         </div>
       }

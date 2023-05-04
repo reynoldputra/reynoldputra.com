@@ -40,8 +40,7 @@ export default function ProjectSection() {
           snap: {
             snapTo: 1 / (images.length),
             duration: 0.6,
-            delay: 0.2,
-            ease: "power1.inOut"
+            delay: 0.2
           },
           onSnapComplete: ({progress}) => {
             setSelectedProject(progress * images.length - 1)

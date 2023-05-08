@@ -16,10 +16,15 @@ export default function Layout({children, isLoading = false, ...rest}) {
 
   const handleMouseMove = (e) => {
     const mouseX = e.pageX;
-    const mouseY = e.pageY;
+    let mouseY = e.pageY;
+    
+    const currentY = scrollRef.current.getBoundingClientRect().y
+    mouseY += currentY
 
     const main = gsap.utils.toArray(".cursor-main")
     const cursorTail = gsap.utils.toArray(".cursor-tail")
+
+    console.log(currentY, mouseY)
 
     gsap.to(cursorTail[0], {
       duration: 0.5,
@@ -35,10 +40,6 @@ export default function Layout({children, isLoading = false, ...rest}) {
 
   useEffect(() => {
   }, [])
-
-
-  useLenis((e) => {
-  })
 
   return (
     <ReactLenis root

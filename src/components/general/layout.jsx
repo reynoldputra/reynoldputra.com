@@ -1,7 +1,7 @@
 import { gsap } from 'gsap/dist/gsap'
 import { useEffect, useRef } from "react";
 import Navbar from "./navbar/navbar";
-import { Lenis as ReactLenis, useLenis } from '@studio-freight/react-lenis'
+import { Lenis as ReactLenis } from '@studio-freight/react-lenis'
 import NavbarItems from "../../data/navbar-items.json"
 import Head from "next/head";
 import { useRouter } from 'next/router';
@@ -24,10 +24,8 @@ export default function Layout({children, isLoading = false, ...rest}) {
     const main = gsap.utils.toArray(".cursor-main")
     const cursorTail = gsap.utils.toArray(".cursor-tail")
 
-    console.log(currentY, mouseY)
-
     gsap.to(cursorTail[0], {
-      duration: 0.5,
+      duration: 0.4,
       left: mouseX + 'px',
       top: mouseY + 'px',
     });
@@ -36,6 +34,23 @@ export default function Layout({children, isLoading = false, ...rest}) {
       left: mouseX  + 'px',
       top: mouseY  + 'px'
     });
+  }
+
+  const handleMouseDown = () => {
+    // const cursorTail = gsap.utils.toArray(".cursor-tail")
+    // gsap.to(cursorTail, {
+    //   duration: 0.2,
+    //   width: "18px",
+    //   height: "18px"
+    // })
+  }
+
+  const handleMouseUp = () => {
+    // const cursorTail = gsap.utils.toArray(".cursor-tail")
+    // gsap.to(cursorTail, {
+    //   width: "24px",
+    //   height: "24px"
+    // })
   }
 
   useEffect(() => {
@@ -47,7 +62,7 @@ export default function Layout({children, isLoading = false, ...rest}) {
         smoothWheel : (pathname == "/projects" ? false : true)
       }}
     >
-      <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden " {...rest} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
+      <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden cursor-none" {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
         <Head>
          {items.map((item) => {
             if (item.href === pathname) {

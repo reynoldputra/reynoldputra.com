@@ -11,6 +11,7 @@ import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri"
 import { useRouter } from "next/router";
 import NavbarItems from "../../../data/navbar-items.json"
+import ButtonCursor from "../cursor/buttonCursor";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false)
@@ -55,10 +56,12 @@ export default function Navbar() {
               <OutlineLogo  />
             </Link>
           </div>
-          <div className="flex items-center gap-2 hover:text-spray-400 duration-300" onClick={() => setNavbar(true)}>
-            <p className="text-md font-mono">Menu</p>
-            <HiMenuAlt1 className="w-6 h-6" />
-          </div>
+          <ButtonCursor>
+            <div className="flex items-center h-full gap-2 hover:text-spray-400 duration-300" onClick={() => setNavbar(true)}>
+              <p className="text-md font-mono">Menu</p>
+              <HiMenuAlt1 className="w-6 h-6" />
+            </div>
+          </ButtonCursor>
         </Cell>
       </Grid>
       {

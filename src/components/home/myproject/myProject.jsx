@@ -6,39 +6,58 @@ import NextIcon from "../../../asset/icon/next";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger)
+
 export default function MyPorject(){
-  const scrollContainer = useRef()
-  const triggeredContainer = useRef()
+  const containerRef = useRef()
 
-  // useLayoutEffect(() => {
-  //   let ctx = gsap.context(() => {
-  //     const tlHor = gsap.timeline({
-  //       scrollTrigger : {
-  //         trigger: scrollContainer.current,
-  //         markers: true,
-  //         scrub: 1,
-  //         start: "top 200px",
-  //         end: "200px 200px"
-  //       }
-  //     })
-  //     tlHor.from(triggeredContainer.current, 
-  //       {
-  //         x: "50%"
-  //       }
-  //     )
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=900",
+          pin: true,
+          markers: true,
+          scrub: 1
+        }
+      });
 
-  //   }, scrollContainer)
-  //   return () => ctx.revert()
-  // })
+      tl.fromTo(".project-1", {
+          top : "350px" 
+        },
+        {
+          top : "4px",
+          scale : "0.96"
+      })
+
+      tl.fromTo(".project-2", {
+          top : "350px" 
+        },
+        {
+          top : "24px",
+          scale : "0.98"
+      })
+
+      tl.fromTo(".project-3", {
+          top : "350px" 
+        },
+        {
+          top : "44px",
+      })
+
+    }, containerRef)
+    return () => ctx.revert()
+  }, [])
   
   return (
-    <div ref={scrollContainer}>
-      <Grid className="pt-8" >
+    <div ref={containerRef} >
+      <Grid className="pt-8">
         <Cell cols="1_full" className="h-[30vh] font-mono flex flex-col justify-center items-center" >
-          <p className="pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Project showcase</p> 
+          <p className="pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Selected Project</p> 
           <Link href="/projects">
             <button className="border border-rockblue-50 w-fit px-3 rounded-md flex items-center py-1 gap-3 text-sm" data-aos="zoom-in">
               <p>see more</p>
@@ -46,34 +65,16 @@ export default function MyPorject(){
             </button>
           </Link>
         </Cell>
-        <Cell cols="1_full" className="relative flex flex-col justify-center gap-12 overflow-x-scroll hide-scrollbar pb-12">
-          <div className="absoulte min-w-fit w-full flex justify-center gap-12" ref={triggeredContainer}>
-            {
-              projects.map((project, idx) => {
-                if(idx < projects.length/2) {
-                  return (
-                    <div className="aspect-video w-52 lg:w-80 relative" key={idx} data-aos="flip-up">
-                      <Image src={"/asset/my-project/" + project.image} fill className="object-cover" key={idx} alt="project image"/>
-                    </div>
-                  )
-                } 
-              }) 
-            }
-          </div> 
-          <div className="absoulte min-w-fit w-full flex justify-center gap-12" ref={triggeredContainer}>
-            <div className="w-28 md:hidden"></div>
-            {
-              projects.map((project, idx) => {
-                if(idx >= projects.length/2) {
-                  return (
-                    <div className="aspect-video w-52 md:w-48 lg:w-80 relative" key={idx} data-aos="flip-up">
-                      <Image src={"/asset/my-project/" + project.image} fill className="object-cover" key={idx} alt="project image"/>
-                    </div>
-                  )
-                } 
-              }) 
-            }
-          </div> 
+        <Cell cols="2_5" className="relative pt-12">
+          <div className="w-full project-1 aspect-[16/8] absolute overflow-hidden rounded-lg ">
+            <Image src="/asset/my-project/medselaras.png" fill className="object-cover" alt="cover" />
+          </div>
+          <div className="w-full project-2 aspect-[16/8] absolute overflow-hidden rounded-lg">
+            <Image src="/asset/my-project/medselaras.png" fill className="object-cover" alt="cover" />
+          </div>
+          <div className="w-full project-3 aspect-[16/8] absolute overflow-hidden rounded-lg">
+            <Image src="/asset/my-project/medselaras.png" fill className="object-cover" alt="cover" />
+          </div>
         </Cell>
       </Grid>
     </div>

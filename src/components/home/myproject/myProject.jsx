@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react";
 gsap.registerPlugin(ScrollTrigger)
 
 export default function MyPorject(){
-  const [project, setProject] = useState(0)
+  const [project, setProject] = useState(null)
   const containerRef = useRef()
 
   const projects = [
@@ -34,13 +34,14 @@ export default function MyPorject(){
 
   useEffect(() => {
     let ctx = gsap.context(() => {
+      const projects = gsap.utils.toArray(".project")
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
           end: "+=900",
           pin: true,
-          markers: true,
+          // markers: true,
           scrub: 1
         }
       });
@@ -50,15 +51,33 @@ export default function MyPorject(){
         },
         {
           top : "0px",
-          onComplete: () => setProject(1)
+          onComplete: () => console.log(0),
+          onReverseComplete: () => console.log(0)
       })
 
       tl.fromTo(".project-1", {
           opacity : 0 
         },
         {
-          duration : 0.1,
+          duration : 0.5,
           opacity : 1
+      }, "<0.2")
+
+      tl.fromTo(projects[0], {
+        top : "10px",
+        opacity : 0
+      }, {
+        top : 0,
+        opacity : 1,
+        duration: 0.3
+      }, "<")
+
+      tl.fromTo(".item-menu", {
+          opacity : 0,
+          y: "10px"
+      }, {
+          opacity : 1,
+          y: 0
       }, "<0.2")
 
       tl.fromTo(".project-2", {
@@ -66,17 +85,34 @@ export default function MyPorject(){
         },
         {
           top : "24px",
-          onComplete: () => setProject(2)
+          onComplete: () => setProject(1)
       }, ">0.5")
-
 
       tl.fromTo(".project-2", {
           opacity : 0 
         },
         {
-          duration : 0.1,
+          duration : 0.5,
           opacity : 1
       }, "<0.2")
+
+      tl.fromTo(projects[1], {
+        top : "10px",
+        opacity : 0
+      }, {
+        top : 0,
+        opacity : 1,
+        duration: 0.3
+      }, "<")
+
+      tl.fromTo(projects[0], {
+        top : 0,
+        opacity : 1
+      }, {
+        top : "-10px",
+        opacity : 0,
+        duration: 0.3
+      }, "<")
 
       tl.fromTo(".project-1", {
           scale : 1,
@@ -88,22 +124,40 @@ export default function MyPorject(){
           duration : "0.2"
       }, "<0.1")
 
-
       tl.fromTo(".project-3", {
           top : "350px" 
         },
         {
           top : "48px",
-          onComplete: () => setProject(3)
+          onComplete: () => setProject(2)
       }, ">0.5")
 
       tl.fromTo(".project-3", {
           opacity : 0 
         },
         {
-          duration : 0.1,
+          duration : 0.5,
           opacity : 1
       }, "<0.2")
+
+      tl.fromTo(projects[2], {
+        top : "10px",
+        opacity : 0
+      }, {
+        top : 0,
+        opacity : 1,
+        duration: 0.3
+      }, "<")
+
+      tl.fromTo(projects[1], {
+        top : 0,
+        opacity : 1
+      }, {
+        top : "-10px",
+        opacity : 0,
+        duration: 0.3
+      }, "<")
+
 
       tl.fromTo(".project-2", {
           scale : 1,
@@ -137,23 +191,28 @@ export default function MyPorject(){
             </button>
           </Link>
         </Cell>
-        <Cell cols="2_5" className="relative pt-12">
+        <Cell cols="1_full" colsMd="2_5" className="relative pt-12 h-48">
           {
             projects.map((project, idx) => (
-              <div key={idx} className={"w-full aspect-[16/8] absolute overflow-hidden rounded-lg " + "project-" + (idx+1) }>
+              <div key={idx} className={"w-full max-w-sm md:max-w-xl aspect-[16/8] absolute mx-auto left-0 right-0 overflow-hidden rounded-lg " + "project-" + (idx+1) }>
                 <Image src={"/asset/my-project/" + project.img} fill className="object-cover" alt="cover" />
               </div>
             ))
           }
         </Cell>
-        <Cell cols="8_4" className="flex flex-col items-end justify-center h-72">
-          <p className="text-md font-mono">2022</p> 
-          <p className="text-xl font-bold">medselaras.com</p> 
-          <div className="border-b-[3px] mt-2 border-spray-400 w-32"></div>
-          <div className="flex gap-2 mt-4 text-sm">
-            <p className="border border-rockblue-50 rounded-full h-5 w-5 pt-[2px] text-center">1</p>
-            <p className="border border-rockblue-50 rounded-full h-5 w-5 pt-[2px] text-center">2</p>
-            <p className="border border-rockblue-50 rounded-full h-5 w-5 pt-[2px] text-center">3</p>
+        <Cell cols="1_full" colsMd="8_4" className="flex flex-col items-start md:items-end justify-center h-72 pt-12 md:pt-0">
+          <div className="h-12 w-32 text-left md:text-right relative">
+            {
+              projects.map((project, idx) => (
+                <div className="absolute project top-12 left-0 right-auto md:left-auto md:right-0" key={idx}>
+                  <p className="text-sm md:text-md font-mono">{project.year}</p> 
+                  <p className="text-lg md:text-xl font-bold">{project.url}</p> 
+                </div>
+              ))
+            }
+          </div>
+          <div className="flex flex-col items-end justify-center item-menu">
+            <div className="border-b-2 md:border-b-[3px] md:mt-2 border-spray-400 w-32"></div>
           </div>
         </Cell>
       </Grid>

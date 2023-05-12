@@ -6,12 +6,31 @@ import NextIcon from "../../../asset/icon/next";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function MyPorject(){
+  const [project, setProject] = useState(0)
   const containerRef = useRef()
+
+  const projects = [
+    {
+      img : "medselaras.png",
+      url : "medselaras.com",
+      year : 2022
+    },
+    {
+      img : "inilhoits.png",
+      url : "inlho.its.ac.id",
+      year : 2023
+    },
+    {
+      img : "irpro.png",
+      url : "irproconsulting.com",
+      year : 2023
+    }
+  ]
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -30,23 +49,76 @@ export default function MyPorject(){
           top : "350px" 
         },
         {
-          top : "4px",
-          scale : "0.96"
+          top : "0px",
+          onComplete: () => setProject(1)
       })
+
+      tl.fromTo(".project-1", {
+          opacity : 0 
+        },
+        {
+          duration : 0.1,
+          opacity : 1
+      }, "<0.2")
 
       tl.fromTo(".project-2", {
           top : "350px" 
         },
         {
           top : "24px",
-          scale : "0.98"
-      })
+          onComplete: () => setProject(2)
+      }, ">0.5")
+
+
+      tl.fromTo(".project-2", {
+          opacity : 0 
+        },
+        {
+          duration : 0.1,
+          opacity : 1
+      }, "<0.2")
+
+      tl.fromTo(".project-1", {
+          scale : 1,
+          filter : "brightness(100%)"
+        },
+        {
+          scale : "0.94",
+          filter : "brightness(50%)",
+          duration : "0.2"
+      }, "<0.1")
+
 
       tl.fromTo(".project-3", {
           top : "350px" 
         },
         {
-          top : "44px",
+          top : "48px",
+          onComplete: () => setProject(3)
+      }, ">0.5")
+
+      tl.fromTo(".project-3", {
+          opacity : 0 
+        },
+        {
+          duration : 0.1,
+          opacity : 1
+      }, "<0.2")
+
+      tl.fromTo(".project-2", {
+          scale : 1,
+          filter : "brightness(100%)"
+        },
+        {
+          scale : "0.96",
+          filter : "brightness(50%)",
+          duration : "0.2"
+      }, "<0.1")
+
+      tl.fromTo(".project-3", {
+        },
+        {
+          delay : 0.5
       })
 
     }, containerRef)
@@ -66,14 +138,22 @@ export default function MyPorject(){
           </Link>
         </Cell>
         <Cell cols="2_5" className="relative pt-12">
-          <div className="w-full project-1 aspect-[16/8] absolute overflow-hidden rounded-lg ">
-            <Image src="/asset/my-project/medselaras.png" fill className="object-cover" alt="cover" />
-          </div>
-          <div className="w-full project-2 aspect-[16/8] absolute overflow-hidden rounded-lg">
-            <Image src="/asset/my-project/medselaras.png" fill className="object-cover" alt="cover" />
-          </div>
-          <div className="w-full project-3 aspect-[16/8] absolute overflow-hidden rounded-lg">
-            <Image src="/asset/my-project/medselaras.png" fill className="object-cover" alt="cover" />
+          {
+            projects.map((project, idx) => (
+              <div key={idx} className={"w-full aspect-[16/8] absolute overflow-hidden rounded-lg " + "project-" + (idx+1) }>
+                <Image src={"/asset/my-project/" + project.img} fill className="object-cover" alt="cover" />
+              </div>
+            ))
+          }
+        </Cell>
+        <Cell cols="8_4" className="flex flex-col items-end justify-center h-72">
+          <p className="text-md font-mono">2022</p> 
+          <p className="text-xl font-bold">medselaras.com</p> 
+          <div className="border-b-[3px] mt-2 border-spray-400 w-32"></div>
+          <div className="flex gap-2 mt-4 text-sm">
+            <p className="border border-rockblue-50 rounded-full h-5 w-5 pt-[2px] text-center">1</p>
+            <p className="border border-rockblue-50 rounded-full h-5 w-5 pt-[2px] text-center">2</p>
+            <p className="border border-rockblue-50 rounded-full h-5 w-5 pt-[2px] text-center">3</p>
           </div>
         </Cell>
       </Grid>

@@ -183,7 +183,7 @@ export default function MyPorject(){
     <div ref={containerRef} >
       <Grid className="pt-8">
         <Cell cols="1_full" className="h-[30vh] font-mono flex flex-col justify-center items-center" >
-          <p className="pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Selected Project</p> 
+          <p className="font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Selected Project</p> 
           <Link href="/projects">
             <button className="border border-rockblue-50 w-fit px-3 rounded-md flex items-center py-1 gap-3 text-sm" data-aos="zoom-in">
               <p>see more</p>

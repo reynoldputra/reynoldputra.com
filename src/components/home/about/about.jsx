@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import EmailLogo from "../../../asset/logo/email";
 import GithubLogo from "../../../asset/logo/github";
 import InstagramLogo from "../../../asset/logo/instagram";
@@ -6,25 +6,28 @@ import LinkedinLogo from "../../../asset/logo/linkedin";
 import Cell from "../../general/cell";
 import Grid from "../../general/grid";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/all";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import ButtonCursor from "../../general/cursor/buttonCursor";
  
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
   const containerRef = useRef()
   const lineRef = useRef()
+  const nameRef = useRef()
+  const descRef = useRef()
+
   const name = ["R", "e", "y", "n", "o", "l", "d"]
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const triggerOption= {
           scrub: 1,
-          // markers: true,
           start : "200px 50%",
           end : "400px 50%"
     }
 
     let ctx = gsap.context(() => {
       const sectionsHor = gsap.utils.toArray('.containerName .char-hor')
+
       const tlHor = gsap.timeline({
         scrollTrigger : {
           trigger: containerRef.current,
@@ -67,6 +70,31 @@ export default function About() {
         height: 0,
       })
 
+      gsap.fromTo(nameRef.current, {
+        translateY : "400px"
+      }, {
+        translateY : "-90px",
+        scrollTrigger : {
+          trigger : containerRef.current,
+          scrub : 1,
+          start : "top bottom",
+          end : "bottom top"
+        },
+        ease : "Linear.easeNone"
+      })
+
+      gsap.fromTo(descRef.current, {
+        translateY : "500px"
+      }, {
+        translateY : "-90px",
+        scrollTrigger : {
+          trigger : containerRef.current,
+          scrub : 1,
+          start : "top bottom",
+          end : "bottom top"
+        },
+        ease : "Linear.easeNone"
+      })
 
     }, containerRef)
     return () => ctx.revert()
@@ -103,13 +131,13 @@ export default function About() {
           </div>
         </div>
         <Cell cols="1_3" colsMd="3_full">
-          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" ref={nameRef}>
             <p>Hello,</p>
             <p className="text-spray-400">I&apos;m Reynold</p>
           </div>
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
-          <p className="pt-16 text-sm text-justify" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+          <p className="pt-16 text-sm text-justify" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" ref={descRef}>
             I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows.
           </p>
         </Cell>

@@ -60,8 +60,8 @@ export default function Layout({children, isLoading = false, ...rest}) {
     <ReactLenis root
       options={{
         smoothWheel : (pathname == "/projects" ? false : true)
-      }}
-    >
+      }}
+    >
       <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden cursor-none" {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
         <Head>
          {items.map((item) => {
@@ -71,7 +71,7 @@ export default function Layout({children, isLoading = false, ...rest}) {
             }
           })}
         </Head>
-        <div id="smooth-content">
+        <div>
           <Cursor />
           {!isLoading && <Navbar />}
           {children}

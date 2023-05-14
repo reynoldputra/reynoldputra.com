@@ -7,6 +7,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
 import { useEffect, useRef, useState } from "react";
+import { FaChevronRight } from 'react-icons/fa'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -185,10 +186,10 @@ export default function MyPorject(){
         <Cell cols="1_full" className="h-[30vh] font-mono flex flex-col justify-center items-center" >
           <p className="font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Selected Project</p> 
           <Link href="/projects">
-            <button className="border border-rockblue-50 w-fit px-3 rounded-md flex items-center py-1 gap-3 text-sm relative group overflow-hidden" data-aos="zoom-in">
-              <p className="z-20 ">see more</p>
-              <NextIcon className="z-20 mt-1 w-3" />
-              <div className="z-10 w-0 h-0 group-hover:w-32 group-hover:h-32 transition-all duration-500 rounded-full bg-spray-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+            <button className="border border-rockblue-50 w-fit px-3 rounded-md flex items-center py-2 gap-2 text-sm relative group overflow-hidden" data-aos="zoom-in">
+              <p className="z-20 group-hover:font-bold group-hover:text-primary-950 transition-all">see more</p>
+              <FaChevronRight className="z-20 h-3 text-rockblue-50 group-hover:text-primary-950 transition-all"  />
+              <div className="z-10 w-0 h-0 group-hover:w-32 group-hover:h-32 transition-all duration-500 rounded-full bg-rockblue-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
             </button>
           </Link>
         </Cell>

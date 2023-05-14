@@ -27,7 +27,6 @@
     "react-icons": "^4.8.0",
     "react-locomotive-scroll": "^0.2.2",
     "react-typed": "^1.2.0",
-    "smooth-scrollbar": "^8.8.3",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4"
   }

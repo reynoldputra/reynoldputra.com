@@ -5,7 +5,7 @@ import NavbarItems from "../../data/navbar-items.json"
 import Head from "next/head";
 import { useRouter } from 'next/router';
 import Cursor from './cursor/cursor';
-import { ReactLenis } from '@studio-freight/react-lenis';
+import LenisScroll from './lenisScroll';
 
 export default function Layout({children, isLoading = false, ...rest}) {
   const scrollRef = useRef()
@@ -58,12 +58,7 @@ export default function Layout({children, isLoading = false, ...rest}) {
 
 
   return (
-    <ReactLenis root
-      options={{
-        smoothWheel : (pathname == "/projects" ? false : true),
-        easing: (t) => (t == 1 ? 1 : 1 - Math.pow(2, -10 * t)) 
-      }}
-    >
+    <LenisScroll>
       <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden cursor-none" {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
         <Head>
          {items.map((item) => {
@@ -79,6 +74,6 @@ export default function Layout({children, isLoading = false, ...rest}) {
           {children}
         </div>
       </div>
-    </ReactLenis>
+    </LenisScroll>
   ) 
 }

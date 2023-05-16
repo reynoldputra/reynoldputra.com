@@ -8,6 +8,7 @@ const useGsapContext = (cb) => {
     let ctx = gsap.context(() => {
       cb()
     })
+
     return () => ctx.revert();
   }, []);
 };

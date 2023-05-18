@@ -1,4 +1,5 @@
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect } from "react";
 
 const useGsapContext = (cb) => {

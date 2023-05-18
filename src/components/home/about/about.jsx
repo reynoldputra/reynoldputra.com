@@ -8,6 +8,7 @@ import Grid from "../../general/grid";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import ButtonCursor from "../../general/cursor/buttonCursor";
+import useGsapDesktopContext from "../../../hook/gsapDesktopContext";
  
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
@@ -18,7 +19,7 @@ export default function About() {
 
   const name = ["R", "e", "y", "n", "o", "l", "d"]
 
-  useEffect(() => {
+  useGsapDesktopContext(() => {
     const triggerOption= {
           scrub: 1,
           start : "200px 50%",
@@ -97,8 +98,7 @@ export default function About() {
       })
 
     }, containerRef)
-    return () => ctx.revert()
-  }, [])
+  })
 
   return (
     <div className="relative" ref={containerRef}>

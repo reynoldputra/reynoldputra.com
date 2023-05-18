@@ -2,11 +2,12 @@ import useGsapContext from "./gsapContext";
 import useWindowResize from "./useWindowResize";
 
 const useGsapDesktopContext = (cb) => {
-  const [windowWidth] = useWindowResize()
+  const [windowWidth] = useWindowResize(() => {
+  })
   useGsapContext(() => {
-    if(windowWidth > 768)  {
+    // if(windowWidth > 768)  {
       cb()
-    }
+    // }
   })
 }
 

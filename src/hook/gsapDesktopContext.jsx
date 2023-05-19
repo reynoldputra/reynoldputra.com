@@ -5,10 +5,10 @@ const useGsapDesktopContext = (cb) => {
   const [windowWidth] = useWindowResize(() => {
   })
   useGsapContext(() => {
-    // if(windowWidth > 768)  {
+    if(windowWidth > 768)  {
       cb()
-    // }
-  })
+    }
+  }, windowWidth)
 }
 
 export default useGsapDesktopContext

@@ -3,7 +3,7 @@ import Grid from "../../general/grid";
 import Image from "next/image"
 import Link from "next/link";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/all";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useRef } from "react";
 import { FaChevronRight } from 'react-icons/fa'
 import useGsapContext from "../../../hook/gsapContext";

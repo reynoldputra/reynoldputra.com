@@ -8,7 +8,8 @@ import Grid from "../../general/grid";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import ButtonCursor from "../../general/cursor/buttonCursor";
-import useGsapDesktopContext from "../../../hook/gsapDesktopContext";
+import useWindowResize from "../../../hook/useWindowResize";
+import useGsapContext from "../../../hook/gsapContext";
  
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
@@ -19,7 +20,10 @@ export default function About() {
 
   const name = ["R", "e", "y", "n", "o", "l", "d"]
 
-  useGsapDesktopContext(() => {
+  const [windowWidth] = useWindowResize(() => {
+  })
+
+  useGsapContext(() => {
     const triggerOption= {
           scrub: 1,
           start : "200px 50%",
@@ -71,32 +75,33 @@ export default function About() {
       })
 
       gsap.fromTo(nameRef.current, {
-        translateY : "60px"
+        translateY : "600px"
       }, {
-        translateY : "-60px",
+        translateY : "-100px",
         scrollTrigger : {
           trigger : containerRef.current,
           scrub : 1,
           markers: true,
           start : "top 60%",
-          end : "+=50px top"
+          end : "+=300px top"
         },
         ease : "Linear.easeNone"
       })
 
       gsap.fromTo(descRef.current, {
-        translateY : "500px"
+        translateY : "900px"
       }, {
-        translateY : "-90px",
+        translateY : "-100px",
         scrollTrigger : {
           trigger : containerRef.current,
           scrub : 1,
-          start : "top bottom",
-          end : "bottom top"
+          markers: true,
+          start : "top 60%",
+          end : "+=300 top"
         },
         ease : "Linear.easeNone"
       })
-  }, containerRef)
+  }, containerRef, windowWidth)
 
   return (
     <div className="relative" ref={containerRef}>
@@ -135,7 +140,7 @@ export default function About() {
           </div>
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
-          <p className="pt-16 text-sm text-justify" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" ref={descRef}>
+          <p className="pt-16 text-sm text-justify" ref={descRef}>
             I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows.
           </p>
         </Cell>

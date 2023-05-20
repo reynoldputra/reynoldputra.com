@@ -74,33 +74,36 @@ export default function About() {
         height: 0,
       })
 
-      gsap.fromTo(nameRef.current, {
-        translateY : "600px"
-      }, {
-        translateY : "-100px",
-        scrollTrigger : {
-          trigger : containerRef.current,
-          scrub : 1,
-          markers: true,
-          start : "top 60%",
-          end : "+=300px top"
-        },
-        ease : "Linear.easeNone"
-      })
 
-      gsap.fromTo(descRef.current, {
-        translateY : "900px"
-      }, {
-        translateY : "-100px",
-        scrollTrigger : {
-          trigger : containerRef.current,
-          scrub : 1,
-          markers: true,
-          start : "top 60%",
-          end : "+=300 top"
-        },
-        ease : "Linear.easeNone"
-      })
+      if(windowWidth > 768) {
+        gsap.fromTo(nameRef.current, {
+          translateY : "600px"
+        }, {
+          translateY : "-100px",
+          scrollTrigger : {
+            trigger : containerRef.current,
+            scrub : 1,
+            markers: true,
+            start : "top 60%",
+            end : "+=300px top"
+          },
+          ease : "Linear.easeNone"
+        })
+
+        gsap.fromTo(descRef.current, {
+          translateY : "900px"
+        }, {
+          translateY : "-100px",
+          scrollTrigger : {
+            trigger : containerRef.current,
+            scrub : 1,
+            markers: true,
+            start : "top 60%",
+            end : "+=300 top"
+          },
+          ease : "Linear.easeNone"
+        })
+      }
   }, containerRef, windowWidth)
 
   return (

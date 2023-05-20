@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import EmailLogo from "../../../asset/logo/email";
 import GithubLogo from "../../../asset/logo/github";
 import InstagramLogo from "../../../asset/logo/instagram";
@@ -26,7 +26,6 @@ export default function About() {
           end : "400px 50%"
     }
 
-    let ctx = gsap.context(() => {
       const sectionsHor = gsap.utils.toArray('.containerName .char-hor')
 
       const tlHor = gsap.timeline({
@@ -72,14 +71,15 @@ export default function About() {
       })
 
       gsap.fromTo(nameRef.current, {
-        translateY : "400px"
+        translateY : "60px"
       }, {
-        translateY : "-90px",
+        translateY : "-60px",
         scrollTrigger : {
           trigger : containerRef.current,
           scrub : 1,
-          start : "top bottom",
-          end : "bottom top"
+          markers: true,
+          start : "top 60%",
+          end : "+=50px top"
         },
         ease : "Linear.easeNone"
       })
@@ -96,9 +96,7 @@ export default function About() {
         },
         ease : "Linear.easeNone"
       })
-
-    }, containerRef)
-  })
+  }, containerRef)
 
   return (
     <div className="relative" ref={containerRef}>
@@ -131,7 +129,7 @@ export default function About() {
           </div>
         </div>
         <Cell cols="1_3" colsMd="3_full">
-          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" ref={nameRef}>
+          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48" ref={nameRef}>
             <p>Hello,</p>
             <p className="text-spray-400">I&apos;m Reynold</p>
           </div>

@@ -1,18 +1,16 @@
 import Cell from "../../general/cell";
 import Grid from "../../general/grid";
 import Image from "next/image"
-import projects from "@/data/my-project.js"
-import NextIcon from "../../../asset/icon/next";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/all";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { FaChevronRight } from 'react-icons/fa'
+import useGsapContext from "../../../hook/gsapContext";
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function MyPorject(){
-  const [project, setProject] = useState(null)
   const containerRef = useRef()
 
   const projects = [
@@ -33,9 +31,9 @@ export default function MyPorject(){
     }
   ]
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
+  useGsapContext(() => {
       const projects = gsap.utils.toArray(".project")
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -52,8 +50,6 @@ export default function MyPorject(){
         },
         {
           top : "0px",
-          onComplete: () => console.log(0),
-          onReverseComplete: () => console.log(0)
       })
 
       tl.fromTo(".project-1", {
@@ -86,7 +82,6 @@ export default function MyPorject(){
         },
         {
           top : "24px",
-          onComplete: () => setProject(1)
       }, ">0.5")
 
       tl.fromTo(".project-2", {
@@ -130,7 +125,6 @@ export default function MyPorject(){
         },
         {
           top : "48px",
-          onComplete: () => setProject(2)
       }, ">0.5")
 
       tl.fromTo(".project-3", {
@@ -176,9 +170,7 @@ export default function MyPorject(){
           delay : 0.5
       })
 
-    }, containerRef)
-    return () => ctx.revert()
-  }, [])
+  }, containerRef)
   
   return (
     <div ref={containerRef} >
@@ -197,7 +189,7 @@ export default function MyPorject(){
           {
             projects.map((project, idx) => (
               <div key={idx} className={"w-full max-w-sm md:max-w-xl aspect-[16/8] absolute mx-auto left-0 right-0 overflow-hidden rounded-lg " + "project-" + (idx+1) }>
-                <Image src={"/asset/my-project/" + project.img} fill className="object-cover" alt="cover" />
+                <Image src={"/asset/my-project/" + project.img} fill className="object-cover" alt="cover" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
               </div>
             ))
           }

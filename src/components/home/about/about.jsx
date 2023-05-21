@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import ButtonCursor from "../../general/cursor/buttonCursor";
 import useWindowResize from "../../../hook/useWindowResize";
 import useGsapContext from "../../../hook/gsapContext";
+import ScrollSpeed from "../../general/animation/scrollSpeed";
  
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
@@ -74,36 +75,6 @@ export default function About() {
         height: 0,
       })
 
-
-      if(windowWidth > 768) {
-        gsap.fromTo(nameRef.current, {
-          translateY : "600px"
-        }, {
-          translateY : "-100px",
-          scrollTrigger : {
-            trigger : containerRef.current,
-            scrub : 1,
-            markers: true,
-            start : "top 60%",
-            end : "+=300px top"
-          },
-          ease : "Linear.easeNone"
-        })
-
-        gsap.fromTo(descRef.current, {
-          translateY : "900px"
-        }, {
-          translateY : "-100px",
-          scrollTrigger : {
-            trigger : containerRef.current,
-            scrub : 1,
-            markers: true,
-            start : "top 60%",
-            end : "+=300 top"
-          },
-          ease : "Linear.easeNone"
-        })
-      }
   }, containerRef, windowWidth)
 
   return (
@@ -137,15 +108,17 @@ export default function About() {
           </div>
         </div>
         <Cell cols="1_3" colsMd="3_full">
-          <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48" ref={nameRef}>
-            <p>Hello,</p>
-            <p className="text-spray-400">I&apos;m Reynold</p>
-          </div>
+          <ScrollSpeed speed="2" containerRef={containerRef}>
+            <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-mono pt-36 lg:pt-48" ref={nameRef}>
+              <p>Hello,</p>
+              <p className="text-spray-400">I&apos;m Reynold</p>
+            </div>
+          </ScrollSpeed>
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
-          <p className="pt-16 text-sm text-justify" ref={descRef}>
-            I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows.
-          </p>
+          <ScrollSpeed speed="1" containerRef={containerRef}>
+          <p className="pt-16 text-sm text-justify" ref={descRef}> I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows. </p>
+          </ScrollSpeed>
         </Cell>
       </Grid>
       <div className="absolute hidden w-full h-full md:flex justify-center items-center top-0 left-0 z-10">

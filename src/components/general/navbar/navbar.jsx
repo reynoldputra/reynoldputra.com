@@ -48,7 +48,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar" data-aos="fade-down" ref={navbarRef}>
+    <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar" ref={navbarRef}>
       <Grid screenHeight={false}>
         <Cell cols="1_full" colsMd="2_10" className="flex justify-between w-full">
           <div className="w-10 h-10 relative p-1 cursor-pointer">
@@ -66,7 +66,7 @@ export default function Navbar() {
       </Grid>
       {
         navbar &&  
-        <div className="navbar-modal absolute h-screen w-screen bg-primary-950/90 top-0 z-50 flex justify-center items-center" data-aos="fade-down" onClick={closeNavbar}>
+        <div className="navbar-modal absolute h-screen w-screen bg-primary-950/90 top-0 z-50 flex justify-center items-center" onClick={closeNavbar}>
           <Terminal className="h-[500px] w-[320px] md:w-[400px] relative">
             <div className="w-full flex justify-between">
               <TermHeading className="text-sm w-full " />

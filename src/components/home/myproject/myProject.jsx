@@ -1,17 +1,16 @@
 import Cell from "../../general/cell";
 import Grid from "../../general/grid";
 import Image from "next/image"
-import projects from "@/data/my-project.js"
-import NextIcon from "../../../asset/icon/next";
 import Link from "next/link";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/all";
-import { useEffect, useRef, useState } from "react";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useRef } from "react";
+import { FaChevronRight } from 'react-icons/fa'
+import useGsapContext from "../../../hook/gsapContext";
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function MyPorject(){
-  const [project, setProject] = useState(null)
   const containerRef = useRef()
 
   const projects = [
@@ -32,9 +31,9 @@ export default function MyPorject(){
     }
   ]
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
+  useGsapContext(() => {
       const projects = gsap.utils.toArray(".project")
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -51,8 +50,6 @@ export default function MyPorject(){
         },
         {
           top : "0px",
-          onComplete: () => console.log(0),
-          onReverseComplete: () => console.log(0)
       })
 
       tl.fromTo(".project-1", {
@@ -85,7 +82,6 @@ export default function MyPorject(){
         },
         {
           top : "24px",
-          onComplete: () => setProject(1)
       }, ">0.5")
 
       tl.fromTo(".project-2", {
@@ -129,7 +125,6 @@ export default function MyPorject(){
         },
         {
           top : "48px",
-          onComplete: () => setProject(2)
       }, ">0.5")
 
       tl.fromTo(".project-3", {
@@ -175,9 +170,7 @@ export default function MyPorject(){
           delay : 0.5
       })
 
-    }, containerRef)
-    return () => ctx.revert()
-  }, [])
+  }, containerRef)
   
   return (
     <div ref={containerRef} >
@@ -185,9 +178,10 @@ export default function MyPorject(){
         <Cell cols="1_full" className="h-[30vh] font-mono flex flex-col justify-center items-center" >
           <p className="font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Selected Project</p> 
           <Link href="/projects">
-            <button className="border border-rockblue-50 w-fit px-3 rounded-md flex items-center py-1 gap-3 text-sm" data-aos="zoom-in">
-              <p>see more</p>
-              <NextIcon className="mt-1 w-3" />
+            <button className="border border-rockblue-50 w-fit px-3 rounded-md flex items-center py-2 gap-2 text-sm relative group overflow-hidden" data-aos="zoom-in">
+              <p className="z-20 group-hover:font-bold group-hover:text-primary-950 transition-all">see more</p>
+              <FaChevronRight className="z-20 h-3 text-rockblue-50 group-hover:text-primary-950 transition-all"  />
+              <div className="z-10 w-0 h-0 group-hover:w-32 group-hover:h-32 transition-all duration-500 rounded-full bg-rockblue-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
             </button>
           </Link>
         </Cell>
@@ -195,7 +189,7 @@ export default function MyPorject(){
           {
             projects.map((project, idx) => (
               <div key={idx} className={"w-full max-w-sm md:max-w-xl aspect-[16/8] absolute mx-auto left-0 right-0 overflow-hidden rounded-lg " + "project-" + (idx+1) }>
-                <Image src={"/asset/my-project/" + project.img} fill className="object-cover" alt="cover" />
+                <Image src={"/asset/my-project/" + project.img} fill className="object-cover" alt="cover" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
               </div>
             ))
           }

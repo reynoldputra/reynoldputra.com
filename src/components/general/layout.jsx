@@ -1,11 +1,11 @@
 import { gsap } from 'gsap/dist/gsap'
 import { useEffect, useRef } from "react";
 import Navbar from "./navbar/navbar";
-import { Lenis as ReactLenis } from '@studio-freight/react-lenis'
 import NavbarItems from "../../data/navbar-items.json"
 import Head from "next/head";
 import { useRouter } from 'next/router';
 import Cursor from './cursor/cursor';
+import LenisScroll from './lenisScroll';
 
 export default function Layout({children, isLoading = false, ...rest}) {
   const scrollRef = useRef()
@@ -56,12 +56,9 @@ export default function Layout({children, isLoading = false, ...rest}) {
   useEffect(() => {
   }, [])
 
+
   return (
-    <ReactLenis root
-      options={{
-        smoothWheel : (pathname == "/projects" ? false : true)
-      }}
-    >
+    <LenisScroll>
       <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden cursor-none" {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
         <Head>
          {items.map((item) => {
@@ -71,12 +68,12 @@ export default function Layout({children, isLoading = false, ...rest}) {
             }
           })}
         </Head>
-        <div id="smooth-content">
+        <div>
           <Cursor />
           {!isLoading && <Navbar />}
           {children}
         </div>
       </div>
-    </ReactLenis>
+    </LenisScroll>
   ) 
 }

@@ -32,14 +32,13 @@ export default function ScrollSpeed ({children, speed = 0, containerRef}) {
         scrollTrigger : {
           trigger : containerRef.current,
           scrub : 1,
-          markers: true,
+          // markers: true,
           start : "top 60%",
           end : "+=300px top"
         },
         ease : "Linear.easeNone"
       })
     }
-    console.log("trigger scroll speed", windowWidth)
   }, containerRef, windowWidth)
 
   return (

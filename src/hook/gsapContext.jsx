@@ -7,7 +7,6 @@ const useGsapContext = (cb, ref, state = null) => {
 
   useEffect(() => {
     let ctx = gsap.context(() =>{
-      console.log("gsap context triger")
       cb()
     }
     , ref)

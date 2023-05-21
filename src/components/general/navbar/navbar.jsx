@@ -12,6 +12,7 @@ import { RiArrowRightSLine } from "react-icons/ri"
 import { useRouter } from "next/router";
 import NavbarItems from "../../../data/navbar-items.json"
 import ButtonCursor from "../cursor/buttonCursor";
+import useGsapContext from "../../../hook/gsapContext";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false)
@@ -47,6 +48,21 @@ export default function Navbar() {
     }) 
   }
 
+  const openNavbar = () => {
+    setNavbar(true)
+  }
+  
+  useGsapContext(() => {
+    if(navbar) {
+      gsap.fromTo(".navbar-modal", {
+        opacity: 0
+      }, {
+        opacity: 1,
+        duration: 0.3
+      }) 
+    }
+  }, null, navbar)
+
   return (
     <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar" ref={navbarRef}>
       <Grid screenHeight={false}>
@@ -57,7 +73,7 @@ export default function Navbar() {
             </Link>
           </div>
           <ButtonCursor>
-            <div className="flex items-center h-full gap-2 hover:text-spray-400 duration-300" onClick={() => setNavbar(true)}>
+            <div className="flex items-center h-full gap-2 hover:text-spray-400 duration-300" onClick={openNavbar}>
               <p className="text-md font-mono">Menu</p>
               <HiMenuAlt1 className="w-6 h-6" />
             </div>

@@ -1,5 +1,20 @@
+import GroupTools from "./src/data/favorite-tools.json"
 const plugin = require("tailwindcss/plugin");
 /** @type {import('tailwindcss').Config} */
+
+const logoColors = {}
+const logoColorSafelist = []
+
+for(const group in GroupTools.data) {
+  for(const tool in GroupTools.data[group].tools) {
+    const color = GroupTools.data[group].tools[tool].color
+    const name = GroupTools.data[group].tools[tool].colorName
+    logoColors[name] = `${color}`
+    logoColorSafelist.push(name)
+  }
+}
+
+console.log(logoColors)
 
 module.exports = {
   content: [
@@ -17,6 +32,11 @@ module.exports = {
     {
       pattern: /grid-(rows|cols)-(.+)/,
       variants: ["sm", "md", "lg", "xl"],
+    },
+    
+    {
+      pattern: /text-logo-(.+)/,
+      variants: logoColorSafelist,
     }
   ],
   theme: {
@@ -89,7 +109,8 @@ module.exports = {
           red : "#F7768E",
           green : "#9ECE6A",
           yellow : "#9ECE6A"
-        }
+        },
+        logo : logoColors
       },
 
     },

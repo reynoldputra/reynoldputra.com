@@ -18,8 +18,8 @@ export default function ScrollSpeed ({children, speed = 0, containerRef}) {
       to : "-100px"  
     },
     {
-      from : "950px",
-      to : "-200px"  
+      from : "900px",
+      to : "-150px"  
     }
   ]
   
@@ -32,7 +32,6 @@ export default function ScrollSpeed ({children, speed = 0, containerRef}) {
         scrollTrigger : {
           trigger : containerRef.current,
           scrub : 1,
-          // markers: true,
           start : "top 60%",
           end : "+=300px top"
         },

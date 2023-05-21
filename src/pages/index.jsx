@@ -22,8 +22,8 @@ export default function Index() {
         <>
           <Hero />  
           <About /> 
-          <TechStack />
           <MyPorject />
+          <TechStack />
         </>
       }
     </Layout>

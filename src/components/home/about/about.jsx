@@ -77,7 +77,7 @@ export default function About() {
       <Grid className="z-20">
         <div className="absolute bottom-0 right-0 py-8 px-4 flex w-full items-center md:block md:left-0 md:right-auto md:w-16 ">
           <div className="w-full pr-4 md:p-0 h-0 md:h-64 md:mb-4">
-            <div className="w-full border border-rockblue-50 h-0 m-auto mr-6 md:w-0 md:h-64 md:mr-auto md:mb-6" ref={lineRef}></div>
+            <div className="w-full border-t md:border-l border-rockblue-50 h-0 m-auto mr-6 md:w-0 md:h-64 md:mr-auto md:mb-6" ref={lineRef}></div>
           </div>
           <div className="flex gap-2 md:flex-col items-center">
             <a target="_blank" href="https://github.com/reynoldputra" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-none">

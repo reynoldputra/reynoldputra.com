@@ -9,7 +9,7 @@ import 'aos/dist/aos.css';
 import FavoriteTools from "../components/home/favoriteTools/favoriteTools";
 
 export default function Index() {
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     AOS.init();

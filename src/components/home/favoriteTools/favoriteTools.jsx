@@ -7,7 +7,7 @@ export default function FavoriteTools () {
   return (
     <Grid className="pt-10 pb-20">
       <Cell cols="1_full">
-        <p className="font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-center font-mono" data-aos="flip-up">Favorite Tools</p> 
+        <p className="font-bold pb-12 text-2xl md:text-3xl text-spray-400 text-center font-mono" data-aos="flip-up" data-aos-anchor-placement="bottom-bottom">Favorite Tools</p> 
       </Cell>
       {
         GroupTools.data.map((groupTool, idx) => {

@@ -11,7 +11,7 @@ export default function ToolsGroup ({tools}) {
         {
           tools.tools.map((tool, idx) => {
             return (
-              <div className="flex items-center bg-primary-900 md:bg-transparent rounded w-fit py-2 px-3" key={idx} data-aos="flip-up">
+              <div className="flex items-center bg-primary-900 md:bg-transparent rounded w-fit py-2 px-3 md:px-0 md:py-1" key={idx} data-aos="flip-up">
                 <div className="relative w-5 h-5 md:w-7 md:h-7">
                   <Image fill src={"/asset/favorite-tools/" + tool.img} alt={tool.colorName} />  
                 </div>  

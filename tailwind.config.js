@@ -14,8 +14,6 @@ for(const group in GroupTools.data) {
   }
 }
 
-console.log(logoColors)
-
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',

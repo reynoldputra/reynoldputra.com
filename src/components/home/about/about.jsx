@@ -11,7 +11,7 @@ import ButtonCursor from "../../general/cursor/buttonCursor";
 import useWindowResize from "../../../hook/useWindowResize";
 import useGsapContext from "../../../hook/gsapContext";
 import ScrollSpeed from "../../general/animation/scrollSpeed";
- 
+
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
   const containerRef = useRef()
@@ -25,55 +25,55 @@ export default function About() {
   })
 
   useGsapContext(() => {
-    const triggerOption= {
-          scrub: 1,
-          start : "200px 50%",
-          end : "400px 50%"
+    const triggerOption = {
+      scrub: 1,
+      start: "200px 50%",
+      end: "400px 50%"
     }
 
-      const sectionsHor = gsap.utils.toArray('.containerName .char-hor')
+    const sectionsHor = gsap.utils.toArray('.containerName .char-hor')
 
-      const tlHor = gsap.timeline({
-        scrollTrigger : {
-          trigger: containerRef.current,
-          ...triggerOption
-        }
-      })
-      tlHor.fromTo(sectionsHor, 
-        {
-          width : "100%"
-        },
-        {
-          width : 0
-        },
-      )
+    const tlHor = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        ...triggerOption
+      }
+    })
+    tlHor.fromTo(sectionsHor,
+      {
+        width: "100%"
+      },
+      {
+        width: 0
+      },
+    )
 
-      const sectionsVer = gsap.utils.toArray('.containerName .char-ver')
-      const tlVer = gsap.timeline({
-        scrollTrigger : {
-          trigger: containerRef.current,
-          ...triggerOption,
-        }
-      })
+    const sectionsVer = gsap.utils.toArray('.containerName .char-ver')
+    const tlVer = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        ...triggerOption,
+      }
+    })
 
-      tlVer.fromTo(sectionsVer, 
-        {
-          height : "100%"
-        },
-        {
-          height : 0
-        },
-      )
+    tlVer.fromTo(sectionsVer,
+      {
+        height: "100%"
+      },
+      {
+        height: 0
+      },
+    )
 
-      gsap.from(lineRef.current, {
-        scrollTrigger : {
-          trigger: containerRef.current,
-          ...triggerOption,
-          start: "200px 50%",
-          end: "+=80px"
-        },
-        height: 0,
-      })
+    gsap.from(lineRef.current, {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        ...triggerOption,
+        start: "200px 50%",
+        end: "+=80px"
+      },
+      height: 0,
+    })
 
   }, containerRef, windowWidth)
 
@@ -97,12 +97,12 @@ export default function About() {
             </a>
             <a target="_blank" href="mailto:reynoldputra1@gmail.com" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-none">
               <ButtonCursor circle="24" opacityMain="0.7" opacityTail="1">
-                <EmailLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300"/>
+                <EmailLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300" />
               </ButtonCursor>
             </a>
             <a target="_blank" href="https://www.instagram.com/reynoldputra/" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-none">
               <ButtonCursor circle="24" opacityMain="0.7" opacityTail="1">
-                <InstagramLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300"/>
+                <InstagramLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300" />
               </ButtonCursor>
             </a>
           </div>
@@ -117,7 +117,7 @@ export default function About() {
         </Cell>
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
           <ScrollSpeed speed="1" containerRef={containerRef}>
-          <p className="pt-16 text-sm text-justify" ref={descRef}> I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows. </p>
+            <p className="pt-16 text-sm text-justify" ref={descRef}> I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows. </p>
           </ScrollSpeed>
         </Cell>
       </Grid>
@@ -131,7 +131,7 @@ export default function About() {
                   <p className="text-[26vw] font-bold text-center -translate-x-[1.5vw] text-stroke opacity-10 w-fit">
                     {c}
                   </p>
-                  <div className={"absolute h-full w-full bg-primary-950 top-0 right-6 " + (even ? "char-hor" : "char-ver")}></div> 
+                  <div className={"absolute h-full w-full bg-primary-950 top-0 right-6 " + (even ? "char-hor" : "char-ver")}></div>
                 </div>
               )
             })

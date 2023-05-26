@@ -11,6 +11,11 @@ export default function Hero() {
       height: "100px",
       width: "100px",
     })
+    const fill = gsap.utils.toArray('.fill-cursor-tail')
+    gsap.to(fill, {
+      opacity: 1,
+      duration: 0.5
+    })
   }
 
   const mouseLeaveHandle = () => {
@@ -18,6 +23,11 @@ export default function Hero() {
     gsap.to(cursor, {
       height: "24px",
       width: "24px",
+    })
+    const fill = gsap.utils.toArray('.fill-cursor-tail')
+    gsap.to(fill, {
+      opacity: 0,
+      duration: 0.5
     })
   }
 

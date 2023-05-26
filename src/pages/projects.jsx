@@ -6,7 +6,8 @@ import 'aos/dist/aos.css';
 import Loading from "../components/general/loading";
 
 export default function Projects() {
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(false)
+
   useEffect(() => {
     AOS.init();
   }, [])

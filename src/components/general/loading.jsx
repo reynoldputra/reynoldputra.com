@@ -2,17 +2,15 @@ import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import FullOverlay from "./fullOverlay";
 import Announcement from "./announcement";
+import useGsapContext from "../../hook/gsapContext";
 
-export default function Loading ({setLoading}) {
+export default function Loading({ setLoading }) {
   const [iconLoading, setIconLoading] = useState("-")
   const [countLoading, setCountLoading] = useState(0)
 
   const component = useRef()
-    
-  let i = 1 
   const icons = ["-", "\\", "|", "/"]
 
-  
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIconLoading(prevIcon => icons[(icons.indexOf(prevIcon) + 1) % icons.length])
@@ -23,11 +21,13 @@ export default function Loading ({setLoading}) {
       setCountLoading(count)
       count++
       if (count > 100) {
-        onloadingComplete()
         clearInterval(countIntervalId)
+        document.fonts.ready.then(() => {
+          onloadingComplete()
+        })
       }
-    }, 3000/100)
-    
+    }, 2000 / 100)
+
     return () => {
       clearInterval(intervalId)
       clearInterval(countIntervalId)
@@ -35,12 +35,11 @@ export default function Loading ({setLoading}) {
   }, [])
 
   const onloadingComplete = () => {
-    console.log(component.current)
     gsap.to(component.current, {
-      opacity : 0,
+      opacity: 0,
       ease: "power1.inOut",
       duration: 1,
-      onComplete: () => {setLoading(false)}
+      onComplete: () => { setLoading(false) }
     })
   }
 
@@ -51,11 +50,11 @@ export default function Loading ({setLoading}) {
           <p>{iconLoading} loading ...</p>
           <p className="font-sans pt-2">{countLoading}%</p>
         </div>
-        <div className="w-full h-auto bottom-12 absolute text-sm">
-          <p className="w-full text-center">Open on desktop or pc for better experience.</p>
+        <div className="w-full h-auto bottom-20 md:bottom-12 absolute text-sm">
+          <p className="w-full text-center text-rockblue-50/50">Open on desktop or pc for better experience.</p>
           {/* <Announcement /> */}
         </div>
       </div>
     </FullOverlay>
-  ) 
+  )
 }

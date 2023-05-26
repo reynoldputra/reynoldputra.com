@@ -59,7 +59,7 @@ export default function Layout({children, isLoading = false, ...rest}) {
 
   return (
     <LenisScroll>
-      <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden cursor-none" {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
+      <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden cursor-default" {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
         <Head>
          {items.map((item) => {
             if (item.href === pathname) {

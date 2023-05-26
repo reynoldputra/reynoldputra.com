@@ -43,7 +43,6 @@ export default function Navbar() {
   const closeNavbar = () => {
     gsap.to(".navbar-modal", {
       opacity: 0,
-      y: "-200px",
       onComplete: () =>  setNavbar(false)
     }) 
   }
@@ -63,8 +62,15 @@ export default function Navbar() {
     }
   }, null, navbar)
 
+  useGsapContext(() => {
+    gsap.to(navbarRef.current, {
+      y : 0,
+      duration : 1.5
+    })
+  }, [])
+
   return (
-    <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar" ref={navbarRef}>
+    <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar -translate-y-28" ref={navbarRef}>
       <Grid screenHeight={false}>
         <Cell cols="1_full" colsMd="2_10" className="flex justify-between w-full">
           <div className="w-10 h-10 relative p-1 cursor-pointer">

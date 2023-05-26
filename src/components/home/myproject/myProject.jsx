@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useRef } from "react";
 import { FaChevronRight } from 'react-icons/fa'
 import useGsapContext from "../../../hook/gsapContext";
+import ButtonCursor from "../../general/cursor/buttonCursor";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -200,7 +201,9 @@ export default function MyPorject(){
               projects.map((project, idx) => (
                 <div className="absolute project top-12 left-0 right-auto md:left-auto md:right-0" key={idx}>
                   <p className="text-sm md:text-md font-mono">{project.year}</p> 
-                  <p className="text-lg md:text-xl font-bold">{project.url}</p> 
+                  <ButtonCursor>
+                    <a href={project.url} target="_blank" className="text-lg md:text-xl font-bold">{project.url}</a> 
+                  </ButtonCursor>
                 </div>
               ))
             }

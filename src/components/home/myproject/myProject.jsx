@@ -180,7 +180,7 @@ export default function MyPorject() {
         <Cell cols="1_full" className="h-[30vh] font-mono flex flex-col justify-center items-center" >
           <p className="font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Selected Project</p>
           <Link href="/projects">
-            <ButtonAnimation className="border-rockblue-50">
+            <ButtonAnimation className="border-rockblue-50" data-aos="zoom-in">
               <p className="z-20 transition-all group-hover:font-bold text-rockblue-50 group-hover:text-primary-950">See more</p>
               <FaChevronRight className="z-20 h-3  transition-all text-rockblue-50 group-hover:text-primary-950" />
             </ButtonAnimation>

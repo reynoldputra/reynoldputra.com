@@ -8,6 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import FavoriteTools from "../components/home/favoriteTools/favoriteTools";
 import ContactMe from "../components/home/contactMe/ContactMe";
+import Footer from "../components/general/footer";
 
 export default function Index() {
   const [isLoading, setLoading] = useState(true)
@@ -17,15 +18,18 @@ export default function Index() {
   }, [])
 
   return (
-    <Layout isLoading={isLoading} >
+    <Layout isLoading={isLoading} background={false}>
       {isLoading && <Loading setLoading={setLoading} /> }
       {!isLoading && 
         <>
-          <Hero />  
-          <About /> 
-          <MyPorject />
-          <FavoriteTools />
-          <ContactMe />
+          <div className="bg-primary-950">
+            <Hero />  
+            <About /> 
+            <MyPorject />
+            <FavoriteTools />
+          </div>
+          {/* <ContactMe /> */}
+          <Footer />
         </>
       }
     </Layout>

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import FavoriteTools from "../components/home/favoriteTools/favoriteTools";
+import ContactMe from "../components/home/contactMe/ContactMe";
 
 export default function Index() {
   const [isLoading, setLoading] = useState(true)
@@ -24,6 +25,7 @@ export default function Index() {
           <About /> 
           <MyPorject />
           <FavoriteTools />
+          <ContactMe />
         </>
       }
     </Layout>

@@ -19,16 +19,19 @@ export default function MyPorject() {
     {
       img: "medselaras.png",
       url: "medselaras.com",
+      fullLink: "https://medselaras.com",
       year: 2022
     },
     {
       img: "inilhoits.png",
-      url: "inlho.its.ac.id",
+      url: "inilho.its.ac.id",
+      fullLink: "https://inilho.its.ac.id",
       year: 2023
     },
     {
       img: "irpro.png",
       url: "irproconsulting.com",
+      fullLink: "https://irproconsulting.com",
       year: 2023
     }
   ]
@@ -63,7 +66,7 @@ export default function MyPorject() {
       }, "<0.2")
 
     tl.fromTo(projects[0], {
-      top: "10px",
+      top: "50px",
       opacity: 0
     }, {
       top: 0,
@@ -81,21 +84,19 @@ export default function MyPorject() {
 
     tl.fromTo(".project-2", {
       top: "350px"
-    },
-      {
-        top: "24px",
-      }, ">0.5")
+    }, {
+      top: "24px",
+    }, ">0.5")
 
     tl.fromTo(".project-2", {
       opacity: 0
-    },
-      {
-        duration: 0.5,
-        opacity: 1
-      }, "<0.2")
+    }, {
+      duration: 0.5,
+      opacity: 1
+    }, "<0.2")
 
     tl.fromTo(projects[1], {
-      top: "10px",
+      top: "50px",
       opacity: 0
     }, {
       top: 0,
@@ -107,7 +108,7 @@ export default function MyPorject() {
       top: 0,
       opacity: 1
     }, {
-      top: "-10px",
+      top: "-50px",
       opacity: 0,
       duration: 0.3
     }, "<")
@@ -115,12 +116,11 @@ export default function MyPorject() {
     tl.fromTo(".project-1", {
       scale: 1,
       filter: "brightness(100%)"
-    },
-      {
-        scale: "0.94",
-        filter: "brightness(50%)",
-        duration: "0.2"
-      }, "<0.1")
+    }, {
+      scale: "0.94",
+      filter: "brightness(50%)",
+      duration: "0.2"
+    }, "<0.1")
 
     tl.fromTo(".project-3", {
       top: "350px"
@@ -138,7 +138,7 @@ export default function MyPorject() {
       }, "<0.2")
 
     tl.fromTo(projects[2], {
-      top: "10px",
+      top: "50px",
       opacity: 0
     }, {
       top: 0,
@@ -150,7 +150,7 @@ export default function MyPorject() {
       top: 0,
       opacity: 1
     }, {
-      top: "-10px",
+      top: "-50px",
       opacity: 0,
       duration: 0.3
     }, "<")
@@ -159,18 +159,16 @@ export default function MyPorject() {
     tl.fromTo(".project-2", {
       scale: 1,
       filter: "brightness(100%)"
-    },
-      {
-        scale: "0.96",
-        filter: "brightness(50%)",
-        duration: "0.2"
-      }, "<0.1")
+    }, {
+      scale: "0.96",
+      filter: "brightness(50%)",
+      duration: "0.2"
+    }, "<0.1")
 
     tl.fromTo(".project-3", {
-    },
-      {
-        delay: 0.5
-      })
+    }, {
+      delay: 0.5
+    })
 
   }, containerRef)
 
@@ -202,7 +200,7 @@ export default function MyPorject() {
                 <div className="absolute project top-12 left-0 right-auto md:left-auto md:right-0" key={idx}>
                   <p className="text-sm md:text-md font-mono">{project.year}</p>
                   <ButtonCursor>
-                    <a href={project.url} target="_blank" className="text-lg md:text-xl font-bold">{project.url}</a>
+                    <a href={project.fullLink} target="_blank" className="text-lg md:text-xl font-bold">{project.url}</a>
                   </ButtonCursor>
                 </div>
               ))

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import Cursor from './cursor/cursor';
 import LenisScroll from './lenisScroll';
 
-export default function Layout({children, background = true, isLoading = false, ...rest}) {
+export default function Layout({children, background = true, isLoading = false, navbarTransparent = true, ...rest}) {
   const scrollRef = useRef()
 
   const router = useRouter()
@@ -69,7 +69,7 @@ export default function Layout({children, background = true, isLoading = false, 
           })}
         </Head>
         <Cursor />
-        {!isLoading && <Navbar />}
+        {!isLoading && <Navbar bgTransparent={navbarTransparent} />}
         {children}
       </div>
     </LenisScroll>

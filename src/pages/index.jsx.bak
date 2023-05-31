@@ -12,7 +12,6 @@ export default function Index() {
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({ repeat: -1 });
       const paragraphs = gsap.utils.toArray('.message')
-      console.log(paragraphs)
 
       tl.from(paragraphs[0], { opacity: 0, y: "100%", duration: 1 })
         .to(paragraphs[0], { opacity: 0, y: "-100%", duration: 1, delay: 2 })

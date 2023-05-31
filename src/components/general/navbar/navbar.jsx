@@ -14,7 +14,7 @@ import NavbarItems from "../../../data/navbar-items.json"
 import ButtonCursor from "../cursor/buttonCursor";
 import useGsapContext from "../../../hook/gsapContext";
 
-export default function Navbar() {
+export default function Navbar({bgTransparent = true}) {
   const [navbar, setNavbar] = useState(false)
 
   const router = useRouter()
@@ -70,7 +70,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <div className="bg-primary-950/80 backdrop-blur-sm w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar -translate-y-28" ref={navbarRef}>
+    <div className={"w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar -translate-y-28 " + (bgTransparent ? "backdrop-blur-sm bg-primary-950/80" : "bg-primary-950" )}  ref={navbarRef}>
       <Grid screenHeight={false}>
         <Cell cols="1_full" colsMd="2_10" className="flex justify-between w-full">
           <div className="w-10 h-10 relative p-1 cursor-pointer">
@@ -98,7 +98,7 @@ export default function Navbar() {
                 {
                   items.map((item, idx) => {
                     return (
-                      <div key={idx} className="text-2xl pt-8 flex items-center" onClick={closeNavbar} onMouseOver={mouseEnterHandle} onMouseLeave={mouseLeaveHandle}>
+                      <div key={idx} className="text-xl pt-4 flex items-center" onClick={closeNavbar} onMouseOver={mouseEnterHandle} onMouseLeave={mouseLeaveHandle}>
                         <div className="w-8">
                           {
                             (pathname == item.href) &&

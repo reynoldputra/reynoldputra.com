@@ -5,9 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import ButtonAnimation from "../button/buttonAnimation";
 import { FaChevronRight, FaEnvelopeOpen, FaGithub, FaHeart, FaInstagram, FaLinkedin, FaRegHeart } from "react-icons/fa";
-import { useEffect, useRef } from "react";
-import useGsapContext from "../../../hook/gsapContext";
-import { gsap } from "gsap";
 
 export default function Footer({ className }) {
   const items = NavbarItems.data
@@ -40,14 +37,14 @@ export default function Footer({ className }) {
   ]
 
   return (
-    <div className="h-96 relative">
+    <div className={className + " h-96 relative"}>
       <div className="w-full h-12 absolute top-0">
         <div className="w-full h-full rounded-b-full bg-primary-950"></div>
       </div>
       <div className="fixed flex items-end bottom-0 w-full z-0 mt-12 h-80 text-primary-950 overflow-hidden">
           <Grid screenHeight={false} className="w-full pb-4">
             <Cell cols="1_full">
-              <div className="flex w-full justify-center gap-4 mb-6 md:p-0">
+              <div className="flex w-full justify-center gap-4 mb-6 md:mb-2">
                 {
                   dataSocial.map((val, idx) => (
                     <a className="cursor-pointer" href={val.link} target="_blank" key={idx}>
@@ -71,9 +68,11 @@ export default function Footer({ className }) {
             <Cell cols="1_full">
               <div className="w-full flex flex-col items-center gap-4 mt-4">
                 <div className="text-sm text-center">Ready to bring your digital ideas to life? I&apos;m here to help. <br /> Let&apos;s collaborate and create something extraordinary together.<br /> Get in touch with me today to discuss your project!</div>
-                <ButtonAnimation mode="light" className="border-2 border-primary-950 bg-transparent">
-                  <p className="z-20 font-mono text-sm group-hover:text-rockblue-50 font-bold">Get in touch</p>
-                </ButtonAnimation>
+                <Link href="/contact">
+                  <ButtonAnimation mode="light" className="border-2 border-primary-950 bg-transparent">
+                    <p className="z-20 font-mono text-sm group-hover:text-rockblue-50 font-bold">Get in touch</p>
+                  </ButtonAnimation>
+                </Link>
               </div>
             </Cell>
             <Cell cols="1_full">

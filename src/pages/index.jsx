@@ -10,7 +10,7 @@ import FavoriteTools from "../components/home/favoriteTools/favoriteTools";
 import Footer from "../components/general/footer/footer";
 
 export default function Index() {
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     AOS.init();
@@ -20,15 +20,15 @@ export default function Index() {
     <Layout isLoading={isLoading} background={false}>
       {isLoading && <Loading setLoading={setLoading} /> }
       {!isLoading && 
-        <>
-          <div className="bg-primary-950">
+        <div className="relative">
+          <div className="bg-primary-950 relative z-10">
             <Hero />  
             <About /> 
             <MyPorject />
             <FavoriteTools />
           </div>
           <Footer />
-        </>
+        </div>
       }
     </Layout>
   )

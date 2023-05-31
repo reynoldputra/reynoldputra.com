@@ -5,7 +5,7 @@ import ToolsGroup from "./toolsGroup"
 
 export default function FavoriteTools () {
   return (
-    <Grid className="py-24" screenHeight={false}>
+    <Grid className="py-32 pb-48" screenHeight={false}>
       <Cell cols="1_full">
         <p className="font-bold pb-12 text-2xl md:text-3xl text-spray-400 text-center font-mono" data-aos="flip-up" data-aos-anchor-placement="bottom-bottom">Favorite Tools</p> 
       </Cell>

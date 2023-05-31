@@ -68,11 +68,9 @@ export default function Layout({children, background = true, isLoading = false, 
             }
           })}
         </Head>
-        <div>
-          <Cursor />
-          {!isLoading && <Navbar />}
-          {children}
-        </div>
+        <Cursor />
+        {!isLoading && <Navbar />}
+        {children}
       </div>
     </LenisScroll>
   ) 

@@ -10,7 +10,7 @@ import FavoriteTools from "../components/home/favoriteTools/favoriteTools";
 import Footer from "../components/general/footer/footer";
 
 export default function Index() {
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     AOS.init();

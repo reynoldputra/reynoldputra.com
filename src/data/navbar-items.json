@@ -11,6 +11,10 @@
     {
       "tag" : "Contact Me",
       "href" : "/contact"
+    },
+    {
+      "tag" : "Guest Book",
+      "href" : "/guestbook"
     }
   ]
 }

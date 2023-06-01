@@ -5,7 +5,6 @@ import Grid from "../../general/grid";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useRef } from "react";
 
 export default function ContactMe() {
   const classNameSocial = "w-6 h-6"
@@ -37,7 +36,7 @@ export default function ContactMe() {
   })
 
   const onSubmit = formMethod.handleSubmit(async (data) => {
-    const _res = axios.post("http://localhost:3001/api/contact-us-submission", data)
+    const _res = axios.post(porcess.env.HOST + "/api/contact", data)
     toast.promise(_res, {
       pending: {
         render : () =>  'Sending...',

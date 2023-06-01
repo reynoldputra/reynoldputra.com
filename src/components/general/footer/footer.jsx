@@ -4,7 +4,7 @@ import NavbarItems from "../../../data/navbar-items.json"
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ButtonAnimation from "../button/buttonAnimation";
-import { FaChevronRight, FaEnvelopeOpen, FaGithub, FaHeart, FaInstagram, FaLinkedin, FaRegHeart } from "react-icons/fa";
+import { FaEnvelopeOpen, FaGithub, FaInstagram, FaLinkedin, FaRegHeart } from "react-icons/fa";
 
 export default function Footer({ className }) {
   const items = NavbarItems.data

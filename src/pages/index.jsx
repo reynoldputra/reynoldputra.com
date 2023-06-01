@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import FavoriteTools from "../components/home/favoriteTools/favoriteTools";
+import Footer from "../components/general/footer/footer";
 
 export default function Index() {
   const [isLoading, setLoading] = useState(true)
@@ -16,15 +17,18 @@ export default function Index() {
   }, [])
 
   return (
-    <Layout isLoading={isLoading} >
+    <Layout isLoading={isLoading} background={false}>
       {isLoading && <Loading setLoading={setLoading} /> }
       {!isLoading && 
-        <>
-          <Hero />  
-          <About /> 
-          <MyPorject />
-          <FavoriteTools />
-        </>
+        <div className="relative">
+          <div className="bg-primary-950 relative z-10">
+            <Hero />  
+            <About /> 
+            <MyPorject />
+            <FavoriteTools />
+          </div>
+          <Footer />
+        </div>
       }
     </Layout>
   )

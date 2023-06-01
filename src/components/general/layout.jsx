@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import Cursor from './cursor/cursor';
 import LenisScroll from './lenisScroll';
 
-export default function Layout({children, isLoading = false, ...rest}) {
+export default function Layout({children, background = true, isLoading = false, navbarTransparent = true, ...rest}) {
   const scrollRef = useRef()
 
   const router = useRouter()
@@ -59,7 +59,7 @@ export default function Layout({children, isLoading = false, ...rest}) {
 
   return (
     <LenisScroll>
-      <div className="bg-primary-950 min-h-screen w-full text-rockblue-50 overflow-hidden cursor-none" {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
+      <div className={"relative min-h-screen w-full text-rockblue-50 overflow-hidden cursor-default " + (background && "bg-primary-950")} {...rest} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove} id="smooth-wrapper" data-scroll-container ref={scrollRef}>
         <Head>
          {items.map((item) => {
             if (item.href === pathname) {
@@ -68,11 +68,9 @@ export default function Layout({children, isLoading = false, ...rest}) {
             }
           })}
         </Head>
-        <div>
-          <Cursor />
-          {!isLoading && <Navbar />}
-          {children}
-        </div>
+        <Cursor />
+        {!isLoading && <Navbar bgTransparent={navbarTransparent} />}
+        {children}
       </div>
     </LenisScroll>
   ) 

@@ -7,6 +7,10 @@
     {
       "tag" : "Projects",
       "href" : "/projects"
+    },
+    {
+      "tag" : "Contact Me",
+      "href" : "/contact"
     }
   ]
 }

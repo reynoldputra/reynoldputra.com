@@ -4,7 +4,7 @@ export default function ToolsGroup ({tools}) {
   return (
     <div className="pt-4 md:pt-10">
       <div className="w-full" data-aos="flip-up" >
-        <p className="text-lg font-bold">{tools.tag}</p>
+        <p className="text-md md:text-lg font-bold">{tools.tag}</p>
         <p className="w-16 pt-2 border-b-[3px] border-spray-400"></p>
       </div> 
       <div className="flex flex-wrap md:flex-col gap-x-4 gap-y-2 py-6">

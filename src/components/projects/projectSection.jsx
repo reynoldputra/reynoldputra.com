@@ -92,7 +92,7 @@ export default function ProjectSection() {
         </Cell>
       </Grid>
       <div className="relative pt-8" ref={containerRef}>
-        <Grid className="sections h-screen w-screen pt-24 md:pt-32">
+        <Grid className="sections h-screen pt-24 md:pt-32">
           <div className="absolute bottom-12 left-0 right-0 mx-auto md:mx-0 w-72 lg:w-96 md:left-28 lg:left-52">
             <div className="border-b-4 border-rockblue-50 w-full aboslute top-0 bottom-0 my-auto z-20 translate-y-[2px]"></div>
             <div className="w-full md:w-72 lg:w-96 relative z-50">

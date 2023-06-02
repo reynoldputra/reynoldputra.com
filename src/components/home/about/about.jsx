@@ -85,22 +85,22 @@ export default function About() {
             <div className="w-full border-t md:border-l border-rockblue-50 h-0 m-auto mr-6 md:w-0 md:h-64 md:mr-auto md:mb-6" ref={lineRef}></div>
           </div>
           <div className="flex gap-2 md:flex-col items-center">
-            <a target="_blank" href="https://github.com/reynoldputra" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-none">
+            <a target="_blank" href="https://github.com/reynoldputra" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" >
               <ButtonCursor circle="24" opacityMain="0.7" opacityTail="1">
                 <GithubLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300" />
               </ButtonCursor>
             </a>
-            <a target="_blank" href="https://www.linkedin.com/in/reynoldputra" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-none">
+            <a target="_blank" href="https://www.linkedin.com/in/reynoldputra" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" >
               <ButtonCursor circle="24" opacityMain="0.7" opacityTail="1">
                 <LinkedinLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300" />
               </ButtonCursor>
             </a>
-            <a target="_blank" href="mailto:reynoldputra1@gmail.com" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-none">
+            <a target="_blank" href="mailto:reynoldputra1@gmail.com" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" >
               <ButtonCursor circle="24" opacityMain="0.7" opacityTail="1">
                 <EmailLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300" />
               </ButtonCursor>
             </a>
-            <a target="_blank" href="https://www.instagram.com/reynoldputra/" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" className="cursor-none">
+            <a target="_blank" href="https://www.instagram.com/reynoldputra/" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" >
               <ButtonCursor circle="24" opacityMain="0.7" opacityTail="1">
                 <InstagramLogo className="fill-current hover:fill-spray-400 transition-[fill] duration-300" />
               </ButtonCursor>

@@ -174,9 +174,9 @@ export default function MyPorject() {
 
   return (
     <div ref={containerRef} >
-      <Grid className="pt-8">
+      <Grid className="pt-16">
         <Cell cols="1_full" className="h-[30vh] font-mono flex flex-col justify-center items-center" >
-          <p className="font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-right" data-aos="flip-up">Selected Project</p>
+          <p className="font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-center md:mr-8 flex gap-4 " data-aos="flip-up"><span className="hidden md:block">&#128640;</span> Selected Project</p>
           <Link href="/projects">
             <ButtonAnimation className="border-rockblue-50" data-aos="zoom-in">
               <p className="z-20 transition-all group-hover:font-bold text-rockblue-50 group-hover:text-primary-950">See more</p>

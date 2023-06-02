@@ -15,7 +15,7 @@ export default function GuestBook() {
           />
         </div>
       </Cell>
-      <Cell cols="1_full" colsMd='4_6' className="pb-24">
+      <Cell cols="1_full" colsMd='2_10' colsLg='3_8' colsXl='4_6' className="pb-24">
         <Giscus
           id="comments"
           repo="reynoldputra/reynoldputra.com"

@@ -39,7 +39,7 @@ export default function Footer({ className }) {
   return (
     <div className={className + " h-96 relative"}>
       <div className="w-full h-12 absolute top-0">
-        <div className="w-full h-full rounded-b-full bg-primary-950"></div>
+        <div className="w-full h-full rounded-b-3xl -translate-y-1 md:rounded-b-full bg-primary-950"></div>
       </div>
       <div className="fixed flex items-end bottom-0 w-full z-0 mt-12 h-80 text-primary-950 overflow-hidden">
           <Grid screenHeight={false} className="w-full pb-4">
@@ -67,7 +67,11 @@ export default function Footer({ className }) {
             </Cell>
             <Cell cols="1_full">
               <div className="w-full flex flex-col items-center gap-4 mt-4">
-                <div className="text-sm text-center">Ready to bring your digital ideas to life? I&apos;m here to help. <br /> Let&apos;s collaborate and create something extraordinary together.<br /> Get in touch with me today to discuss your project!</div>
+                <div className="text-sm text-center">
+                  Ready to bring your digital ideas to life? I&apos;m here to help. <br className="hidden sm:block" /> 
+                  Let&apos;s collaborate and create something extraordinary together. <br className="hidden sm:block" /> 
+                  Get in touch with me today to discuss your project!
+                </div>
                 <Link href="/contact">
                   <ButtonAnimation mode="light" className="border-2 border-primary-950 bg-transparent">
                     <p className="z-20 font-mono text-sm group-hover:text-rockblue-50 font-bold">Get in touch</p>

@@ -7,7 +7,7 @@ export default function FavoriteTools () {
   return (
     <Grid className="py-32 pb-48" screenHeight={false}>
       <Cell cols="1_full">
-        <p className="font-bold pb-12 text-2xl md:text-3xl text-spray-400 text-center font-mono" data-aos="flip-up" data-aos-anchor-placement="bottom-bottom">Favorite Tools</p> 
+          <p className="w-full justify-center font-bold pb-4 text-2xl md:text-3xl text-spray-400 text-center font-mono md:mr-8 flex gap-4 " data-aos="flip-up"><span className="hidden md:block">&#128230;</span> Favorite Tools</p>
       </Cell>
       {
         GroupTools.data.map((groupTool, idx) => {

@@ -7,7 +7,7 @@ export default function GuestBook() {
   return (
     <Grid className="mt-32">
       <Cell cols='1_full'>
-        <div className="w-full flex justify-center font-mono text-3xl md:text-4xl pt-16 pb-20">
+        <div className="w-full flex justify-center text-center font-mono text-3xl md:text-4xl pt-16 pb-20">
           <Typed
             showCursor={false}
             typeSpeed={30}

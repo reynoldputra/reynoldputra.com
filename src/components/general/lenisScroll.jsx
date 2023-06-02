@@ -21,6 +21,7 @@ export default function LenisScroll({ children }) {
     <ReactLenis root
       options={{
         smoothWheel: isSmooth,
+        smoothTouch : isSmooth,
         easing: (t) => (t == 1 ? 1 : 1 - Math.pow(2, -10 * t))
       }}
     >

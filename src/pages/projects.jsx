@@ -4,7 +4,6 @@ import ProjectSection from "../components/projects/projectSection";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Loading from "../components/general/loading";
-import Footer from "../components/general/footer/footer";
 
 export default function Projects() {
   const [isLoading, setLoading] = useState(false)
@@ -19,7 +18,7 @@ export default function Projects() {
       {!isLoading &&
         <>
           <ProjectSection />
-          <Footer />
+          {/* <Footer /> */}
         </>
       }
     </Layout>

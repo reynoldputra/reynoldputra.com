@@ -55,7 +55,7 @@ export default function Footer({ className }) {
               </div>
             </Cell>
             <Cell cols="1_full">
-              <div className="w-full flex justify-center gap-4">
+              <div className="w-full flex flex-wrap justify-center gap-x-6 gap-y-2">
                 {
                   items.map((item, idx) => (
                     <Link href={item.href} key={idx}>

@@ -94,9 +94,9 @@ export default function ProjectSection() {
       <div className="relative pt-8" ref={containerRef}>
         <Grid className="sections h-screen w-screen pt-24 md:pt-32">
           <div className="absolute bottom-12 left-0 right-0 mx-auto md:mx-0 w-72 lg:w-96 md:left-28 lg:left-52">
-            <div className="border-b border-rockblue-50 w-full aboslute top-0 bottom-0 my-auto z-20"></div>
+            <div className="border-b-4 border-rockblue-50 w-full aboslute top-0 bottom-0 my-auto z-20 translate-y-[2px]"></div>
             <div className="w-full md:w-72 lg:w-96 relative z-50">
-              <div ref={lineProgress} className="border-b-2 border-spray-400 absolute top-0 bottom-0 my-auto translate-y-[0.01px] w-0 "></div>
+              <div ref={lineProgress} className="border-b-4 border-spray-400 absolute top-0 bottom-0 my-auto w-0 "></div>
             </div>
           </div>
           <Cell cols="1_full" colsMd='1_6' colsLg="2_5" rows="1_1" className="font-mono w-full relative h-[30vh] md:h-96 overflow-hidden">

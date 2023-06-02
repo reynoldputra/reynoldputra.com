@@ -43,10 +43,10 @@ export default function MyPorject() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=900",
+        end: "+=1200",
         pin: true,
         // markers: true,
-        scrub: 1
+        scrub: 1,
       }
     });
 

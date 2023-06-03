@@ -36,7 +36,7 @@ export default function ContactMe() {
   })
 
   const onSubmit = formMethod.handleSubmit(async (data) => {
-    const _res = axios.post(porcess.env.HOST + "/api/contact", data)
+    const _res = axios.post(process.env.HOST + "/api/contact", data)
     toast.promise(_res, {
       pending: {
         render : () =>  'Sending...',

@@ -44,9 +44,6 @@ export default function Hero() {
       progressStyle: {
         backgroundColor: "#2FD2BD",
       },
-      bodyStyle: {
-        backgroundColor: "#F4F6F9"
-      },
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,

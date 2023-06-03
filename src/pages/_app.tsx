@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Analytics />
       <ToastContainer
         style={{
-          width : "360px",
+          width : "360px"
         }}
       />
     </>

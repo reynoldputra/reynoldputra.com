@@ -34,27 +34,27 @@ export default function Hero() {
     })
   }
 
-  const typeComplete = () => {
-    const bookIcon = <p>&#128220;</p>
-    toast.info((
-      <Link href="/guestbook">
-        <div className="font-mono ml-4">Click to sign my <span className="font-bold underline">guest book </span></div>
-      </Link>
-    ), {
-      progressStyle: {
-        backgroundColor: "#2FD2BD",
-      },
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      icon: bookIcon
-    });
-  }
+  // const typeComplete = () => {
+  //   const bookIcon = <p>&#128220;</p>
+  //   toast.info((
+  //     <Link href="/guestbook">
+  //       <div className="font-mono ml-4">Click to sign my <span className="font-bold underline">guest book </span></div>
+  //     </Link>
+  //   ), {
+  //     progressStyle: {
+  //       backgroundColor: "#2FD2BD",
+  //     },
+  //     position: "bottom-right",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "light",
+  //     icon: bookIcon
+  //   });
+  // }
 
   return (
     <Grid className="relative" >
@@ -65,7 +65,7 @@ export default function Hero() {
               showCursor={false}
               typeSpeed={50}
               strings={[`Bring your <span style="font-family: IBM Plex Mono; color: #2FD2BD;">website</span> to me.`, `Bring your <span style="font-family: IBM Plex Mono; color: #2FD2BD;">website</span> to life.`]}
-              onComplete={() => typeComplete()}
+              // onComplete={() => typeComplete()}
             />
           </div>
         </div>

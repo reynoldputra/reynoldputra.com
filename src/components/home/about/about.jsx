@@ -11,6 +11,7 @@ import ButtonCursor from "../../general/cursor/buttonCursor";
 import useWindowResize from "../../../hook/useWindowResize";
 import useGsapContext from "../../../hook/gsapContext";
 import ScrollSpeed from "../../general/animation/scrollSpeed";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger)
 export default function About() {
@@ -118,6 +119,7 @@ export default function About() {
         <Cell cols="1_4" colsSm="2_3" colsMd="4_5">
           <ScrollSpeed speed="1" containerRef={containerRef}>
             <p className="pt-16 text-sm text-justify" ref={descRef}> I&apos;m an information technology undergraduate student at Sepuluh Nopember Institute of Technology (ITS). I started learning web development since mid-2021. I&apos;ve an interest in improving backend skills, but lately I&apos;ve been learning a lot about the frontend because I used to love creating and writing information through design, videos, and animation. Besides self-development, I also like working on projects in a team. I like managing people so they make good use of their time and resources as a team. I have a lot of curiosity about tools and frameworks to accelerate personal and team workflows. </p>
+            <p className="text-sm pt-4">Make sure you sign my <Link href="/guestbook"><span className="cursor-pointer text-spray-400 underline">guestbook!</span></Link></p>
           </ScrollSpeed>
         </Cell>
       </Grid>

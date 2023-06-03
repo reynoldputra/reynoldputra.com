@@ -51,7 +51,7 @@ export default function Loading({ setLoading }) {
           <p className="font-sans pt-2">{countLoading}%</p>
         </div>
         <div className="w-full h-auto bottom-20 md:bottom-12 absolute text-sm">
-          <p className="w-full text-center text-rockblue-50/50">Open on desktop or pc for better experience.</p>
+          <p className="w-full text-center text-rockblue-50/50">Open on desktop or PC for better experience.</p>
           {/* <Announcement /> */}
         </div>
       </div>

@@ -9,7 +9,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Component {...pageProps} />
       <Analytics />
-      <ToastContainer />
+      <ToastContainer
+        style={{
+          width : "360px",
+        }}
+      />
     </>
   )
 

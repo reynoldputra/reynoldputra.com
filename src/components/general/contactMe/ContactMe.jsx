@@ -111,10 +111,12 @@ export default function ContactMe() {
       <Cell cols="1_full" colsMd="8_full" className="h-4/5 mt-8 flex gap-x-8 md:flex-col justify-center">
         {
           dataSocial.map((val, idx) => (
-            <div className="text-primary-950 flex gap-4 h-10 items-center" key={idx}>
-              {val.img}
-              <a href={val.link} className="text-md font-mono hidden md:block">{val.text}</a>
-            </div>
+            <a href={val.link} className="text-md font-mono hidden md:block" key={idx}>
+              <div className="text-primary-950 flex gap-4 h-10 items-center" >
+                {val.img}
+                <p>{val.text}</p>
+              </div>
+            </a>
           ))
         }
       </Cell>

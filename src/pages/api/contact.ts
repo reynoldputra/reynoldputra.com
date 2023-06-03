@@ -11,7 +11,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method == 'POST') {
-    const _res = await axios.post("http://localhost:3001/api/contact-us-submission", req.body)
+    const _res = await axios.post(process.env.SERVER_HOST + "/api/contact-us-submission", req.body)
     if (_res.status == 201) {
       res.status(201).json({ message: "Message sent" })
     } else {

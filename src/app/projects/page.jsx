@@ -1,9 +1,10 @@
+'use client'
 import { useEffect, useState } from "react";
-import Layout from "../components/general/layout";
+import Layout from "@/components/general/layout";
+import ProjectSection from "@/components/projects/projectSection";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Loading from "../components/general/loading";
-import ContactMe from "../components/general/contactMe/ContactMe";
+import Loading from "@/components/general/loading";
 
 export default function Projects() {
   const [isLoading, setLoading] = useState(false)
@@ -13,9 +14,13 @@ export default function Projects() {
   }, [])
 
   return (
-    <Layout navbarTransparent={false}>
+    <Layout>
       {isLoading && <Loading setLoading={setLoading} />}
-      {!isLoading && <ContactMe/>}
+      {!isLoading &&
+        <>
+          <ProjectSection />
+        </>
+      }
     </Layout>
   )
 }

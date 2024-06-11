@@ -2,7 +2,7 @@ import Cell from "../cell";
 import Grid from "../grid";
 import NavbarItems from "../../../data/navbar-items.json"
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import ButtonAnimation from "../button/buttonAnimation";
 import { FaEnvelopeOpen, FaGithub, FaInstagram, FaLinkedin, FaRegHeart } from "react-icons/fa";
 

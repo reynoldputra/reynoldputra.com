@@ -1,6 +1,6 @@
 import { ReactLenis } from "@studio-freight/react-lenis";
-import { useRouter } from 'next/router';
-import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
+import { useState } from "react";
 import useWindowResize from "../../hook/useWindowResize";
 
 export default function LenisScroll({ children }) {

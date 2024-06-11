@@ -3,7 +3,7 @@ import { useRef } from "react";
 import Navbar from "./navbar/navbar";
 import NavbarItems from "../../data/navbar-items.json"
 import Head from "next/head";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Cursor from './cursor/cursor';
 import LenisScroll from './lenisScroll';
 

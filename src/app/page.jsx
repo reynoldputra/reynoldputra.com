@@ -1,3 +1,4 @@
+'use client'
 import Layout from "../components/general/layout";
 import Loading from "../components/general/loading";
 import About from "../components/home/about/about";

@@ -9,7 +9,7 @@ import Terminal from "../terminal/terminal.jsx"
 import TermHeading from "../terminal/termHeading";
 import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri"
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import NavbarItems from "../../../data/navbar-items.json"
 import ButtonCursor from "../cursor/buttonCursor";
 import useGsapContext from "../../../hook/gsapContext";

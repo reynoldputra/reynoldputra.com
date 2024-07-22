@@ -1,7 +1,0 @@
-export default function FullOverlay ({children, ...rest}) {
-  return (
-    <div className="fixed bg-primary-950 w-screen h-screen z-50 flex justify-center items-center font-mono text-md text-rockblue-50 p-4" {...rest}>
-      {children}
-    </div>
-  )
-}

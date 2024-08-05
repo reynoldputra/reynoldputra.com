@@ -1,8 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
 
-import "@/styles/output.css";
 import { ReactNode } from "react";
-import Toaster from "@/components/general/Toaster";
+import Toaster from "@/components/Toaster";
+import "@/styles/output.css";
 
 export const metadata = {
   title: "Reynold Putra",

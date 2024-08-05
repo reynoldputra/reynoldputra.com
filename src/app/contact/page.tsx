@@ -1,8 +1,8 @@
 "use client";
 
-import ContactMe from "@/components/general/contactMe/ContactMe";
-import Layout from "@/components/general/layout";
-import Loading from "@/components/general/loading";
+import ContactMe from "@/containers/contact-page/contact-me-section";
+import LenisScrollLayout from "@/components/LenisScrollLayout";
+import Loading from "@/components/Loading";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
@@ -15,9 +15,9 @@ export default function Projects() {
   }, []);
 
   return (
-    <Layout navbarTransparent={false}>
+    <LenisScrollLayout navbarTransparent={false}>
       {isLoading && <Loading setLoading={setLoading} />}
       {!isLoading && <ContactMe />}
-    </Layout>
+    </LenisScrollLayout>
   );
 }

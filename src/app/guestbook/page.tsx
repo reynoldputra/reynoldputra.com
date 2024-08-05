@@ -1,8 +1,8 @@
 "use client";
 
-import Layout from "@/components/general/layout";
-import Loading from "@/components/general/loading";
-import GuestBook from "@/components/guest-book/guestBook";
+import LenisScrollLayout from "@/components/LenisScrollLayout";
+import Loading from "@/components/Loading";
+import GuestBookSection from "@/containers/guest-book-page/guestbook-section";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
@@ -15,9 +15,9 @@ export default function Projects() {
   }, []);
 
   return (
-    <Layout cursor={false}>
+    <LenisScrollLayout cursor={false}>
       {isLoading && <Loading setLoading={setLoading} />}
-      {!isLoading && <GuestBook />}
-    </Layout>
+      {!isLoading && <GuestBookSection />}
+    </LenisScrollLayout>
   );
 }

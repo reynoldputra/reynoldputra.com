@@ -1,27 +1,23 @@
-'use client'
+"use client";
 
+import LenisScrollLayout from "@/components/LenisScrollLayout";
+import Loading from "@/components/Loading";
+import ProjectSection from "@/containers/projects-page/project-section";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
-import Layout from "@/components/general/layout";
-import ProjectSection from "@/components/projects/projectSection";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import Loading from "@/components/general/loading";
 
 export default function Projects() {
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     AOS.init();
-  }, [])
+  }, []);
 
   return (
-    <Layout>
+    <LenisScrollLayout>
       {isLoading && <Loading setLoading={setLoading} />}
-      {!isLoading &&
-        <>
-          <ProjectSection />
-        </>
-      }
-    </Layout>
-  )
+      {!isLoading && <ProjectSection />}
+    </LenisScrollLayout>
+  );
 }

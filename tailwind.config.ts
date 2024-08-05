@@ -15,15 +15,9 @@ for (const tool of textLogoData) {
   logoColorSafelist.push(name);
 }
 
-console.log(logoColorSafelist)
-
 export default {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./src/assets/**/*.{js,ts,jsx,tsx}",
-    "./src/data/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   safelist: [
     {

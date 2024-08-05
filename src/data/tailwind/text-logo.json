@@ -1,0 +1,72 @@
+[
+  {
+    "colorName": "mysql",
+    "color": "#3998BA"
+  },
+  {
+    "img": "mongo.svg",
+    "name": "MongoDB",
+    "colorName": "mongo",
+    "color": "#10AA50"
+  },
+  {
+    "colorName": "firebase",
+    "color": "#FCCA3F"
+  },
+  {
+    "color": "#F0DB4F",
+    "colorName": "javascript"
+  },
+  {
+    "colorName": "typescript",
+    "color": "#239AEB"
+  },
+  {
+    "colorName": "clang",
+    "color": "#FFFFFF"
+  },
+  {
+    "colorName": "php",
+    "color": "#B0CBFB"
+  },
+  {
+    "colorName": "python",
+    "color": "#2C8FE0"
+  },
+  {
+    "colorName": "react",
+    "color": "#00D8FF"
+  },
+  {
+    "colorName": "vue",
+    "color": "#41B883"
+  },
+  {
+    "colorName": "next",
+    "color": "#F8F8F"
+  },
+  {
+    "colorName": "tailwind",
+    "color": "#38BDF8"
+  },
+  {
+    "colorName": "bootstrap",
+    "color": "#9F4DFE"
+  },
+  {
+    "colorName": "golang",
+    "color": "#5DC9E1"
+  },
+  {
+    "colorName": "laravel",
+    "color": "#D41F13"
+  },
+  {
+    "colorName": "express",
+    "color": "#FFFFFF"
+  },
+  {
+    "colorName": "nest",
+    "color": "#F31C4D"
+  }
+]

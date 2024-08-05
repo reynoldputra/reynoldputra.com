@@ -1,7 +1,7 @@
-import Terminal from "@/components/terminal/terminal";
-import TermHeading from "@/components/terminal/termHeading";
-import TermRegular from "@/components/terminal/termRegular";
-import Typed from "react-typed";
+import Terminal from "@/components/terminal/Terminal";
+import TermHeading from "@/components/terminal/TermHeading";
+import TermRegular from "@/components/terminal/TermRegular";
+import { ReactTyped } from "react-typed";
 import { useRef } from "react";
 import { gsap } from "gsap";
 
@@ -40,7 +40,7 @@ export default function OpeningLoad() {
           <TermRegular>
             <div className="block w-full">
               <div>
-                <Typed
+                <ReactTyped
                   strings={["yarn start"]}
                   showCursor={false}
                   onComplete={() => welcomeHandling()}

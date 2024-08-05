@@ -7,9 +7,9 @@ import EmailLogo from "@/assets/logo/email";
 import GithubLogo from "@/assets/logo/github";
 import InstagramLogo from "@/assets/logo/instagram";
 import LinkedinLogo from "@/assets/logo/linkedin";
-import ScrollSpeed from "@/components/animation/scrollSpeed";
+import ScrollSpeed from "@/components/animation/ScrollSpeed";
 import Cell from "@/components/Cell";
-import ButtonCursor from "@/components/cursor/buttonCursor";
+import ButtonCursor from "@/components/cursor/ButtonCursor";
 import Grid from "@/components/Grid";
 import { useGSAP } from "@gsap/react";
 

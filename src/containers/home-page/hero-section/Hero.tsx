@@ -2,9 +2,10 @@
 import { gsap } from "gsap";
 import Cell from "@/components/Cell";
 import Grid from "@/components/Grid";
-import Typed from "react-typed";
+import { useEffect, useState } from "react";
+import {ReactTyped, Typed} from "react-typed";
 
-export default function Hero() {
+export default function Hero({ isLoading }: { isLoading: boolean }) {
   const mouseEnterHandle = () => {
     gsap.to(".custome-cursor", {
       height: "100px",
@@ -27,6 +28,12 @@ export default function Hero() {
     });
   };
 
+  const [typed, setTyped] = useState<Typed | undefined>();
+
+  useEffect(() => {
+    if (!isLoading && typed) typed.start()
+  }, [isLoading]);
+
   return (
     <Grid className="relative">
       <Cell cols="2_2" colsMd="4_6" className="h-screen flex z-20 relative">
@@ -36,7 +43,9 @@ export default function Hero() {
             onMouseOver={mouseEnterHandle}
             onMouseLeave={mouseLeaveHandle}
           >
-            <Typed
+            <ReactTyped
+              stopped={true}
+              typedRef={setTyped}
               showCursor={false}
               typeSpeed={50}
               strings={[

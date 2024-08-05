@@ -7,13 +7,13 @@ import { IoCloseSharp } from "react-icons/io5";
 import OutlineLogo from "@/assets/outlineLogo";
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
-import Terminal from "@/components/terminal/terminal";
-import TermHeading from "@/components/terminal/termHeading";
+import Terminal from "@/components/terminal/Terminal";
+import TermHeading from "@/components/terminal/TermHeading";
 import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import NavbarItems from "@/data/navbar-items.json";
-import ButtonCursor from "@/components/cursor/buttonCursor";
+import ButtonCursor from "@/components/cursor/ButtonCursor";
 import { useGSAP } from "@gsap/react";
 
 export default function Navbar({
@@ -91,7 +91,7 @@ export default function Navbar({
           </div>
           <ButtonCursor>
             <div
-              className="flex items-center h-full gap-2 hover:text-spray-400 duration-300"
+              className="flex items-center h-full gap-2 hover:text-spray-400 duration-300 cursor-pointer"
               onClick={openNavbar}
             >
               <p className="text-md font-mono">Menu</p>

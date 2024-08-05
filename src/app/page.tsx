@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import Loading from "@/components/Loading";
 import LenisScrollLayout from "@/components/LenisScrollLayout";
+import CursorLayout from "@/components/cursor/CursorLayout";
 
 export default function Page() {
   const [isLoading, setLoading] = useState(true);
@@ -24,17 +25,17 @@ export default function Page() {
   return (
     <LenisScrollLayout isLoading={isLoading} background={false}>
       {isLoading && <Loading setLoading={setLoading} />}
-      {!isLoading && (
+      <CursorLayout>
         <div className="relative">
           <div className="bg-primary-950 relative z-10">
-            <HeroSection />
+            <HeroSection isLoading={isLoading} />
             <About />
             <MyPorject />
             <FavoriteTools />
           </div>
           <Footer />
         </div>
-      )}
+      </CursorLayout>
     </LenisScrollLayout>
   );
 }

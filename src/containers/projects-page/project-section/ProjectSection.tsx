@@ -3,10 +3,11 @@ import Grid from "@/components/Grid";
 import { projectData } from "@/data/myProject";
 import ProjectImage from "./ProjectImage";
 import { gsap } from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ProjectDetail from "./ProjectDetail";
-import Typed from "react-typed";
+import { ReactTyped } from "react-typed";
 import { BsFillArrowDownCircleFill } from "react-icons/bs";
+import { useGSAP } from "@gsap/react";
 
 export default function ProjectSection() {
   const [selectedProject, setSelectedProject] = useState(0);
@@ -22,8 +23,8 @@ export default function ProjectSection() {
     });
   };
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
+  useGSAP(
+    () => {
       const panels = gsap.utils.toArray(".detail-panel") as gsap.TweenTarget[];
       const images = gsap.utils.toArray(".image-panel") as gsap.TweenTarget[];
 
@@ -65,9 +66,9 @@ export default function ProjectSection() {
           "<",
         );
       });
-    }, component);
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: containerRef },
+  );
 
   return (
     <div ref={component}>
@@ -85,7 +86,7 @@ export default function ProjectSection() {
               <BsFillArrowDownCircleFill className="h-6 w-auto" />
             </div>
           )}
-          <Typed
+          <ReactTyped
             showCursor={false}
             onComplete={() => setTyping(false)}
             typeSpeed={30}

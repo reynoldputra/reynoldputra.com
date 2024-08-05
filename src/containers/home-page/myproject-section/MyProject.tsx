@@ -1,7 +1,7 @@
 "use client";
 import ButtonAnimation from "@/components/button/ButtonAnimation";
 import Cell from "@/components/Cell";
-import ButtonCursor from "@/components/cursor/buttonCursor";
+import ButtonCursor from "@/components/cursor/ButtonCursor";
 import Grid from "@/components/Grid";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";

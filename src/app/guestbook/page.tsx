@@ -1,6 +1,7 @@
 "use client";
 
 import LenisScrollLayout from "@/components/LenisScrollLayout";
+import Navbar from "@/components/Navbar";
 import GuestBookSection from "@/containers/guest-book-page/guestbook-section";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -13,6 +14,7 @@ export default function Projects() {
 
   return (
     <LenisScrollLayout>
+      <Navbar />
       <GuestBookSection />
     </LenisScrollLayout>
   );

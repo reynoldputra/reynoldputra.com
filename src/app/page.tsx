@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import Loading from "@/components/Loading";
 import LenisScrollLayout from "@/components/LenisScrollLayout";
 import CursorLayout from "@/components/cursor/CursorLayout";
+import Navbar from "@/components/Navbar";
 
 export default function Page() {
   const [isLoading, setLoading] = useState(true);
@@ -26,6 +27,7 @@ export default function Page() {
     <LenisScrollLayout isLoading={isLoading} background={false}>
       {isLoading && <Loading setLoading={setLoading} />}
       <CursorLayout>
+        {!isLoading && <Navbar />}
         <div className="relative">
           <div className="bg-primary-950 relative z-10">
             <HeroSection isLoading={isLoading} />

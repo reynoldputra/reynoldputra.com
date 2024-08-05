@@ -12,7 +12,7 @@ export default function ScrollSpeed({
   speed?: number;
   containerRef: RefObject<HTMLDivElement>;
 }) {
-  const [windowWidth] = useWindowResize(() => {});
+  const {windowWidth} = useWindowResize();
 
   const targetRef = useRef(null);
 

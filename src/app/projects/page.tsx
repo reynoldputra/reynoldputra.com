@@ -1,7 +1,8 @@
 "use client";
 
-import LenisScrollLayout from "@/components/LenisScrollLayout";
 import Loading from "@/components/Loading";
+import Navbar from "@/components/Navbar";
+import CursorLayout from "@/components/cursor/CursorLayout";
 import ProjectSection from "@/containers/projects-page/project-section";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -18,9 +19,12 @@ export default function Projects() {
   }, []);
 
   return (
-    <LenisScrollLayout>
+    <>
       {isLoading && <Loading setLoading={setLoading} />}
-      {!isLoading && <ProjectSection />}
-    </LenisScrollLayout>
+      <CursorLayout>
+        {!isLoading && <Navbar />}
+        <ProjectSection />
+      </CursorLayout>
+    </>
   );
 }

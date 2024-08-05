@@ -6,14 +6,15 @@ import "@/styles/output.css";
 
 export const metadata = {
   title: "Reynold Putra",
-  description: "An online portfolio and blog by Reynold Putra. Explore my projects and read my insights on software engineering.",
+  description:
+    "An online portfolio and blog by Reynold Putra. Explore my projects and read my insights on software engineering.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        {children}
+        <div className="bg-primary-950 text-rockblue-50">{children}</div>
         <Toaster />
         <Analytics />
       </body>

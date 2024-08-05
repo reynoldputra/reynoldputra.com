@@ -5,7 +5,7 @@ import Cell from "@/components/Cell";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { IoCloseSharp } from "react-icons/io5";
 import OutlineLogo from "@/assets/outlineLogo";
-import { useRef, useState } from "react";
+import { HTMLAttributes, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Terminal from "@/components/terminal/Terminal";
 import TermHeading from "@/components/terminal/TermHeading";
@@ -15,12 +15,17 @@ import { usePathname } from "next/navigation";
 import NavbarItems from "@/data/navbar-items.json";
 import ButtonCursor from "@/components/cursor/ButtonCursor";
 import { useGSAP } from "@gsap/react";
+import clsx from "clsx";
+
+interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
+  bgTransparent?: boolean;
+}
 
 export default function Navbar({
   bgTransparent = true,
-}: {
-  bgTransparent?: boolean;
-}) {
+  className,
+  ...rest
+}: NavbarProps) {
   const [navbar, setNavbar] = useState(false);
 
   const pathname = usePathname();
@@ -64,19 +69,19 @@ export default function Navbar({
     gsap.from(navbarRef.current, {
       y: -112,
       duration: 1.5,
-      ease: 'power4.out'
+      ease: "power4.out",
     });
   });
 
   return (
     <div
-      className={
-        "w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar " +
-        (bgTransparent
-          ? "backdrop-blur-sm bg-primary-950/80"
-          : "bg-primary-950")
-      }
+      className={clsx(
+        "w-full fixed top-0 h-14 z-50 pt-2 border-b border-rockblue-50 navbar ",
+        bgTransparent ? "backdrop-blur-sm bg-primary-950/80" : "bg-primary-950",
+        className,
+      )}
       ref={navbarRef}
+      {...rest}
     >
       <Grid screenHeight={false}>
         <Cell

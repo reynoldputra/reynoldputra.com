@@ -1,5 +1,4 @@
 import { HTMLAttributes, ReactNode, useRef } from "react";
-import Navbar from "@/components/Navbar";
 import NavbarItems from "@/data/navbar-items.json";
 import Head from "next/head";
 import { usePathname } from "next/navigation";
@@ -27,8 +26,7 @@ export default function LenisScrollLayout({
     <LenisScroll>
       <div
         className={
-          "relative min-h-screen w-full text-rockblue-50 overflow-hidden " +
-          (background && "bg-primary-950")
+          "relative min-h-screen w-full overflow-hidden"
         }
         id="smooth-wrapper"
         data-scroll-container
@@ -46,7 +44,6 @@ export default function LenisScrollLayout({
             }
           })}
         </Head>
-        {!isLoading && <Navbar bgTransparent={navbarTransparent} />}
         {children}
       </div>
     </LenisScroll>

@@ -37,8 +37,8 @@ export default function Navbar({
               </Link>
             </div>
             <div className="flex gap-x-4 sm:gap-x-6 md:gap-x-8 h-full items-center">
-              {navigationItems.map((item) => (
-                <Link href={item.href}>
+              {navigationItems.map((item, idx) => (
+                <Link href={item.href} key={idx}>
                   <p
                     className={clsx(
                       "text-md font-mono text-rockblue-500 font-bold",

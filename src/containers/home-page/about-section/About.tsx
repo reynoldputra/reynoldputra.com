@@ -43,7 +43,7 @@ export default function About({
               A litle about me
             </Typography>
             <Typography variant="c1" className="md:text-p">
-              I'm a software engineer based in Indonesia who strives to craft
+              I&apos;m a software engineer based in Indonesia who strives to craft
               robust software designs using cutting-edge technologies. I
               developed this website to showcase my work and share my passion
               with the world.

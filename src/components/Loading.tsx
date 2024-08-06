@@ -38,7 +38,7 @@ export default function Loading({
       clearInterval(intervalId);
       clearInterval(countIntervalId);
     };
-  }, []);
+  }, [icons]);
 
   const onloadingComplete = () => {
     if (component.current) {

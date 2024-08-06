@@ -32,7 +32,7 @@ export default function Hero({ isLoading }: { isLoading: boolean }) {
 
   useEffect(() => {
     if (!isLoading && typed) typed.start()
-  }, [isLoading]);
+  }, [isLoading, typed]);
 
   return (
     <Grid className="relative">

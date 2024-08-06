@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("../../public/fonts/Inter/Inter Web/inter.css");
-@import url("../../public/fonts/Mono/ibm.css");
-
 .text-stroke{
   -webkit-text-stroke-width: 2px;
   -webkit-text-fill-color: transparent;

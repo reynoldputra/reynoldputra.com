@@ -22,7 +22,7 @@ export default function Navbar({
   const pathname = usePathname();
 
   return (
-    <div className={clsx("h-14 z-50 navbar", className)} {...rest}>
+    <div className={clsx("h-14 pt-6  z-50 navbar", className)} {...rest}>
       <Section>
         <Grid screenHeight={false}>
           <Cell

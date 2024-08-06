@@ -5,7 +5,6 @@ import plugin from "tailwindcss/plugin";
 const logoColors: {
   [key: string]: string;
 } = {};
-
 const logoColorSafelist: string[] = [];
 
 for (const tool of textLogoData) {
@@ -26,7 +25,6 @@ export default {
       pattern: /grid-(rows|cols)-(.+)/,
       variants: ["sm", "md", "lg", "xl"],
     },
-
     {
       pattern: /text-logo-(.+)/,
       variants: logoColorSafelist,
@@ -34,8 +32,8 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ["Inter"],
-      mono: ["IBM Plex Mono"],
+      sans: ["var(--font-poppins)"],
+      mono: ["var(--font-roboto-mono)"],
     },
     fontSize: {
       xs: ["12px", { lineHeight: "14px" }],
@@ -150,5 +148,6 @@ export default {
 
       addComponents(gridRowCol);
     }),
+   require('@tailwindcss/typography')
   ],
 } satisfies Config;

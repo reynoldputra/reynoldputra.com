@@ -1,47 +1,52 @@
 import Giscus from "@giscus/react";
 import Grid from "@/components/Grid";
 import Cell from "@/components/Cell";
-import { ReactTyped } from "react-typed";
+import Section from "@/components/Section";
+import Typography from "@/components/typography/Typography";
 
 export default function GuestBook() {
   return (
-    <Grid className="mt-32">
-      <Cell cols="1_full">
-        <div className="w-full flex justify-center text-center font-mono text-3xl md:text-4xl pt-16 pb-20">
-          <ReactTyped
-            showCursor={false}
-            typeSpeed={30}
-            strings={[
-              `Welcome to my <span style="font-family: IBM Plex Mono; color: #2FD2BD;">Guest Book !</span>`,
-            ]}
-          />
-        </div>
-      </Cell>
-      <Cell
-        cols="1_full"
-        colsMd="2_10"
-        colsLg="3_8"
-        colsXl="4_6"
-        className="pb-24"
-      >
-        <figure>
-          <Giscus
-            id="comments"
-            repo="reynoldputra/reynoldputra.com"
-            repoId="R_kgDOJYXGGQ"
-            category="General"
-            categoryId="DIC_kwDOJYXGGc4CW4Nl"
-            mapping="specific"
-            term="Welcome to @giscus/react component!"
-            reactionsEnabled="1"
-            emitMetadata="0"
-            inputPosition="top"
-            theme="cobalt"
-            lang="en"
-            loading="lazy"
-          />
-        </figure>
-      </Cell>
-    </Grid>
+    <Section>
+      <Grid className="mt-24">
+        <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
+          <Typography
+            variant="h5"
+            className="md:text-h4 text-center"
+            color="white"
+            weight="bold"
+          >
+            Welcome to my
+          </Typography>
+          <Typography
+            variant="h5"
+            className="md:text-h4 text-center"
+            color="highlight"
+            weight="bold"
+            font="mono"
+          >
+            Guest Book !
+          </Typography>
+        </Cell>
+        <Cell cols="1_full" colsMd="3_8" colsLg="4_6" className="mt-12 pb-24">
+          <figure>
+            <Giscus
+              id="comments"
+              repo="reynoldputra/reynoldputra.com"
+              repoId="R_kgDOJYXGGQ"
+              category="General"
+              categoryId="DIC_kwDOJYXGGc4CW4Nl"
+              mapping="specific"
+              term="Welcome to @giscus/react component!"
+              reactionsEnabled="1"
+              emitMetadata="0"
+              inputPosition="top"
+              theme="cobalt"
+              lang="en"
+              loading="lazy"
+            />
+          </figure>
+        </Cell>
+      </Grid>
+    </Section>
   );
 }

@@ -8,8 +8,8 @@ const navigationItems = [
     href: "/blog",
   },
   {
-    tag: "Projects",
-    href: "/projects",
+    tag: "Project",
+    href: "/project",
   },
   {
     tag: "Guestbook",

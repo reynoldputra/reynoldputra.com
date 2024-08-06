@@ -16,9 +16,7 @@ for (const tool of textLogoData) {
 }
 
 export default {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   safelist: [
     {
       pattern: /_(cols|rows)-(.+)/,
@@ -51,6 +49,17 @@ export default {
       "6xl": ["76px", { lineHeight: "77px", fontWeight: "600" }],
       "5xl": ["64px", { lineHeight: "91px", fontWeight: "600" }],
       "7xl": ["96px", { lineHeight: "115px", fontWeight: "700" }],
+      c2: ["12px", { lineHeight: "14px" }],
+      c1: ["13px", { lineHeight: "16px" }],
+      p: ["16px", { lineHeight: "19px" }],
+      bt: ["20px", { lineHeight: "24px" }],
+      t: ["24px", { lineHeight: "29px" }],
+      h6: ["32px", { lineHeight: "38px" }],
+      h5: ["36px", { lineHeight: "43px" }],
+      h4: ["48px", { lineHeight: "58px" }],
+      h3: ["76px", { lineHeight: "77px", fontWeight: "600" }],
+      h2: ["64px", { lineHeight: "91px", fontWeight: "600" }],
+      h1: ["96px", { lineHeight: "115px", fontWeight: "700" }],
     },
     extend: {
       backgroundImage: {

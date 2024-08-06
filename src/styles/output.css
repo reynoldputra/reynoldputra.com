@@ -56,3 +56,7 @@
     writing-mode: vertical-rl;
   }
 } 
+
+/* div, p, li, ul, section, img { */
+/*   border: 1px solid red; */
+/* } */

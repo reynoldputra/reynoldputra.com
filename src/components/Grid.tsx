@@ -3,7 +3,7 @@ import React, { HTMLAttributes, ReactNode } from "react";
 
 interface GridProps extends HTMLAttributes<HTMLDivElement> {
   contentStart?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   screenHeight?: boolean;
 }
 

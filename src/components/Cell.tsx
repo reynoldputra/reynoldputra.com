@@ -13,8 +13,9 @@ interface CellProps extends HTMLAttributes<HTMLDivElement> {
   rowsLg?: string;
   rowsXl?: string;
   callName?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
+
 const Cell = ({
   children,
   className = "relative",

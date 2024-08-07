@@ -1,6 +1,5 @@
 import Cell from "./Cell";
 import Grid from "./Grid";
-import NavbarItems from "@/data/navbar-items.json";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ButtonAnimation from "@/components/button/ButtonAnimation";
@@ -13,9 +12,9 @@ import {
 } from "react-icons/fa";
 import { HTMLAttributes } from "react";
 import clsx from "clsx";
+import { navigationItems } from "@/data/navigationItems";
 
 export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
-  const items = NavbarItems.data;
   const pathname = usePathname();
 
   const classNameSocial = "w-6 h-6";
@@ -45,7 +44,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
 
   return (
     <div className={clsx(className, " h-96 relative", "bg-white")}>
-      <div className="w-full h-12 absolute top-0">
+      <div className="w-full h-12 absolute top-0 z-20">
         <div className="w-full h-full rounded-b-3xl -translate-y-1 md:rounded-b-full bg-primary-950"></div>
       </div>
       <div className="fixed flex items-end bottom-0 w-full z-0 mt-12 h-80 text-primary-950 overflow-hidden">
@@ -66,7 +65,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
           </Cell>
           <Cell cols="1_full">
             <div className="w-full flex flex-wrap justify-center gap-x-6 gap-y-2">
-              {items.map((item, idx) => (
+              {navigationItems.map((item, idx) => (
                 <Link href={item.href} key={idx}>
                   <p
                     className={

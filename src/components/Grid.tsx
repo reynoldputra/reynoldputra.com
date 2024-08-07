@@ -3,7 +3,7 @@ import React, { HTMLAttributes, ReactNode } from "react";
 
 interface GridProps extends HTMLAttributes<HTMLDivElement> {
   contentStart?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   screenHeight?: boolean;
 }
 
@@ -30,7 +30,7 @@ const Grid = ({
     md:gap-[16px]
 
     xl:grid-cols-12
-    xl:px-[100px]
+    xl:px-0
     xl:gap-[20px]
 
     relative

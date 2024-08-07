@@ -1,9 +1,14 @@
 "use client";
-import { MouseEvent, ReactNode, useRef } from "react";
+import { HTMLAttributes, MouseEvent, ReactNode, useRef } from "react";
 import Cursor from "./Cursor";
 import { gsap } from "gsap";
+import clsx from "clsx";
 
-const CursorLayout = ({ children }: { children: ReactNode }) => {
+interface CursorLayoutProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+}
+
+const CursorLayout = ({ children, className }: CursorLayoutProps) => {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -51,7 +56,7 @@ const CursorLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div
-      className="relative min-h-screen w-full"
+      className={clsx("relative min-h-screen w-full", className)}
       ref={cursorRef}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}

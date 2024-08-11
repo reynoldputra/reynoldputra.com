@@ -1,0 +1,38 @@
+## Project Goals
+This website is an LMS (Learning Management System) App for PT. Arka Spektrum Solutindo. Our main feature is to sell courses about the Japanese language to the public. 
+This website has three roles, each with its own responsibilities:
+  - **Student**: Buy and view courses
+  - **Teacher**: Create and manage their course content
+  - **Admin**: Has access to edit all contents (quiz, lesson, course)
+
+## Technology
+In this project, I am responsible for leading my team to develop three services and one analytics dashboard.
+
+### Frontend Service
+- **Next.js 14** with app router and TypeScript as the main framework
+- **Tailwind CSS** for styling
+- **Tanstack Query** for client-side caching
+- **Next-Intl** for i18n support. Currently, we implement dynamic translation messages via PayloadCMS. For general translations, we store them in JSON files inside `/messages/(en|id|jp).json`
+
+### Main Backend Service
+- **Nest.js** with TypeScript as the main backend service
+- **MySQL** database with Prisma ORM
+
+### Content Management System (CMS)
+- **PayloadCMS** with TypeScript as the CMS service
+- **MongoDB** as the database
+
+### Dashboard Reporting
+- **Looker Studio** for presenting live reports and analytics
+
+## Features
+- **Profile company with good performance speed and SEO.** This must be realized to increase website traffic and attract more users. To achieve this result, I use *static rendering* and *server-side rendering* for the static parts (landing page, about page, etc.) of the website. This will impact website performance since users don't need to compile extra programs to render the page.
+- **In-app payment.** I integrated this app with Xendit to support in-application payment when users want to buy a paid course.
+- **An interactive course player to display lessons with video or file formats.** Students can purchase any available course and play it to learn specific topics. When a user reads a lesson and clicks the Complete & Next button, their progress will be saved and accumulated as course progress.
+- **Live quiz system.** Within some courses, users can also take quizzes to test their understanding of the lessons they have read.
+- **Interactive dashboard to manage course contents and students.** All course content, like lessons and quizzes, on this website can be updated from the admin dashboard.
+
+## Challenge
+- **Migrating data from the existing WordPress website.** Previously, this company was already running a website with WordPress and an LMS Template. I created a migration script with Node.js to perform SQL queries to get all existing data and map data into the new database schema. This script will be executed before migrating the domain website, so all user data, like courses assigned to students, student progress, and course content, is migrated to the new database.
+- **Static rendering with i18n to achieve good performance.** We also created a blog system for this website. Admins can write blogs within the PayloadCMS dashboard, and after updating blog data, PayloadCMS executes hooks to call an API on NextJS to trigger revalidation of the blog data. So all static data is rendered on the server with on-demand revalidation. For other pages, like the landing page, they can also be updated from PayloadCMS. All static data has three localizations (id, en, jp), and NextJS generates static pages for each. For example, in landing pages, we have three different pages: / (default locale id), /en, /jp.
+- **Working within pressing deadlines and limited resources.** This project targeted completion in 3 months with only 3 developers (including me). I created a strict sprint cycle to guide my team to finish this project before the deadline. I utilized [Clickup](https://clickup.com/) to manage our tickets and set objective targets for each sprint.

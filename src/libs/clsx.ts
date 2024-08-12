@@ -1,6 +1,6 @@
 import _clsx from "clsx";
 
-const clsx = (...args) =>
+const clsx = (...args : string[]) =>
   _clsx(...args)
     .replace(/^\n/, "")
     .replace(/\n/g, " ")

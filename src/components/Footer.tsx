@@ -43,7 +43,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
   ];
 
   return (
-    <div className={clsx(className, " h-96 relative", "bg-white")}>
+    <div className={clsx(className, " h-96 relative", "bg-white z-0")}>
       <div className="w-full h-12 absolute top-0 z-20">
         <div className="w-full h-full rounded-b-3xl -translate-y-1 md:rounded-b-full bg-primary-950"></div>
       </div>
@@ -88,7 +88,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
                 together. <br className="hidden sm:block" />
                 Get in touch with me today to discuss your project!
               </div>
-              <Link href="/contact">
+              <Link href="mailto:reynoldputra1@gmail.com" target="_blank">
                 <ButtonAnimation
                   mode="light"
                   className="border-2 border-primary-950 bg-transparent"

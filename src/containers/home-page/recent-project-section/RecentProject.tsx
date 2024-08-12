@@ -23,7 +23,7 @@ const RecentProject = ({className, ...props} : HTMLAttributes<HTMLDivElement>) =
               reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
               ex esse exercitation amet.
             </Typography>
-            <Link href="/blogs">
+            <Link href="/project">
               <ButtonAnimation className="border-rockblue-50 mt-4">
                 <Typography
                   font="mono"

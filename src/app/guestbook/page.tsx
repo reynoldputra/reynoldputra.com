@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/Footer";
 import LenisScrollLayout from "@/components/LenisScrollLayout";
 import Navbar from "@/components/Navbar";
 import GuestBookSection from "@/containers/guest-book-page/guestbook-section";
@@ -16,6 +17,7 @@ export default function Projects() {
     <LenisScrollLayout>
       <Navbar />
       <GuestBookSection />
+      <Footer />
     </LenisScrollLayout>
   );
 }

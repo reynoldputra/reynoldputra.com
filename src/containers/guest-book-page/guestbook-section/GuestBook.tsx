@@ -6,7 +6,7 @@ import Typography from "@/components/typography/Typography";
 
 export default function GuestBook() {
   return (
-    <Section>
+    <Section className="relative z-30">
       <Grid className="mt-24">
         <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
           <Typography

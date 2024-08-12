@@ -4,12 +4,12 @@ const navigationItems = [
     href: "/",
   },
   {
-    tag: "Blog",
-    href: "/blog",
-  },
-  {
     tag: "Project",
     href: "/project",
+  },
+  {
+    tag: "Blog",
+    href: "/blog",
   },
   {
     tag: "Guestbook",

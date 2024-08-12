@@ -6,9 +6,9 @@ import Navbar from "@/components/Navbar";
 import CursorLayout from "@/components/cursor/CursorLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 
-export default function Projects() {
+export default function Layout({ children }: { children: ReactNode }) {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -17,7 +17,7 @@ export default function Projects() {
     <LenisScrollLayout>
       <CursorLayout>
         <Navbar />
-        <div className="min-h-screen"></div>
+        {children}
         <Footer />
       </CursorLayout>
     </LenisScrollLayout>

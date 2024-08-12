@@ -25,6 +25,7 @@
     "gsap": "^3.12.5",
     "locomotive-scroll": "^4.1.4",
     "next": "^14.2.3",
+    "next-mdx-remote": "^5.0.0",
     "postcss": "8.4.22",
     "react": "18.2.0",
     "react-dom": "18.2.0",

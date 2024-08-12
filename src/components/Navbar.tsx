@@ -22,7 +22,7 @@ export default function Navbar({
   const pathname = usePathname();
 
   return (
-    <div className={clsx("h-14 pt-6  z-50 navbar", className)} {...rest}>
+    <div className={clsx("pt-6 z-50 navbar", className)} {...rest}>
       <Section>
         <Grid screenHeight={false}>
           <Cell
@@ -41,8 +41,11 @@ export default function Navbar({
                 <Link href={item.href} key={idx}>
                   <p
                     className={clsx(
-                      "text-md font-mono text-rockblue-500 font-bold",
-                      item.href == pathname ? "underline text-white" : "",
+                      "text-md font-mono text-rockblue-500 font-bold hover:text-rockblue-50",
+                      (item.href == "/" && pathname == item.href) ||
+                        (item.href != "/" && pathname.startsWith(item.href))
+                        ? "underline text-white"
+                        : "",
                     )}
                   >
                     {item.tag}

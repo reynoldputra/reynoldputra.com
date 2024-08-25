@@ -37,7 +37,7 @@ export default {
     },
     fontSize: {
       xs: ["12px", { lineHeight: "14px" }],
-      sm: ["13px", { lineHeight: "16px" }],
+      sm: ["14px", { lineHeight: "16px" }],
       md: ["16px", { lineHeight: "19px" }],
       lg: ["20px", { lineHeight: "24px" }],
       xl: ["24px", { lineHeight: "29px" }],
@@ -48,7 +48,7 @@ export default {
       "5xl": ["64px", { lineHeight: "91px", fontWeight: "600" }],
       "7xl": ["96px", { lineHeight: "115px", fontWeight: "700" }],
       c2: ["12px", { lineHeight: "14px" }],
-      c1: ["13px", { lineHeight: "16px" }],
+      c1: ["14px", { lineHeight: "16px" }],
       p: ["16px", { lineHeight: "19px" }],
       bt: ["20px", { lineHeight: "24px" }],
       t: ["24px", { lineHeight: "29px" }],

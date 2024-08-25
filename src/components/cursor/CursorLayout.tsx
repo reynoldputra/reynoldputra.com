@@ -12,29 +12,29 @@ const CursorLayout = ({ children, className }: CursorLayoutProps) => {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent) => {
-    const main = gsap.utils.toArray(".cursor-main") as gsap.TweenTarget[];
-    const cursorTail = gsap.utils.toArray(".cursor-tail") as gsap.TweenTarget[];
-    const isCursorExist = main.length && cursorTail.length;
-    if (isCursorExist) {
-      const mouseX = e.pageX;
-      let mouseY = e.pageY;
-
-      if (cursorRef.current) {
-        const currentY = cursorRef.current.getBoundingClientRect().y;
-        mouseY += currentY;
-
-        gsap.to(cursorTail[0], {
-          duration: 0.4,
-          left: mouseX + "px",
-          top: mouseY + "px",
-        });
-
-        gsap.set(main[0], {
-          left: mouseX + "px",
-          top: mouseY + "px",
-        });
-      }
-    }
+    // const main = gsap.utils.toArray(".cursor-main") as gsap.TweenTarget[];
+    // const cursorTail = gsap.utils.toArray(".cursor-tail") as gsap.TweenTarget[];
+    // const isCursorExist = main.length && cursorTail.length;
+    // if (isCursorExist) {
+    //   const mouseX = e.pageX;
+    //   let mouseY = e.pageY;
+    //
+    //   if (cursorRef.current) {
+    //     const currentY = cursorRef.current.getBoundingClientRect().y;
+    //     mouseY += currentY;
+    //
+    //     gsap.to(cursorTail[0], {
+    //       duration: 0.4,
+    //       left: mouseX + "px",
+    //       top: mouseY + "px",
+    //     });
+    //
+    //     gsap.set(main[0], {
+    //       left: mouseX + "px",
+    //       top: mouseY + "px",
+    //     });
+    //   }
+    // }
   };
 
   const handleMouseDown = () => {

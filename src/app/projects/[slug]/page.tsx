@@ -37,7 +37,15 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   let slugs = await getMdSlugs(DIR_PROJECTS);
-  return slugs;
+  let filtered_slug: string[] = [];
+
+  for (const slug of slugs) {
+    const { frontmatter } = await getProject(slug);
+
+    if (frontmatter.article) filtered_slug.push(slug);
+  }
+
+  return filtered_slug;
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -46,7 +54,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="mt-12">
-      <BackNavigation href="/project" />
+      <BackNavigation href="/projects" text="All Projects" />
       <SimpleHeader
         title={title}
         date={new Date(created_at)}

@@ -4,8 +4,8 @@ const navigationItems = [
     href: "/",
   },
   {
-    tag: "Project",
-    href: "/project",
+    tag: "Projects",
+    href: "/projects",
   },
   {
     tag: "Blog",

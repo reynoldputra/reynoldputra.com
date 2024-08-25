@@ -3,9 +3,11 @@ import Grid from "@/components/Grid";
 import Section from "@/components/Section";
 import FocusedPictureCard from "@/components/article/FocusedPictureCard";
 import Typography from "@/components/typography/Typography";
-import { ProjectFrontmatter } from "@/modules/project/project.type";
+import { getAllProjects } from "@/modules/project/project.action";
 
-const ProjectListSection = ({projects} : {projects : ProjectFrontmatter[]}) => {
+const ProjectListSection = async () => {
+  const projects = await getAllProjects();
+
   return (
     <div className="relative">
       <Section>
@@ -15,15 +17,20 @@ const ProjectListSection = ({projects} : {projects : ProjectFrontmatter[]}) => {
               Projects
             </Typography>
             <Typography className="mt-2" variant="p" color="white">
-              Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-              reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
-              ex esse exercitation amet.
+              Here, you’ll find a collection of my work that reflects my journey
+              in the world of software development. Each project represents my
+              commitment to writing high-quality code, solving complex problems,
+              and delivering impactful results.
             </Typography>
             <div className="flex flex-col gap-y-8 sm:gap-y-4 mt-24">
               {projects.map((project, idx) => {
                 return (
-                  <FocusedPictureCard key={idx} />
-                )
+                  <FocusedPictureCard
+                    project={project.frontmatter}
+                    slug={project.slug}
+                    key={idx}
+                  />
+                );
               })}
             </div>
           </Cell>

@@ -1,3 +1,5 @@
+'use client'
+
 import Cell from "./Cell";
 import Grid from "./Grid";
 import Link from "next/link";

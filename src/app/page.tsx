@@ -1,30 +1,21 @@
-"use client";
-
 import Footer from "@/components/Footer";
 import LenisScrollLayout from "@/components/LenisScrollLayout";
 import Navbar from "@/components/Navbar";
-import CursorLayout from "@/components/cursor/CursorLayout";
+import AOSWrapper from "@/components/animation/AOSWrapper";
 import About from "@/containers/home-page/about-section";
-import RecentProject from "@/containers/home-page/recent-project-section";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react";
+import ProjectSnippet from "@/containers/home-page/project-snippet-section";
 
-export default function Page() {
-  useEffect(() => {
-    AOS.init();
-  }, []);
-
+export default async function Page() {
   return (
-    <LenisScrollLayout background={false}>
-      <CursorLayout className="relative">
+    <AOSWrapper>
+      <LenisScrollLayout background={false}>
         <Navbar />
         <div className="bg-primary-950 relative z-10 min-h-screen mb-64">
           <About className="mt-24" />
-          <RecentProject className="mt-32" />
+          <ProjectSnippet className="mt-32" />
         </div>
         <Footer />
-      </CursorLayout>
-    </LenisScrollLayout>
+      </LenisScrollLayout>
+    </AOSWrapper>
   );
 }

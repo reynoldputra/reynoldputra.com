@@ -1,3 +1,4 @@
+'use client'
 import { HTMLAttributes, ReactNode, useRef } from "react";
 import LenisScroll from "./LenisScroll";
 

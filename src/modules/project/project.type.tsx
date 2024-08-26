@@ -17,5 +17,6 @@ export interface ProjectFrontmatter {
   icons?: string[];
   article?: boolean;
   github?: string;
-  link?: string
+  link?: string;
+  cover?: string;
 }

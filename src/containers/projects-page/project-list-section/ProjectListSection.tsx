@@ -22,7 +22,7 @@ const ProjectListSection = async () => {
               commitment to writing high-quality code, solving complex problems,
               and delivering impactful results.
             </Typography>
-            <div className="flex flex-col gap-y-8 sm:gap-y-4 mt-24">
+            <div className="flex flex-col gap-y-8 sm:gap-y-6 mt-24">
               {projects.map((project, idx) => {
                 return (
                   <FocusedPictureCard

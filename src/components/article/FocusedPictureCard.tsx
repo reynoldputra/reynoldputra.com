@@ -62,7 +62,7 @@ const FocusedPictureCard = ({
           />
         )}
         {project.link && (
-          <CardButton Icon={<AiOutlineLink />} text="View" url={project.link} />
+          <CardButton Icon={<AiOutlineLink />} text="Visit" url={project.link} />
         )}
         {project.article && (
           <CardButton

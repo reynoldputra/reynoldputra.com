@@ -10,7 +10,7 @@ interface GridProps extends HTMLAttributes<HTMLDivElement> {
 const Grid = ({
   contentStart = true,
   children,
-  className,
+  className = "",
   screenHeight = true,
   ...rest
 }: GridProps) => {
@@ -40,7 +40,7 @@ const Grid = ({
   `;
 
   return (
-    <div className={clsx(className, baseCN)} {...rest}>
+    <div className={clsx(baseCN, className)} {...rest}>
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { HTMLAttributes } from "react";
-import { SiAmazon, SiAzuredevops, SiLaravel, SiNestjs, SiNextdotjs, SiReact, SiTypescript } from "react-icons/si";
+import { SiAmazon, SiAzuredevops, SiGo, SiLaravel, SiNestjs, SiNextdotjs, SiReact, SiTypescript } from "react-icons/si";
 
 interface IconListProps extends HTMLAttributes<HTMLDivElement> {
   icons: string[]
@@ -21,6 +21,7 @@ const IconList = ({ className, icons, ...props }: IconListProps) => {
             if(icon == "typescript") return <SiTypescript key={idx} />
             if(icon == "aws") return <SiAmazon key={idx} />
             if(icon == "azure") return <SiAzuredevops key={idx} />
+            if(icon == "golang") return <SiGo key={idx} />
         })
       } 
     </div>

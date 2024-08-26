@@ -13,8 +13,9 @@ interface CellProps extends HTMLAttributes<HTMLDivElement> {
   rowsLg?: string;
   rowsXl?: string;
   callName?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
+
 const Cell = ({
   children,
   className = "relative",
@@ -33,7 +34,7 @@ const Cell = ({
 
   ...rest
 }: CellProps) => {
-  const cn = [];
+  const cn: string[] = [];
   if (cols) cn.push(`_cols-${cols}`);
   if (colsSm) cn.push(`sm:_cols-${colsSm}`);
   if (colsMd) cn.push(`md:_cols-${colsMd}`);
@@ -47,7 +48,7 @@ const Cell = ({
   if (rowsXl) cn.push(`xl:_rows-${rowsXl}`);
 
   return (
-    <div className={clsx(cn, className)} {...rest}>
+    <div className={clsx(...cn, className)} {...rest}>
       {children}
     </div>
   );

@@ -1,35 +1,40 @@
 "use client";
-import { MouseEvent, ReactNode, useRef } from "react";
+import { HTMLAttributes, MouseEvent, ReactNode, useRef } from "react";
 import Cursor from "./Cursor";
 import { gsap } from "gsap";
+import clsx from "clsx";
 
-const CursorLayout = ({ children }: { children: ReactNode }) => {
+interface CursorLayoutProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+}
+
+const CursorLayout = ({ children, className }: CursorLayoutProps) => {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent) => {
-    const main = gsap.utils.toArray(".cursor-main") as gsap.TweenTarget[];
-    const cursorTail = gsap.utils.toArray(".cursor-tail") as gsap.TweenTarget[];
-    const isCursorExist = main.length && cursorTail.length;
-    if (isCursorExist) {
-      const mouseX = e.pageX;
-      let mouseY = e.pageY;
-
-      if (cursorRef.current) {
-        const currentY = cursorRef.current.getBoundingClientRect().y;
-        mouseY += currentY;
-
-        gsap.to(cursorTail[0], {
-          duration: 0.4,
-          left: mouseX + "px",
-          top: mouseY + "px",
-        });
-
-        gsap.set(main[0], {
-          left: mouseX + "px",
-          top: mouseY + "px",
-        });
-      }
-    }
+    // const main = gsap.utils.toArray(".cursor-main") as gsap.TweenTarget[];
+    // const cursorTail = gsap.utils.toArray(".cursor-tail") as gsap.TweenTarget[];
+    // const isCursorExist = main.length && cursorTail.length;
+    // if (isCursorExist) {
+    //   const mouseX = e.pageX;
+    //   let mouseY = e.pageY;
+    //
+    //   if (cursorRef.current) {
+    //     const currentY = cursorRef.current.getBoundingClientRect().y;
+    //     mouseY += currentY;
+    //
+    //     gsap.to(cursorTail[0], {
+    //       duration: 0.4,
+    //       left: mouseX + "px",
+    //       top: mouseY + "px",
+    //     });
+    //
+    //     gsap.set(main[0], {
+    //       left: mouseX + "px",
+    //       top: mouseY + "px",
+    //     });
+    //   }
+    // }
   };
 
   const handleMouseDown = () => {
@@ -51,7 +56,7 @@ const CursorLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div
-      className="relative min-h-screen w-full"
+      className={clsx("relative min-h-screen w-full", className)}
       ref={cursorRef}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}

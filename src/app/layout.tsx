@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     images: "/assets/reynoldputra.png",
   },
   verification: {
-    google: "google",
+    google: "5vSfSGMqthjJyNaNQU3i4lqJAC-xwP9EJhUvujun8kM",
     yandex: "yandex",
     yahoo: "yahoo",
   },

@@ -1,23 +1,24 @@
-"use client";
-
 import Footer from "@/components/Footer";
 import LenisScrollLayout from "@/components/LenisScrollLayout";
 import Navbar from "@/components/Navbar";
+import AOSWrapper from "@/components/animation/AOSWrapper";
 import CursorLayout from "@/components/cursor/CursorLayout";
 import Typography from "@/components/typography/Typography";
-import AOS from "aos";
 import "aos/dist/aos.css";
+import { Metadata } from "next";
 import Image from "next/image";
-import { useEffect } from "react";
 import ProgrammingGif from "~/assets/programming.gif"
 
-export default function Projects() {
-  useEffect(() => {
-    AOS.init();
-  }, []);
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Dive into insights, best practices, and in-depth articles on software engineering. Explore topics like design patterns, coding tips, and the latest trends to enhance your skills and stay ahead in the tech world.",
+};
 
+export default function Projects() {
   return (
     <LenisScrollLayout>
+      <AOSWrapper>
       <CursorLayout>
         <Navbar />
         <div className="min-h-screen flex flex-col w-full justify-center items-center relative z-30">
@@ -26,6 +27,7 @@ export default function Projects() {
         </div>
         <Footer />
       </CursorLayout>
+      </AOSWrapper>
     </LenisScrollLayout>
   );
 }

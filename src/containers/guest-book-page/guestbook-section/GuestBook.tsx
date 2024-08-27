@@ -1,3 +1,4 @@
+'use client'
 import Giscus from "@giscus/react";
 import Grid from "@/components/Grid";
 import Cell from "@/components/Cell";

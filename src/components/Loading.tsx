@@ -15,6 +15,19 @@ export default function Loading({
   const component = useRef<HTMLDivElement>(null);
   const icons = ["-", "\\", "|", "/"];
 
+  const onloadingComplete = () => {
+    if (component.current) {
+      gsap.to(component.current, {
+        opacity: 0,
+        ease: "power1.inOut",
+        duration: 1,
+        onComplete: () => {
+          setLoading(false);
+        },
+      });
+    }
+  };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIconLoading(
@@ -38,20 +51,7 @@ export default function Loading({
       clearInterval(intervalId);
       clearInterval(countIntervalId);
     };
-  }, [icons]);
-
-  const onloadingComplete = () => {
-    if (component.current) {
-      gsap.to(component.current, {
-        opacity: 0,
-        ease: "power1.inOut",
-        duration: 1,
-        onComplete: () => {
-          setLoading(false);
-        },
-      });
-    }
-  };
+  });
 
   return (
     <FullOverlay>

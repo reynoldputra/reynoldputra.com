@@ -18,7 +18,10 @@ export async function generateMetadata({
     title: `${frontmatter.title ?? "Projects"}`,
     description: frontmatter.description,
     openGraph: {
-      siteName: `${frontmatter.title ?? "Projects"}`,
+      siteName: frontmatter.title,
+      title: frontmatter.title,
+      description: frontmatter.description,
+      images: frontmatter.cover ?? "",
     },
   };
 
@@ -45,7 +48,7 @@ export async function generateStaticParams() {
     if (frontmatter.article) filtered_slug.push(slug);
   }
 
-  return filtered_slug;
+  return filtered_slug.map((slug) => ({ slug }));
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {

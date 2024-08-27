@@ -4,8 +4,15 @@ import Navbar from "@/components/Navbar";
 import AOSWrapper from "@/components/animation/AOSWrapper";
 import About from "@/containers/home-page/about-section";
 import ProjectSnippet from "@/containers/home-page/project-snippet-section";
+import { Metadata } from "next";
 
-export default async function Page() {
+export const metadata : Metadata = {
+  title : {
+    absolute : "Reynold Putra"
+  }
+}
+
+export default function Page() {
   return (
     <AOSWrapper>
       <LenisScrollLayout background={false}>

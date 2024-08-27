@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Toaster />
         <Analytics />
         <SpeedInsights />
-        <GoogleAnalytics gaId="GTM-PBF6P2V9" />
+        <GoogleAnalytics gaId="G-GSRZ7D2FL8" />
       </body>
     </html>
   );

@@ -1,12 +1,12 @@
 import Toaster from "@/components/Toaster";
 import "@/styles/output.css";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import clsx from "clsx";
 import { Metadata } from "next";
 import { Poppins, Roboto_Mono } from "next/font/google";
 import { ReactNode } from "react";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const poppins = Poppins({
   weight: ["400", "600", "700"],
@@ -21,16 +21,21 @@ const roboto_mono = Roboto_Mono({
   display: "swap",
 });
 
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: {
-    template: '%s | Reynold Putra',
-    absolute: 'Reynold Putra'
+    template: "%s | Reynold Putra",
+    absolute: "Reynold Putra",
   },
   description:
     "An online portfolio and blog by Reynold Putra. Explore my projects and read my insights on software engineering.",
-  openGraph : {
-    images: "/assets/reynoldputra.png"
-  }
+  openGraph: {
+    images: "/assets/reynoldputra.png",
+  },
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

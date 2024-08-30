@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import MdxComponent from "@/components/mdx/MdxComponent";
 import { getMdSlugs } from "@/libs/mdx";
+
 const getProject = async (slug: string) => {
   try {
     const filePath = path.join(DIR_PROJECTS, slug) + ".mdx";
@@ -30,7 +31,7 @@ const getProject = async (slug: string) => {
   }
 };
 
-const getAllProjects = async () => {
+const getAllProjects = async (sort: boolean = true) => {
   let slugs = await getMdSlugs(DIR_PROJECTS);
   const projects = await Promise.all(
     slugs.map(async (slug: string) => {
@@ -53,13 +54,35 @@ const getAllProjects = async () => {
       };
     }),
   );
-  return projects;
+
+  if (!sort) return projects;
+
+  const sorted = projects.sort((a, b) => {
+    return getPriority(b.frontmatter) - getPriority(a.frontmatter);
+  });
+
+  return sorted;
 };
 
-const getFeaturedProjects = async () => {
-  const projects = await getAllProjects();
+const getFeaturedProjects = async (sort: boolean = true) => {
+  const projects = await getAllProjects(sort);
+  const filtered = projects.filter((p) => p.frontmatter.featured);
+  return filtered;
+};
 
-  return projects.filter((p) => p.frontmatter.featured);
+const getPriority = (obj: ProjectFrontmatter) => {
+  let priority_count = 0;
+  const priorities: Array<keyof ProjectFrontmatter> = ["link", "github"];
+
+  if (obj.article) priority_count += priorities.length;
+
+  for (const priority of priorities) {
+    if (obj[priority]) priority_count++;
+  }
+
+  console.log(obj.title, priority_count);
+
+  return priority_count;
 };
 
 export { getAllProjects, getProject, getFeaturedProjects };

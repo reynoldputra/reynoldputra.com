@@ -38,15 +38,18 @@ In this project, I am responsible for leading my team to develop three services 
 - **Looker Studio** for presenting live reports and analytics
 
 ## Features
+<video src="https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-assets/arkalearn/interactive-course.mp4" width="100%" controls />
 - **Profile company with good performance speed and SEO.** This must be realized to increase website traffic and attract more users. To achieve this result, I use *static rendering* and *server-side rendering* for the static parts (landing page, about page, etc.) of the website. This will impact website performance since users don't need to compile extra programs to render the page.
 - **In-app payment.** I integrated this app with Xendit to support in-application payment when users want to buy a paid course.
 - **An interactive course player to display lessons with video or file formats.** Students can purchase any available course and play it to learn specific topics. When a user reads a lesson and clicks the Complete & Next button, their progress will be saved and accumulated as course progress.
 - **Live quiz system.** Within some courses, users can also take quizzes to test their understanding of the lessons they have read.
+<video src="https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-assets/arkalearn/interactive-quiz.mp4?updatedAt=1726145507730" width="100%" controls />
 - **Interactive dashboard to manage course contents and students.** All course content, like lessons and quizzes, on this website can be updated from the admin dashboard.
 
 ## Challenge
 **Migrating data from the existing WordPress website.** Previously, this company was already running a website with WordPress and an LMS Template. I created a migration script with Node.js to perform SQL queries to get all existing data and map data into the new database schema. This script will be executed before migrating the domain website, so all user data, like courses assigned to students, student progress, and course content, is migrated to the new database.
 
 **Static rendering with i18n to achieve good performance.** We also created a blog system for this website. Admins can write blogs within the PayloadCMS dashboard, and after updating blog data, PayloadCMS executes hooks to call an API on NextJS to trigger revalidation of the blog data. So all static data is rendered on the server with on-demand revalidation. For other pages, like the landing page, they can also be updated from PayloadCMS. All static data has three localizations (id, en, jp), and NextJS generates static pages for each.
+<video src="https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-assets/arkalearn/landing-page-with-i18n.mp4?updatedAt=1726145507755" width="100%" controls />
 
 **Working within pressing deadlines and limited resources.** This project targeted completion in 3 months with only 3 developers (including me). I created a strict sprint cycle to guide my team to finish this project before the deadline. I utilized [Clickup](https://clickup.com/) to manage our tickets and set objective targets for each sprint.

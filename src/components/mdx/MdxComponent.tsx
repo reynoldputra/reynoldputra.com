@@ -11,7 +11,7 @@ const MdxComponent:
     <MdxHeadingTwo {...props}>{children}</MdxHeadingTwo>
   ),
   a: ({ children, ...props }) => <MdxAnchor {...props}>{children}</MdxAnchor>,
-  code: ({ children, ...props }) => <MdxCode {...props}>{children}</MdxCode>,
+  code: ({ children, ...props }) => <MdxCode {...props}>{children}</MdxCode>
 };
 
 export default MdxComponent;

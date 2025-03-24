@@ -80,8 +80,6 @@ const getPriority = (obj: ProjectFrontmatter) => {
     if (obj[priority]) priority_count++;
   }
 
-  console.log(obj.title, priority_count);
-
   return priority_count;
 };
 

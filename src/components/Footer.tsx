@@ -8,7 +8,6 @@ import ButtonAnimation from "@/components/button/ButtonAnimation";
 import {
   FaEnvelopeOpen,
   FaGithub,
-  FaInstagram,
   FaLinkedin,
   FaRegHeart,
 } from "react-icons/fa";
@@ -36,11 +35,6 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
       img: <FaEnvelopeOpen className={classNameSocial} />,
       text: "reynoldputra1@gmail.com",
       link: "mailto:reynoldputra1@gmail.com",
-    },
-    {
-      img: <FaInstagram className={classNameSocial} />,
-      text: "reynoldputra",
-      link: "https://www.instagram.com/reynoldputra/",
     },
   ];
 

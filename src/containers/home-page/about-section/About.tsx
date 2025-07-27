@@ -2,13 +2,13 @@
 
 import { HTMLAttributes, useRef } from "react";
 import GithubLogo from "@/assets/logo/github";
-import InstagramLogo from "@/assets/logo/instagram";
 import LinkedinLogo from "@/assets/logo/linkedin";
 import Cell from "@/components/Cell";
 import Grid from "@/components/Grid";
 import Section from "@/components/Section";
 import Typography from "@/components/typography/Typography";
 import clsx from "clsx";
+import Link from "next/link";
 
 export default function About({
   className,
@@ -71,16 +71,13 @@ export default function About({
             >
               Connect with me
             </Typography>
-            <div className="flex gap-x-4">
-              <div className="flex items-center gap-x-2">
+            <div className="flex gap-x-2">
+              <Link href="https://github.com/reynoldputra" target="_blank" className="flex items-center gap-x-2">
                 <GithubLogo />
-              </div>
-              <div className="flex items-center gap-x-2">
+              </Link>
+              <Link href="https://www.linkedin.com/in/reynoldputra" target="_blank" className="flex items-center gap-x-2">
                 <LinkedinLogo />
-              </div>
-              <div className="flex items-center gap-x-2">
-                <InstagramLogo />
-              </div>
+              </Link>
             </div>
           </Cell>
         </Grid>

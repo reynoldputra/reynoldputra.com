@@ -40,11 +40,11 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
 
   return (
     <div className={clsx(className, " h-96 relative", "bg-white z-0")}>
-      <div className="w-full h-12 absolute top-0 z-20">
+      <div className="z-10 w-full h-12 absolute top-0">
         <div className="w-full h-full rounded-b-3xl -translate-y-1 md:rounded-b-full bg-primary-950"></div>
       </div>
-      <div className="fixed flex items-end bottom-0 w-full z-0 mt-12 h-80 text-primary-950 overflow-hidden">
-        <Grid screenHeight={false} className="w-full pb-4">
+      <div className="z-0 fixed flex items-end bottom-0 w-full mt-12 h-80 text-primary-950 overflow-hidden">
+        <Grid screenHeight={false} className="w-full pb-4 z-0">
           <Cell cols="1_full">
             <div className="flex w-full justify-center gap-4 mb-6 md:mb-2">
               {dataSocial.map((val, idx) => (
@@ -89,7 +89,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
                   mode="light"
                   className="border-2 border-primary-950 bg-transparent"
                 >
-                  <p className="z-20 font-mono text-sm group-hover:text-rockblue-50 font-bold">
+                  <p className="font-mono text-sm group-hover:text-rockblue-50 font-bold">
                     Get in touch
                   </p>
                 </ButtonAnimation>

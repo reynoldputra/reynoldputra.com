@@ -19,4 +19,5 @@ export interface ProjectFrontmatter {
   github?: string;
   link?: string;
   cover?: string;
+  order?: number;
 }

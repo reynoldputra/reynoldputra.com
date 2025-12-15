@@ -105,34 +105,3 @@ const CardButton = ({
 };
 
 export default FocusedPictureCard;
-
-//
-// <Typography
-//   variant="c1"
-//   color="highlight"
-//   className="bg-spray-700/30 py-1 px-3 rounded-full"
-// >
-//   React
-// </Typography>
-// <Typography
-//   variant="c1"
-//   color="highlight"
-//   className="bg-spray-700/30 py-1 px-3 rounded-full"
-// >
-//   React
-// </Typography>
-// <Typography
-//   variant="c1"
-//   color="highlight"
-//   className="bg-spray-700/30 py-1 px-3 rounded-full"
-// >
-//   React
-// </Typography>
-// <Typography
-//   variant="c1"
-//   color="highlight"
-//   className="bg-spray-700/30 py-1 px-3 rounded-full"
-// >
-//   React
-// </Typography>
-//

@@ -35,7 +35,7 @@ export default async function ProjectSnippet({
             </div>
             <div className="w-full flex justify-center mt-16">
               <Link href="/projects">
-                <ButtonAnimation className="border-rockblue-50">
+                <ButtonAnimation className="border-rockblue-50" innerClassName="flex items-center gap-2">
                   <Typography
                     font="mono"
                     variant="c1"

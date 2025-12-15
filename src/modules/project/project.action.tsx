@@ -6,8 +6,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import MdxComponent from "@/components/mdx/MdxComponent";
 import { getMdSlugs } from "@/libs/mdx";
 
-const getProject = async (slug: string) => {
-  try {
+const getProject = async (slug: string) => { try {
     const filePath = path.join(DIR_PROJECTS, slug) + ".mdx";
     const page = await fs.readFile(filePath, "utf8");
 
@@ -31,7 +30,7 @@ const getProject = async (slug: string) => {
   }
 };
 
-const getAllProjects = async (sort: boolean = true) => {
+const getAllProjects = async () => {
   let slugs = await getMdSlugs(DIR_PROJECTS);
   const projects = await Promise.all(
     slugs.map(async (slug: string) => {
@@ -55,32 +54,24 @@ const getAllProjects = async (sort: boolean = true) => {
     }),
   );
 
-  if (!sort) return projects;
-
-  const sorted = projects.sort((a, b) => {
-    return getPriority(b.frontmatter) - getPriority(a.frontmatter);
+  const orderedProjects = projects.sort((a, b) => {
+    const orderA = a.frontmatter?.order;
+    const orderB = b.frontmatter?.order;
+    
+    if (orderA !== undefined && orderB !== undefined) return orderA - orderB;
+    if (orderA !== undefined && orderB === undefined) return -1;
+    if (orderA === undefined && orderB !== undefined) return 1;
+  
+    return 0;
   });
 
-  return sorted;
+  return orderedProjects;
 };
 
-const getFeaturedProjects = async (sort: boolean = true) => {
-  const projects = await getAllProjects(sort);
+const getFeaturedProjects = async () => {
+  const projects = await getAllProjects();
   const filtered = projects.filter((p) => p.frontmatter.featured);
   return filtered;
-};
-
-const getPriority = (obj: ProjectFrontmatter) => {
-  let priority_count = 0;
-  const priorities: Array<keyof ProjectFrontmatter> = ["link", "github"];
-
-  if (obj.article) priority_count += priorities.length;
-
-  for (const priority of priorities) {
-    if (obj[priority]) priority_count++;
-  }
-
-  return priority_count;
 };
 
 export { getAllProjects, getProject, getFeaturedProjects };

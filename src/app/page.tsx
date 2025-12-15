@@ -6,9 +6,9 @@ import About from "@/containers/home-page/about-section";
 import ProjectSnippet from "@/containers/home-page/project-snippet-section";
 import { Metadata } from "next";
 
-export const metadata : Metadata = {
-  title : {
-    absolute : "Reynold Putra"
+export const metadata: Metadata = {
+  title: {
+    absolute: "Reynold Putra"
   }
 }
 
@@ -16,12 +16,14 @@ export default function Page() {
   return (
     <AOSWrapper>
       <LenisScrollLayout background={false}>
-        <Navbar />
-        <div className="bg-primary-950 relative z-10 min-h-screen mb-64">
-          <About className="mt-24" />
-          <ProjectSnippet className="mt-32" />
+        <div className="relative">
+          <Navbar />
+          <div className="bg-primary-950 relative z-50 min-h-screen pb-64">
+            <About className="mt-24" />
+            <ProjectSnippet className="mt-32" />
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </LenisScrollLayout>
     </AOSWrapper>
   );

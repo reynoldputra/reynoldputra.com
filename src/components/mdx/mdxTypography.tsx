@@ -8,7 +8,7 @@ export const MdxArticle = ({
   return (
     <article
       className={clsx(
-        "prose prose-invert prose-code:before:hidden prose-code:after:hidden",
+        "w-full max-w-none prose prose-invert prose-code:before:hidden prose-code:after:hidden",
         className,
       )}
       {...props}

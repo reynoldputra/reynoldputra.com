@@ -53,7 +53,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { content, frontmatter } = await getProject(params.slug);
-  const { title, created_at } = frontmatter;
+  const { title, created_at, cover, github, link } = frontmatter;
 
   return (
     <div className="mt-12">
@@ -62,6 +62,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
         title={title}
         date={new Date(created_at)}
         className="mt-8"
+        img={cover}
+        github={github}
+        link={link}
       />
       <MdxArticle>{content}</MdxArticle>
     </div>

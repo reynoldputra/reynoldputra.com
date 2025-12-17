@@ -40,7 +40,7 @@ export default function About({
               weight="bold"
               className="mb-2 md:text-p"
             >
-              A litle about me
+              A little about me
             </Typography>
             <Typography variant="c1" className="md:text-p">
               I&apos;m a software engineer based in Indonesia who strives to craft

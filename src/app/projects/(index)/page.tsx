@@ -1,4 +1,4 @@
-import ProjectListSection from "@/containers/projects-page/project-list-section";
+import ProjectListSection from "@/app/projects/(index)/_components/section/project-list-section";
 
 export const metadata = {
   title: "Projects",

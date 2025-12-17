@@ -46,7 +46,10 @@ export default function About({
               I&apos;m a software engineer based in Indonesia who strives to craft
               robust software designs using cutting-edge technologies. I
               developed this website to showcase my work and share my passion
-              with the world.
+              with the world. I&apos;m always open to new opportunities and collaborations.
+              <br />
+              <br />
+              If you&apos;re interested, here&apos;s my <Link href="https://docs.google.com/document/d/1rZTrxfzM9Kzvk_KJ7ZTo8ZG2jYFKVrpNTXwVvWM2sfA/edit?tab=t.zh1ixsmuerq9" target="_blank" className="bg-rockblue-50 text-primary-950 hover:underline px-1">résumé</Link>
             </Typography>
           </Cell>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_3" className="mt-6">
@@ -58,9 +61,11 @@ export default function About({
             >
               Get in touch
             </Typography>
-            <Typography variant="c1" className="md:text-p">
-              reynoldputra1@gmail.com
-            </Typography>
+            <Link href="mailto:reynoldputra1@gmail.com" target="_blank" className="inline-block w-fit min-w-fit">
+              <Typography variant="c1" className="md:text-p hover:underline w-fit">
+                reynoldputra1@gmail.com
+              </Typography>
+            </Link>
           </Cell>
           <Cell cols="1_full" colsMd="3_8" colsLg="7_3" className="mt-6">
             <Typography

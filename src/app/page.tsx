@@ -2,8 +2,8 @@ import Footer from "@/components/Footer";
 import LenisScrollLayout from "@/components/LenisScrollLayout";
 import Navbar from "@/components/Navbar";
 import AOSWrapper from "@/components/animation/AOSWrapper";
-import About from "@/containers/home-page/about-section";
-import ProjectSnippet from "@/containers/home-page/project-snippet-section";
+import About from "@/app/_components/about-section";
+import ProjectSnippet from "@/app/_components/project-snippet-section";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

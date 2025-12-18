@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { Poppins, Roboto_Mono } from "next/font/google";
 import { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 const poppins = Poppins({
   weight: ["400", "600", "700"],
@@ -41,6 +42,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={clsx(poppins.variable, roboto_mono.variable)}>
+      <Script 
+        defer 
+        src="https://cloud.umami.is/script.js" 
+        data-website-id="2f8333ff-bfde-4d5b-9264-1eec2f4ae69a" 
+      />
       <body>
         <div className="bg-primary-950 text-rockblue-50 min-h-screen">
           {children}

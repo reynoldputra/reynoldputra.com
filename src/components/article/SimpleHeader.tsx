@@ -16,7 +16,7 @@ interface SimpleHeaderProps extends HTMLAttributes<HTMLDivElement> {
 const SimpleHeader = ({ title, date, img, github, link, ...props }: SimpleHeaderProps) => {
   return (
     <div {...props}>
-      {img && <Image src={img} alt={title} width={1920} height={1080} className="w-full rounded-lg mb-8" />}
+      {img && <Image src={img} alt={title} width={720} height={420} className="w-full rounded-lg mb-8" />}
       <Typography variant="p" font="mono" color="gray" className="mt-4">{readableDate(date)}</Typography>
       <Typography variant="h4" weight="bold">{title}</Typography>
       <div className="mt-4 flex gap-x-6">

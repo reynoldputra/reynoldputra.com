@@ -28,7 +28,7 @@ const SimpleHeader = ({ title, date, img, github, link, ...props }: SimpleHeader
             className="relative w-full h-full object-cover rounded-lg"
           />
       )}
-      <Typography variant="p" font="mono" color="gray" className="mt-4">{readableDate(date)}</Typography>
+      <Typography variant="p" font="mono" color="gray" className="mt-8">{readableDate(date)}</Typography>
       <Typography variant="h4" weight="bold">{title}</Typography>
       <div className="mt-4 flex gap-x-6">
         {github && (

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import FocusedPictureCard from "@/components/article/FocusedPictureCard";
 import TabMenu from "./TabMenu";
+import TechnologyFilter, { Technology } from "./TechnologyFilter";
 import { ProjectFrontmatter } from "@/modules/project/project.type";
 
 type TabType = "main" | "side";
@@ -24,6 +25,21 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
     categoryParam === "side" ? "side" : "main"
   );
 
+  // Extract all unique technologies from projects
+  const availableTechnologies = useMemo(() => {
+    const techSet = new Set<Technology>();
+    projects.forEach((project) => {
+      project.frontmatter.icons?.forEach((icon) => {
+        if (["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang"].includes(icon)) {
+          techSet.add(icon as Technology);
+        }
+      });
+    });
+    return Array.from(techSet).sort();
+  }, [projects]);
+
+  const [selectedTechnologies, setSelectedTechnologies] = useState<Technology[]>([]);
+
   // Sync state with URL parameter on mount and when URL changes
   useEffect(() => {
     const category = searchParams.get("category") as TabType | null;
@@ -32,26 +48,66 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
     } else {
       setActiveTab("main");
     }
+    
+    const techParam = searchParams.get("tech");
+    if (techParam) {
+      const techs = techParam.split(",").filter((t): t is Technology => 
+        ["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang"].includes(t)
+      );
+      setSelectedTechnologies(techs);
+    } else {
+      setSelectedTechnologies([]);
+    }
   }, [searchParams]);
+
+  const updateUrl = (category: TabType | null, technologies: Technology[]) => {
+    const params = new URLSearchParams();
+    
+    if (category && category !== "main") {
+      params.set("category", category);
+    }
+    
+    if (technologies.length > 0) {
+      params.set("tech", technologies.join(","));
+    }
+    
+    const queryString = params.toString();
+    router.push(`${pathname}${queryString ? `?${queryString}` : ""}`);
+  };
 
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
-    const params = new URLSearchParams(searchParams.toString());
-    if (tab === "main") {
-      params.delete("category");
-    } else {
-      params.set("category", tab);
-    }
-    const queryString = params.toString();
-    router.push(`${pathname}${queryString ? `?${queryString}` : ""}`);
+    updateUrl(tab, selectedTechnologies);
+  };
+
+  const handleTechnologyToggle = (tech: Technology) => {
+    const newSelected = selectedTechnologies.includes(tech)
+      ? selectedTechnologies.filter((t) => t !== tech)
+      : [...selectedTechnologies, tech];
+    
+    setSelectedTechnologies(newSelected);
+    updateUrl(activeTab, newSelected);
   };
 
   const mainCount = projects.filter((project) => project.frontmatter.category === "main").length;
   const sideCount = projects.filter((project) => project.frontmatter.category === "side").length;
 
-  const filteredProjects = projects.filter(
-    (project) => project.frontmatter.category === activeTab
-  );
+  // Filter projects by category and selected technologies
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) => {
+      // Filter by category
+      if (project.frontmatter.category !== activeTab) return false;
+      
+      // Filter by technologies (if any selected)
+      if (selectedTechnologies.length > 0) {
+        const projectTechs = project.frontmatter.icons || [];
+        // Project must have at least one of the selected technologies
+        return selectedTechnologies.some((tech) => projectTechs.includes(tech));
+      }
+      
+      return true;
+    });
+  }, [projects, activeTab, selectedTechnologies]);
 
   return (
     <>
@@ -60,6 +116,11 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
         onTabChange={handleTabChange}
         mainCount={mainCount}
         sideCount={sideCount}
+      />
+      <TechnologyFilter
+        technologies={availableTechnologies}
+        selectedTechnologies={selectedTechnologies}
+        onToggle={handleTechnologyToggle}
       />
       <div className="flex flex-col gap-y-8 sm:gap-y-6">
         {filteredProjects.length > 0 ? (
@@ -74,7 +135,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
           })
         ) : (
           <div className="text-rockblue-500 font-mono text-md">
-            No {activeTab} projects yet. Check back soon!
+            No {activeTab} projects found{selectedTechnologies.length > 0 ? " with selected technologies" : ""}. Check back soon!
           </div>
         )}
       </div>

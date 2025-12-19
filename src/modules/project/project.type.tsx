@@ -13,7 +13,7 @@ export interface ProjectFrontmatter {
   og_image?: string;
   created_at: Date;
   featured: boolean;
-  category: "main" | "archived";
+  category: "main" | "side";
   icons?: string[];
   article?: boolean;
   github?: string;

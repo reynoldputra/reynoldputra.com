@@ -2,7 +2,7 @@ import ProjectListSection from "@/app/projects/(index)/_components/section/proje
 
 export const metadata = {
   title: "Projects",
-  description: "Here, you’ll find a collection of my work that reflects my journey in the world of software development. Each project represents my commitment to writing high-quality code, solving complex problems, and delivering impactful results.",
+  description: "Here, you'll find a collection of my work that reflects my journey in the world of software development. Each project represents my commitment to writing high-quality code, solving complex problems, and delivering impactful results.",
 };
 
 export default function Projects() {

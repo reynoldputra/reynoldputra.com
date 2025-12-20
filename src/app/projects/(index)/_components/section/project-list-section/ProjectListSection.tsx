@@ -18,7 +18,7 @@ const ProjectListSection = async () => {
               Projects
             </Typography>
             <Typography className="mt-2" variant="p" color="white">
-              Here, you'll find a collection of my work that reflects my journey
+              Here, you&apos;ll find a collection of my work that reflects my journey
               in the world of software development. Each project represents my
               commitment to writing high-quality code, solving complex problems,
               and delivering impactful results.

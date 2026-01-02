@@ -23,7 +23,7 @@ export default function TabMenu({ activeTab, onTabChange, mainCount = 0, sideCou
             : "text-rockblue-500 hover:text-rockblue-50"
         )}
       >
-        Main{mainCount > 0 && `(${mainCount})`}
+        Main{mainCount > 0 && ` (${mainCount})`}
       </button>
       <button
         onClick={() => onTabChange("side")}
@@ -34,7 +34,7 @@ export default function TabMenu({ activeTab, onTabChange, mainCount = 0, sideCou
             : "text-rockblue-500 hover:text-rockblue-50"
         )}
       >
-        Side{sideCount > 0 && `(${sideCount})`}
+        Side{sideCount > 0 && ` (${sideCount})`}
       </button>
     </div>
   );

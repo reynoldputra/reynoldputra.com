@@ -1,0 +1,179 @@
+---
+title: Smart Gate System (BLE & LPR)
+description: A final thesis project that automates vehicle access by combining Bluetooth Low Energy (BLE) for driver authentication and License Plate Recognition (LPR) for vehicle verification. The system ensures the correct driver and vehicle are present at the gate before automatically opening it.
+created_at: 2025-06-15T00:00:00.000Z
+category: "side"
+order: 1
+icons: ["iot", "arduino", "c", "python", "ai"]
+article: true
+cover: https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-cover/thesis-smart-gate.png
+---
+
+## Overview
+
+Traffic congestion at campus gates is often caused by **manual vehicle verification** and **card-based access systems**. Drivers are required to stop, show documents, or tap access cards, which slows down traffic and reduces user experience.
+
+In this final thesis project, I designed and built a **Smart Gate System** that automates vehicle access by combining:
+
+- **Bluetooth Low Energy (BLE)** for driver authentication and position detection
+- **License Plate Recognition (LPR)** for vehicle identity verification
+
+The system verifies that **the correct driver and the correct vehicle are present at the gate**, then opens the gate automatically without manual interaction.
+
+![Illustration](https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-assets/thesis-smart-gate/illustration.png?updatedAt=1767337761377)
+
+## Problem Statement
+
+Existing gate systems typically rely on:
+
+- Manual checking of vehicle documents
+- RFID or electronic access cards
+- Visual inspection by security staff
+
+These approaches suffer from several limitations:
+
+- Long queues during peak hours
+- High dependency on human operators
+- Risk of misuse (card sharing, identity mismatch)
+- No real-time validation of driver–vehicle pairing
+
+An automated, secure, and context-aware gate system is required to improve **efficiency, security, and scalability**.
+
+## Proposed Solution
+
+I proposed a **Smart Gate System architecture** that integrates **BLE-based authentication** and **camera-based license plate recognition**.
+
+### Core Ideas
+
+- Drivers carry a **BLE beacon (ESP32)** or smartphone
+- Cameras capture the vehicle's license plate near the gate
+- The system verifies:
+  - The driver's BLE identity
+  - The vehicle's license plate
+  - The physical proximity of the driver to the gate
+- The gate opens automatically only if all validations succeed
+
+This ensures that **identity, vehicle, and location** form a valid combination.
+
+## System Architecture
+
+### Hardware Components
+
+- ESP32 as BLE Beacon (driver identifier)
+- Multiple ESP32-based BLE Receivers
+- Camera for license plate capture
+- Gate controller (motor/relay)
+
+### Software Components
+
+- BLE scanning and authentication service
+- RSSI-based distance estimation
+- BLE localization with trilateration
+- License Plate Recognition (LPR) service
+- Backend validation and gate control service
+
+## System Workflow
+
+1. **BLE Authentication**  
+   The driver's beacon broadcasts a unique encrypted identifier.
+
+2. **Position Verification**  
+   RSSI values from multiple receivers are used to estimate the driver's position and proximity to the gate.
+
+3. **License Plate Recognition**  
+   A camera captures the vehicle image and detects the license plate using LPR.
+
+4. **Data Validation**  
+   The backend verifies:
+   - Beacon identity
+   - License plate number
+   - Registered driver–vehicle pairing
+
+5. **Gate Control**  
+   If all checks pass, the gate opens automatically via a REST API.
+
+## BLE Localization Approach
+
+![Beacon Device](https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-assets/thesis-smart-gate/ble%20beacon.jpeg?updatedAt=1767338023489)
+
+BLE localization is used **not as a standalone feature**, but to ensure that the driver is **physically near the gate**.
+
+- RSSI values are collected from multiple receivers
+- Distance is estimated using a path-loss model
+- **Kalman Filter** and **Simple Moving Average (SMA)** are applied to reduce noise
+- **Trilateration** is used to estimate driver position
+
+This prevents unauthorized access attempts from distant or spoofed devices.
+
+## License Plate Recognition
+
+The LPR component is responsible for:
+
+- Detecting license plates from camera input
+- Extracting plate numbers using OCR
+- Providing real-time plate data to the backend
+
+LPR adds an additional security layer by ensuring the **vehicle identity matches the registered driver**.
+
+## Key Technical Challenges
+
+### RSSI Noise and Environmental Interference
+
+BLE signals fluctuate due to obstacles and reflections.
+
+**Solution:**  
+Signal filtering using Kalman Filter and SMA on a per-receiver basis.
+
+### Device Impersonation Risk
+
+BLE identifiers can be spoofed.
+
+**Solution:**  
+
+- Encrypted challenge–response mechanism
+- Binding BLE identity to backend records
+
+### Synchronization Between BLE and LPR
+
+BLE and camera systems operate at different speeds.
+
+**Solution:**  
+
+- Time-window–based data correlation
+- Backend validation logic before gate activation
+
+## Results & Evaluation
+
+- BLE authentication completed within **60–90 ms**
+- License plates were accurately detected within **0–2 meters**
+- Gate opening latency ranged from **1.00 to 3.99 seconds**
+- Position accuracy improved with additional receivers
+
+The system successfully demonstrated **hands-free, automatic gate access** in a campus environment.
+
+## Tech Stack
+
+- **Hardware:** ESP32, Camera module
+- **Protocols:** Bluetooth Low Energy (BLE), REST API
+- **Languages:** Python, C/C++
+- **Computer Vision:** YOLO, OCR
+- **Algorithms:**
+  - RSSI Path-Loss Model
+  - Kalman Filter
+  - Simple Moving Average (SMA)
+  - Trilateration
+
+## Key Learnings
+
+- Combining multiple validation methods significantly improves security
+- BLE localization is effective when scoped to proximity validation
+- End-to-end system integration is more complex than individual components
+- Real-world testing is critical for signal-based systems
+
+## Future Improvements
+
+- Support for four-wheeled vehicles
+- Deeper security testing against spoofing and replay attacks
+- Integration with UWB for higher positioning accuracy
+- Production-grade monitoring and observability
+

@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { SiAmazon, SiAzuredevops, SiGo, SiLaravel, SiNestjs, SiNextdotjs, SiReact, SiTypescript } from "react-icons/si";
 
-export type Technology = "react" | "nest" | "next" | "laravel" | "typescript" | "aws" | "azure" | "golang";
+export type Technology = "react" | "nest" | "next" | "laravel" | "typescript" | "aws" | "azure" | "golang" | "iot" | "arduino" | "c" | "python" | "ai";
 
 interface TechnologyFilterProps {
   technologies: Technology[];
@@ -11,7 +11,7 @@ interface TechnologyFilterProps {
   onToggle: (tech: Technology) => void;
 }
 
-const technologyConfig: Record<Technology, { label: string; icon: React.ReactNode }> = {
+const technologyConfig: Record<Technology, { label: string; icon?: React.ReactNode }> = {
   react: { label: "React", icon: <SiReact /> },
   nest: { label: "NestJS", icon: <SiNestjs /> },
   next: { label: "Next.js", icon: <SiNextdotjs /> },
@@ -20,6 +20,11 @@ const technologyConfig: Record<Technology, { label: string; icon: React.ReactNod
   aws: { label: "AWS", icon: <SiAmazon /> },
   azure: { label: "Azure", icon: <SiAzuredevops /> },
   golang: { label: "Go", icon: <SiGo /> },
+  iot: { label: "IoT" },
+  arduino: { label: "Arduino" },
+  c: { label: "C" },
+  python: { label: "Python" },
+  ai: { label: "AI" },
 };
 
 export default function TechnologyFilter({
@@ -48,7 +53,7 @@ export default function TechnologyFilter({
                   : "bg-primary-900/50 border-rockblue-900/40 text-rockblue-500 hover:border-rockblue-500 hover:text-rockblue-50"
               )}
             >
-              <span className="text-lg">{config.icon}</span>
+              {config.icon && <span className="text-lg">{config.icon}</span>}
               <span>{config.label}</span>
             </button>
           );

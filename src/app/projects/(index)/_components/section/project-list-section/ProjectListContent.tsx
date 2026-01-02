@@ -25,18 +25,20 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
     categoryParam === "side" ? "side" : "main"
   );
 
-  // Extract all unique technologies from projects
+  // Extract unique technologies from projects in the current tab
   const availableTechnologies = useMemo(() => {
     const techSet = new Set<Technology>();
-    projects.forEach((project) => {
-      project.frontmatter.icons?.forEach((icon) => {
-        if (["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang"].includes(icon)) {
-          techSet.add(icon as Technology);
-        }
+    projects
+      .filter((project) => project.frontmatter.category === activeTab)
+      .forEach((project) => {
+        project.frontmatter.icons?.forEach((icon) => {
+          if (["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang", "iot", "arduino", "c", "python", "ai"].includes(icon)) {
+            techSet.add(icon as Technology);
+          }
+        });
       });
-    });
     return Array.from(techSet).sort();
-  }, [projects]);
+  }, [projects, activeTab]);
 
   const [selectedTechnologies, setSelectedTechnologies] = useState<Technology[]>([]);
 
@@ -52,7 +54,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
     const techParam = searchParams.get("tech");
     if (techParam) {
       const techs = techParam.split(",").filter((t): t is Technology => 
-        ["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang"].includes(t)
+        ["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang", "iot", "arduino", "c", "python", "ai"].includes(t)
       );
       setSelectedTechnologies(techs);
     } else {
@@ -77,7 +79,8 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
 
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
-    updateUrl(tab, selectedTechnologies);
+    setSelectedTechnologies([]);
+    updateUrl(tab, []);
   };
 
   const handleTechnologyToggle = (tech: Technology) => {

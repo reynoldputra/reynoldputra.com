@@ -80,3 +80,22 @@ export const MdxCode = ({
     </code>
   );
 };
+
+export const MdxCodeBlock = ({
+  children,
+  className,
+  ...props
+}: HTMLAttributes<HTMLPreElement>) => {
+  return (
+    <pre
+      className={clsx(
+        "bg-primary-900 border border-rockblue-900/40 rounded-md p-4 overflow-x-auto",
+        "font-mono text-sm text-rockblue-50",
+        className,
+      )}
+      {...props}
+    >
+      <code className="text-inherit">{children}</code>
+    </pre>
+  );
+};

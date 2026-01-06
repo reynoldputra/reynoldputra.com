@@ -25,7 +25,7 @@ const BlogListSection = async () => {
             <div className="mt-24">
               <Suspense fallback={<div className="text-rockblue-500 font-mono text-md">Loading...</div>}>
                 {blogs.length > 0 ? (
-                  <div className="gap-6">
+                  <div className="flex flex-col gap-4">
                     {blogs.map((blog, idx) => (
                       <BlogCard key={idx} blog={blog} />
                     ))}

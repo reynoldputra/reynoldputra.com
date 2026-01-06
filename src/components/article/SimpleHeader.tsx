@@ -25,12 +25,14 @@ const SimpleHeader = ({ title, date, img, github, link, ...props }: SimpleHeader
             alt={title} 
             width={1920} 
             height={1080} 
-            className="relative w-full h-full object-cover rounded-lg"
+            className="relative w-full h-full object-cover rounded-lg mb-8"
           />
       )}
-      <Typography variant="p" font="mono" color="gray" className="mt-8">{readableDate(date)}</Typography>
-      <Typography variant="h4" weight="bold">{title}</Typography>
-      <div className="mt-4 mb-8 flex gap-x-6">
+      <div className="pb-8">
+        <Typography variant="h4" weight="bold">{title}</Typography>
+        <Typography variant="p" font="mono" color="gray">{readableDate(date)}</Typography>
+      </div>
+      <div className="flex gap-x-6">
         {github && (
           <CardButton Icon={<FiGithub />} text="Source Code" url={github} />
         )}

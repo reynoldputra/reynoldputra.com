@@ -1,0 +1,407 @@
+---
+title: "NestJS Starter Kit: Prisma, JWT Auth, Email, and Clean Modular Architecture"
+description: "Production-ready NestJS starter with Prisma, JWT auth, email templating, and standardized patterns."
+topics: ["NestJS", "TypeScript", "Prisma", "JWT", "Email", "Design Patterns", "Backend"]
+created_at: 2024-04-28T00:00:00.000Z
+published: true
+order: 0
+github: https://github.com/reynoldputra/nestjs-starter-kit
+---
+
+This repository is a **production-leaning NestJS starter** that focuses on the parts teams repeat across projects: **Prisma-backed data access**, **JWT authentication**, **email templating**, and **cross-cutting standardization** (DTO validation, consistent responses, consistent error payloads, reusable decorators/guards).
+
+---
+
+## What you get (high-level)
+
+- **Prisma + MySQL** as the persistence layer (`src/database/schema.prisma`)
+- **Authentication module** with:
+  - `POST /api/auth/register`
+  - `POST /api/auth/login`
+  - `GET /api/auth/me` (JWT-protected)
+- **Email scaffolding**:
+  - SMTP configuration + Handlebars templates (`templates/general.hbs`)
+  - A custom nodemailer-based `MailingService` for deeper control (`src/providers/mail/mail.service.ts`)
+- **Clean layering**:
+  - DTOs for validation/contract
+  - Controller → Service separation
+  - Global **response interceptor** and **exception filter** to standardize output
+  - Reusable **decorators** + **guards** to keep controllers clean
+- **Developer experience**:
+  - Swagger enabled at `/api`
+  - Yarn scripts for Prisma generate/push/seed
+  - Husky + lint-staged for pre-commit hygiene
+
+---
+
+## Tech stack
+
+- **NestJS 10** (controllers, providers, modules)
+- **Prisma 5** (`@prisma/client`, `prisma`)
+- **Passport JWT** (`@nestjs/passport`, `passport-jwt`)
+- **Validation**: `class-validator`, `class-transformer`
+- **Docs**: `@nestjs/swagger`
+- **Email**: `nodemailer` + `handlebars`
+
+---
+
+## Folder structure (domain-first modularity)
+
+The repo is organized around **modules (bounded contexts)** plus a shared **common** layer and **providers** layer:
+
+```text
+src/
+  app/                    # root app module/controller/service
+  modules/
+    auth/                 # Authentication bounded context
+      dtos/               # DTOs: request contracts + validation rules
+  providers/
+    prisma/               # PrismaService (DB access)
+    mail/                 # MailingService (nodemailer + templates)
+  common/                 # cross-cutting concerns (framework glue)
+    decorators/           # @Token, @ResponseMessage, @Roles
+    guards/               # JwtAuthGuard, JwtStrategy, RoleGuard
+    filters/              # global exception mapping
+    interceptors/         # global response wrapper
+    helpers/              # hash helper, etc.
+  database/
+    schema.prisma         # Prisma models + enum
+    seeders/              # seeds (users.json → DB)
+templates/
+  general.hbs             # Handlebars email template
+```
+
+### Why this is "domain-driven" in practice
+
+It's not DDD in the heavy tactical sense (aggregates, repositories per aggregate, etc.). Instead, it applies the **DDD modularity principle**:
+
+- **`src/modules/*`** are *bounded contexts* (e.g., `auth`)
+- **`src/providers/*`** are shared infrastructure capabilities (DB/email)
+- **`src/common/*`** is a reusable "application framework layer" (guards/interceptors/filters/decorators)
+
+This keeps **domain modules small**, while still centralizing cross-cutting concerns.
+
+---
+
+## API bootstrap and global standards
+
+The entrypoint (`src/main.ts`) sets the tone:
+
+- Global prefix: `/api`
+- Global `ValidationPipe` (DTO validation + early fail)
+- Swagger configured at `/api`
+
+### Request lifecycle (end-to-end)
+
+```ts
+Incoming HTTP request
+  → Route to controller method
+    → DTO validation (global ValidationPipe)
+      → Guard(s) (e.g., JwtAuthGuard)
+        → Controller delegates to Service
+          → Service calls Prisma (DB) / other providers
+        ← Service returns data
+      ← ResponseInterceptor wraps successful output
+  ← Client receives standardized response
+
+If an error occurs anywhere
+  → AllExceptionsFilter returns standardized error payload
+```
+
+---
+
+## Prisma layer (data modeling + clean access)
+
+### Data model
+
+`src/database/schema.prisma` defines a small but realistic baseline:
+
+- `Users` table with UUID primary key
+- Unique constraints on `email` and `username`
+- Enum `UserType` to support role-based access later (`ADMIN`, `USER`)
+
+### PrismaService
+
+`src/providers/prisma/prisma.service.ts` exposes Prisma Client as a Nest provider and connects on module init. This gives you:
+
+- A single Prisma connection lifecycle managed by Nest
+- Easy dependency injection into services (e.g., `AuthService`)
+
+### Seeding
+
+`src/database/seeders/` includes a users seeder that:
+
+- Loads `users.json`
+- Hashes passwords using bcrypt (`src/common/helpers/hash.helper.ts`)
+- Inserts users into the DB
+
+---
+
+## DTOs (contract-first + validation)
+
+DTOs are explicit request contracts that define the shape and validation rules for incoming requests:
+
+- `LoginDto`: `email`, `password`
+- `RegisterDto`: `username`, `password`, `name`, `email`
+
+DTO validation is enforced globally via `ValidationPipe` in `src/main.ts`, so controllers stay lean and safe. This pattern ensures type safety and prevents invalid data from reaching your business logic.
+
+---
+
+## Authentication system (JWT + clean contracts)
+
+### Endpoints
+
+All auth endpoints live in `src/modules/auth`:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/auth/me` (requires `Authorization: Bearer <token>`)
+
+### Controller → Service separation
+
+Controllers remain thin (routing + decorators). Business logic lives in the service:
+
+- Password hashing via `hashPassword()`
+- Password verification via `comparePassword()`
+- Token minting via `JwtService.sign()`
+- User fetch via Prisma
+
+### JWT strategy + guard (Passport pattern)
+
+The stack is:
+
+- `JwtStrategy` extracts and validates the bearer token, then loads the user from DB
+- `JwtAuthGuard` enforces authentication on routes
+
+This is classic **Strategy Pattern** (Passport) applied in Nest: swap strategies without changing controller business logic.
+
+### Token decorator (controller ergonomics)
+
+`@Token('id')` is a param decorator that extracts a field from the decoded token (e.g., `id`) so controllers can do:
+
+```ts
+GET /me
+  → @UseGuards(JwtAuthGuard)
+  → validateToken(@Token('id') id)
+```
+
+---
+
+## Standardized success responses (Interceptor + decorator)
+
+This repo standardizes successful responses using:
+
+- `ResponseInterceptor` (`src/common/interceptors/response.interceptor.ts`)
+- `@ResponseMessage(...)` decorator (`src/common/decorators/responseMessage.decorator.ts`)
+
+### Why this matters
+
+It prevents "response shape drift" across endpoints and teams. Every endpoint can reliably return:
+
+```json
+{
+  "success": true,
+  "status": 200,
+  "message": "Success login",
+  "data": { ... }
+}
+```
+
+### Pseudo-code: interceptor pattern
+
+```typescript
+intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  return next.handle().pipe(
+    map((data) => {
+      const message = Reflect.getMetadata('response_message', context.getHandler()) ?? '';
+      return {
+        success: true,
+        status: context.switchToHttp().getResponse().statusCode,
+        message,
+        data
+      };
+    })
+  );
+}
+```
+
+---
+
+## Standardized error responses (Global exception filter)
+
+Errors are normalized via `AllExceptionsFilter` (`src/common/filters/exception.filter.ts`), registered globally in `AppModule` using `APP_FILTER`.
+
+Target shape:
+
+```json
+{
+  "success": false,
+  "status": 400,
+  "message": "Bad Request",
+  "error": [ /* optional validation errors */ ]
+}
+```
+
+This is important because it creates a predictable client contract even when exceptions differ (validation errors, auth errors, custom errors, unexpected errors).
+
+**Security note**: Internal server errors (5xx) are caught and hidden—clients receive a generic "Internal server error" message. Only 4xx errors (client errors) expose the actual error message, preventing sensitive information leakage.
+
+### Pseudo-code: exception mapping
+
+```typescript
+catch(exception: unknown) {
+  let status = 500;
+  let message = 'Internal server error';
+  let errors: any[] | undefined;
+
+  if (exception instanceof HttpException) {
+    status = exception.getStatus();
+    const response = exception.getResponse();
+    
+    // Only expose error messages for 4xx client errors
+    if (status >= 400 && status < 500) {
+      message = exception.message;
+      if (Array.isArray(response['message'])) {
+        errors = response['message'];
+      }
+    }
+    // For 5xx errors, keep generic message (hide internal details)
+  }
+
+  return {
+    success: false,
+    status,
+    message,
+    error: errors
+  };
+}
+```
+
+---
+
+## Decorators + guards (reusable, composable security)
+
+This repo uses decorators and guards as reusable building blocks:
+
+- **`@Roles(...)`** metadata decorator (`src/common/decorators/roles.decorator.ts`)
+- **`RoleGuard`** guard (`src/common/guards/roles/role.guard.ts`)
+- **`JwtAuthGuard`** (`src/common/guards/jwt/jwt.guard.ts`)
+
+Even if you don't apply role checks everywhere yet, the pattern is ready:
+
+### Pseudo-code: role-based access control (RBAC)
+
+```typescript
+@Roles(UserType.ADMIN)
+@UseGuards(JwtAuthGuard, RoleGuard)
+@Get('/admin/dashboard')
+getDashboard() {
+  // ...
+}
+
+// RoleGuard implementation
+canActivate(context: ExecutionContext): boolean {
+  const required = this.reflector.get<UserType[]>('roles', context.getHandler());
+  if (!required || required.length === 0) return true;
+  
+  const user = context.switchToHttp().getRequest().user;
+  return required.includes(user.user_type);
+}
+```
+
+This keeps authorization centralized, testable, and consistent.
+
+---
+
+## Email system (templates + transport)
+
+The repo uses a custom `MailingService` (`src/providers/mail/mail.service.ts`) that provides infrastructure-level control:
+
+- Nodemailer transporter (env-driven SMTP configuration)
+- Compiled Handlebars templates (`templates/general.hbs`)
+- Per-email transport rules
+- Custom retry logic and fallbacks
+- Template compilation caching
+- Works in non-Nest contexts (workers/cron jobs)
+
+### Pseudo-code: sending a templated email (how you'd extend it)
+
+```typescript
+@Injectable()
+class MailingService {
+  private transporter = nodemailer.createTransport(SMTP_CONFIG);
+  private generalTemplate = Handlebars.compile(
+    fs.readFileSync('templates/general.hbs', 'utf8')
+  );
+
+  async sendGeneralEmail(
+    to: string,
+    subject: string,
+    title: string,
+    message: string
+  ): Promise<void> {
+    const html = this.generalTemplate({ subject, title, message });
+    await this.transporter.sendMail({ to, subject, html });
+  }
+}
+```
+
+---
+
+## Design patterns used (and why they scale)
+
+- **DTO pattern**: request validation + clear API contracts (`src/modules/auth/dtos/*`)
+- **Controller/Service layering**: controllers orchestrate, services implement business logic (`src/modules/auth/*`)
+- **Strategy pattern**: Passport JWT strategy for authentication (`JwtStrategy`)
+- **Interceptor pattern**: enforce a unified success response shape across the app (`ResponseInterceptor`)
+- **Filter pattern**: unify and sanitize error responses (`AllExceptionsFilter`)
+- **Decorator + metadata**: attach behavior declaratively (`@ResponseMessage`, `@Roles`)
+- **Guard middleware**: reusable authz/authn enforcement (`JwtAuthGuard`, `RoleGuard`)
+
+---
+
+## Running locally (practical)
+
+1) Install deps:
+
+```bash
+yarn install
+```
+
+2) Configure env:
+
+```bash
+cp .env.example .env
+```
+
+3) Prisma:
+
+```bash
+yarn db:generate
+yarn db:push
+yarn db:seed
+```
+
+4) Start:
+
+```bash
+yarn start:dev
+```
+
+Swagger docs will be available at `/api`.
+
+---
+
+## Closing note: what this starter optimizes for
+
+This repo is designed so that adding a new domain module feels like "paint-by-numbers":
+
+- Define DTOs (contract)
+- Implement service (use Prisma + providers)
+- Expose controller endpoints
+- Annotate with decorators/guards
+- Get standardized responses and errors "for free"
+
+That's the kind of consistency that keeps teams fast as the codebase grows.
+

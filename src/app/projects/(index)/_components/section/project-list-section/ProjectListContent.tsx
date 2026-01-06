@@ -125,7 +125,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
         selectedTechnologies={selectedTechnologies}
         onToggle={handleTechnologyToggle}
       />
-      <div className="flex flex-col gap-y-8 sm:gap-y-6">
+      <div className="flex flex-col gap-y-4">
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project, idx) => {
             return (

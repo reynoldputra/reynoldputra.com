@@ -66,7 +66,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         img={cover}
       />
       {topics && topics.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex flex-wrap gap-2 mt-4 mb-8">
           {topics.map((topic, idx) => (
             <span
               key={idx}

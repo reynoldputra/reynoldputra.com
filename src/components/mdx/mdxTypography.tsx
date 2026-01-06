@@ -89,7 +89,7 @@ export const MdxCodeBlock = ({
   return (
     <pre
       className={clsx(
-        "bg-primary-900 border border-rockblue-900/40 rounded-md p-4 overflow-x-auto",
+        "bg-primary-900 border border-rockblue-900/40 rounded-md p-4 overflow-x-auto hide-scrollbar",
         "font-mono text-sm text-rockblue-50",
         className,
       )}

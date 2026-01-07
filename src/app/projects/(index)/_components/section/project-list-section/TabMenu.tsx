@@ -22,6 +22,7 @@ export default function TabMenu({ activeTab, onTabChange, mainCount = 0, sideCou
             ? "text-white"
             : "text-rockblue-500 hover:text-rockblue-50"
         )}
+        data-umami-event="main-tab-button"
       >
         Main{mainCount > 0 && ` (${mainCount})`}
       </button>
@@ -33,6 +34,7 @@ export default function TabMenu({ activeTab, onTabChange, mainCount = 0, sideCou
             ? "text-white"
             : "text-rockblue-500 hover:text-rockblue-50"
         )}
+        data-umami-event="side-tab-button"
       >
         Side{sideCount > 0 && ` (${sideCount})`}
       </button>

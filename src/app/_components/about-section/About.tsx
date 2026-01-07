@@ -49,7 +49,7 @@ export default function About({
               with the world. I&apos;m always open to new opportunities and collaborations.
               <br />
               <br />
-              If you&apos;re interested, here&apos;s my <Link id="resume-button" href="https://docs.google.com/document/d/1rZTrxfzM9Kzvk_KJ7ZTo8ZG2jYFKVrpNTXwVvWM2sfA/edit?tab=t.zh1ixsmuerq9" target="_blank" className="bg-rockblue-50 text-primary-950 hover:underline px-1">résumé</Link>
+              If you&apos;re interested, here&apos;s my <Link data-umami-event="resume-button" href="https://docs.google.com/document/d/1rZTrxfzM9Kzvk_KJ7ZTo8ZG2jYFKVrpNTXwVvWM2sfA/edit?tab=t.zh1ixsmuerq9" target="_blank" className="bg-rockblue-50 text-primary-950 hover:underline px-1">résumé</Link>
             </Typography>
           </Cell>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_3" className="mt-6">

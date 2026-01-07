@@ -21,7 +21,7 @@ const RecentBlog = () => {
               ex esse exercitation amet.
             </Typography>
             <Link href="/blogs">
-              <ButtonAnimation className="border-rockblue-50 mt-4">
+              <ButtonAnimation data-umami-event="see-more-button" className="border-rockblue-50 mt-4">
                 <Typography
                   font="mono"
                   variant="c1"

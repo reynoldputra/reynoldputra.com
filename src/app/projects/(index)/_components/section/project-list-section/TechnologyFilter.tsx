@@ -34,6 +34,8 @@ export default function TechnologyFilter({
                   ? "bg-spray-300/20 border-spray-300 text-spray-300"
                   : "bg-primary-900/50 border-rockblue-900/40 text-rockblue-500 hover:border-rockblue-500 hover:text-rockblue-50"
               )}
+              data-umami-event={`technology-filter-button`}
+              data-umami-event-tech={tech}
             >
               {config.icon && <span className="text-lg">{config.icon()}</span>}
               <span>{config.name}</span>

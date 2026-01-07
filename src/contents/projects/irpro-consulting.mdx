@@ -7,6 +7,87 @@ category : "main"
 order: 3
 icons : ["next"]
 link : https://irproconsulting.com
-article : false
+article : true
 cover : https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-cover/irpro.png
 ---
+
+## Project Goals
+IRPRO Consulting needed a modern company profile website to showcase their services and expertise. I joined as a **fullstack engineer** in a team of 4 people to build this website using Next.js with PayloadCMS for content management.
+
+My primary responsibilities included:
+- Building the main website pages with modern, responsive design
+- Implementing smooth animations and interactive elements
+- Setting up internationalization (i18n) for multi-language support
+- Integrating PayloadCMS with Next.js for content management
+- Implementing ISR (Incremental Static Regeneration) for optimal performance
+
+## Technology
+This project was built with a focus on modern web technologies and performance optimization.
+
+### Frontend
+- **Next.js** with JavaScript as the main framework
+- **GSAP (GreenSock Animation Platform)** for advanced animations
+- **i18n** package for internationalization in static generation
+
+### Content Management
+- **PayloadCMS** for managing website content
+- Multi-language support with automatic data fetching during build
+
+## Features
+- **Company profile pages.** I created two main pages for the organization profile, focusing on clean design and smooth user experience.
+- **GSAP card animations.** Implemented engaging card animations using GSAP to create dynamic, interactive elements that enhance the visual appeal of the website.
+- **Multi-language support.** Integrated i18n to handle multiple languages in a static generation context, ensuring the website works seamlessly across different language versions.
+- **ISR (Incremental Static Regeneration).** Set up ISR to automatically rebuild pages when content changes in PayloadCMS, ensuring the website always displays the latest content without manual rebuilds.
+
+## Challenge
+
+### First time learning GSAP: Understanding CSS animation limitations
+This was my **first experience with GSAP**, and it came from recognizing the limitations of CSS animations. I discovered that CSS has significant constraints, especially when dealing with:
+- **Dynamic width and height calculations** that need to be computed at runtime
+- **Complex position calculations** that depend on other elements or user interactions
+- **Sequential animations** that require precise timing control
+
+CSS animations work great for simple, predefined transitions, but when you need animations that respond to dynamic content or user interactions, JavaScript becomes necessary. GSAP provided the powerful animation library I needed to create smooth, performant animations that CSS alone couldn't achieve.
+
+### Creating card animations with GSAP
+I implemented card animations using GSAP, which allowed me to:
+- Create smooth transitions that respond to dynamic content sizes
+- Build complex animation sequences with precise timing
+- Achieve better performance compared to CSS animations for complex scenarios
+- Have fine-grained control over animation properties and easing functions
+
+This experience taught me when to use CSS animations (simple, static animations) versus JavaScript animations (complex, dynamic animations).
+
+### First time learning i18n: Internationalization for static generation
+This project introduced me to **internationalization (i18n)** for the first time. I needed to find an i18n solution that worked with Next.js static site generation, which has different requirements compared to client-side or server-side rendering.
+
+I researched and found an i18n package specifically designed for static generation pages, which:
+- Pre-renders all language versions during the build process
+- Ensures all translations are available at build time
+- Works seamlessly with Next.js static export functionality
+- Maintains performance by including translations in the static bundle
+
+This was a valuable learning experience in understanding how internationalization works in different rendering contexts.
+
+### First time learning ISR: Incremental Static Regeneration with PayloadCMS
+This project was my **first exposure to ISR (Incremental Static Regeneration)**. PayloadCMS supports multiple languages, and during the build process, it fetches all data for all language versions.
+
+The challenge was ensuring that when content changes in PayloadCMS, the website reflects those changes without requiring a full rebuild. I implemented a solution using:
+- **Webhook integration** that triggers when content is updated in PayloadCMS
+- **API endpoint** that handles revalidation requests
+- **ISR revalidation** that rebuilds only the affected pages, not the entire site
+
+When data changes in PayloadCMS, the webhook calls our API endpoint, which then triggers Next.js to revalidate and rebuild the particular page. This approach ensures:
+- Content updates are reflected quickly without manual intervention
+- Only changed pages are rebuilt, maintaining fast build times
+- The website always displays the latest content from PayloadCMS
+- Optimal performance with static pages that update on-demand
+
+This experience taught me the power of ISR for content-heavy websites that need to balance static performance with dynamic content updates.
+
+## Outcome
+- Successfully delivered a modern company profile website with smooth animations and multi-language support
+- Gained hands-on experience with GSAP, understanding when and how to use JavaScript animations effectively
+- Learned i18n implementation for static generation, expanding my knowledge of internationalization strategies
+- Implemented ISR with PayloadCMS, creating a system that automatically updates content when changes are made
+- Built confidence in working with headless CMS systems and understanding their integration with Next.js

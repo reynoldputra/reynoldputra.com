@@ -1,10 +1,96 @@
 ---
 title: Ini Lho ITS 2023
 description : Ini Lho ITS! 2023 is an annual event that helps the high schoolers to find majors that match their dreams, talents, and interests. I became expert backend staff in a team of 7 people. We created backend service that use Nest.js with Typescript as a main tech stack
-created_at : 2023-12-26T00:00:00.000Z
+created_at : 2022-12-26T00:00:00.000Z
 featured : false
 category : "main"
 icons : ["nest", "typescript"]
-article : false
+article : true
 cover : https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-cover/inilhoits.png
 ---
+
+## Project Goals
+Ini Lho ITS! 2023 is an **annual event** and one of the biggest events at Institut Teknologi Sepuluh Nopember. The event helps high school students find majors that match their dreams, talents, and interests. The website serves as a comprehensive platform that goes beyond just showcasing our university—it handles event management, registrations, and announcements for thousands of users.
+
+I was invited as an **expert backend engineer** for this project when I was in my second year, joining a team of 7 people. This was a significant opportunity to work on a large-scale system that would serve **1000+ users** across Indonesia.
+
+## Technology
+We built a robust backend service using modern technologies to handle the scale and complexity of the event.
+
+### Backend Service
+- **Nest.js** with TypeScript as the main framework
+- **Prisma** as the ORM for database management and migrations
+- RESTful API architecture for all event operations
+- Database integration for managing users, registrations, and announcements
+
+## Features
+The platform served multiple purposes beyond just showcasing the university:
+
+- **Tryout registration system.** Students could register for tryout exams directly through the website, streamlining the registration process for hundreds of participants.
+- **Organization management.** We managed organizations for each city across Indonesia, allowing local coordinators to handle their regional events and participants.
+- **Event registration.** Comprehensive event registration system that handled multiple events, sessions, and activities throughout the event period.
+- **Discount management.** System for managing and applying discounts for various event packages and registrations.
+- **Announcement system.** Real-time announcements including ranking results, event updates, and important information for all participants.
+- **University showcase.** Information about majors, programs, and campus life to help high school students make informed decisions.
+
+## Challenge
+
+### Leading hiring and building the team
+One of my responsibilities was conducting **hiring sessions** for the backend team. Since we were looking for first-year students, I needed to create an accessible yet meaningful evaluation process:
+
+- **Technical tests.** I created simple technical tests in a LeetCode-style format that assessed problem-solving skills and basic programming knowledge appropriate for first-year students.
+- **Behavioral interviews.** Conducted behavioral interviews to assess communication skills, teamwork, and motivation—essential qualities for working in a collaborative team environment.
+
+This experience taught me how to evaluate candidates at different skill levels and design assessments that are fair yet challenging.
+
+### Teaching and mentoring staff
+I also conducted **teaching sessions** for the staff members, sharing knowledge about:
+- Backend development best practices
+- Nest.js framework patterns and architecture
+- API design principles
+- Database design and optimization
+- Testing strategies
+
+This was my first experience in a teaching/mentoring role, which helped me develop communication skills and learn how to break down complex concepts for others.
+
+### First time learning Nest.js and Prisma
+This project was my **first exposure to Nest.js and Prisma**. When I started with Nest.js, I discovered that it comes with **TypeORM by default** as the ORM (Object-Relational Mapping) solution.
+
+However, during development, I found **Prisma** and was immediately impressed by its advantages:
+- **Better typing.** Prisma provides excellent TypeScript support with auto-generated types that ensure type safety throughout the application. The generated types are always in sync with the database schema, reducing type-related bugs.
+- **Cool migration system.** Prisma's migration system is intuitive and powerful. It tracks schema changes, generates migration files automatically, and provides a clear history of database evolution. The migration workflow made it easy to manage database changes across different environments.
+
+I made the decision to switch from TypeORM to Prisma for this project, which turned out to be a great choice. Prisma's developer experience, especially the type safety and migration system, significantly improved our development workflow and reduced potential errors.
+
+This experience taught me the importance of evaluating different tools and not just accepting default choices, even when they come from a well-established framework like Nest.js.
+
+### Building comprehensive APIs
+I had the responsibility to build APIs for various critical features:
+
+- **Staff and user registration.** Secure registration system with role-based access control for staff members and public registration for users/participants.
+- **Certification generation.** Automated system to generate and distribute certificates for participants, handling different event types and completion criteria.
+- **Ranking announcement.** System to calculate, store, and announce rankings for tryout results and various competitions, ensuring accuracy and real-time updates.
+- **Link shortening service.** Custom URL shortening service for sharing event links, tracking clicks, and managing redirects efficiently.
+
+Each API required careful consideration of:
+- **Scalability** to handle 1000+ users
+- **Data integrity** for critical operations like rankings and certifications
+- **Security** for user data and staff access
+- **Performance** to ensure fast response times during peak usage
+
+### Managing scale and complexity
+Working on a system that serves 1000+ users across multiple cities in Indonesia presented unique challenges:
+- Managing data for multiple regional organizations
+- Ensuring real-time updates for announcements and tryout score
+- Coordinating with frontend team and event organizers
+
+## Outcome
+This project was an **amazing experience** that significantly impacted my growth:
+
+- **Expanded network.** I got to know many people from different majors across the university, building connections that extended beyond just the technical team.
+- **Increased exposure.** Working on one of the biggest annual events gave me visibility and recognition within the university community.
+- **Leadership experience.** Leading hiring, teaching sessions, and building critical APIs gave me confidence in technical leadership roles.
+- **Real-world impact.** Seeing the system handle 1000+ users and support a major event was incredibly rewarding and validated my technical skills.
+- **Team collaboration.** Working in a team of 7 people taught me valuable lessons about coordination, communication, and delivering under deadlines.
+
+This project marked an important milestone in my journey, combining technical challenges with leadership opportunities and real-world impact.

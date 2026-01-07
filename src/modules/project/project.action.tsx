@@ -62,7 +62,10 @@ const getAllProjects = async () => {
     if (orderA !== undefined && orderB === undefined) return -1;
     if (orderA === undefined && orderB !== undefined) return 1;
   
-    return 0;
+    // If neither has order, sort by date (newest first)
+    const dateA = a.frontmatter?.created_at?.getTime() || 0;
+    const dateB = b.frontmatter?.created_at?.getTime() || 0;
+    return dateB - dateA;
   });
 
   return orderedProjects;

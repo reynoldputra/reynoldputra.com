@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import { DIR_BLOGS, BlogFrontmatter } from "./blog.type";
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
+import remarkGfm from 'remark-gfm';
 import MdxComponent from "@/components/mdx/MdxComponent";
 import { getMdSlugs } from "@/libs/mdx";
 
@@ -15,6 +16,9 @@ const getBlog = async (slug: string) => {
       source: page,
       options: {
         parseFrontmatter: true,
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
       },
       components: MdxComponent,
     });
@@ -43,6 +47,9 @@ const getAllBlogs = async () => {
         source: page,
         options: {
           parseFrontmatter: true,
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+          },
         },
       });
 
@@ -64,11 +71,11 @@ const getAllBlogs = async () => {
   const sortedBlogs = publishedBlogs.sort((a, b) => {
     const orderA = a.frontmatter?.order;
     const orderB = b.frontmatter?.order;
-    
+
     if (orderA !== undefined && orderB !== undefined) return orderA - orderB;
     if (orderA !== undefined && orderB === undefined) return -1;
     if (orderA === undefined && orderB !== undefined) return 1;
-  
+
     // If no order, sort by created_at (newest first)
     return b.frontmatter.created_at.getTime() - a.frontmatter.created_at.getTime();
   });

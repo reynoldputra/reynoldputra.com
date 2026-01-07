@@ -1,0 +1,368 @@
+---
+title: "Understanding CSR, SSR, and SSG: A Practical Guide with Nuxt 4"
+description: "Explore client-side rendering, server-side rendering, and static site generation with real Nuxt 4 implementations and performance comparisons."
+topics: ["Nuxt", "Vue", "Web Performance", "SEO"]
+created_at: 2023-12-21T00:00:00.000Z
+published: true
+order: 0
+github: https://github.com/reynoldputra/nuxt-rendering-type
+link: http://nuxt-rendering-type.netlify.app/
+---
+
+# Understanding Nuxt Rendering Types: CSR, SSR, and SSG
+
+When building web applications with Nuxt.js, understanding different rendering strategies is crucial for optimizing performance and user experience. In this article, we'll explore three main rendering types: Client-Side Rendering (CSR), Server-Side Rendering (SSR), and Static Site Generation (SSG).
+
+## Rendering Concepts
+
+### Client-Side Rendering (CSR)
+
+Client-Side Rendering means the page is initially rendered in the browser, and data is fetched asynchronously after the page loads. This approach is useful when you need dynamic content that changes frequently or when you want to reduce server load.
+
+Here's a simple CSR example:
+
+```vue:pages/csr.vue
+<template>
+  <h1>CSR (Client side rendering)</h1>
+  <p>Page will rendered first and data requested inside browser cleint asynchronusly</p>
+  <div>
+    {{ data }}
+  </div>
+</template>
+
+<script setup>
+  const data = new Date()
+</script>
+```
+
+**What happens:**
+1. When a user navigates to this page, Nuxt sends a minimal HTML shell to the browser
+2. The browser immediately renders the static content (heading and paragraph)
+3. The JavaScript executes in the browser, creating a new `Date()` object
+4. Vue's reactivity system updates the template, displaying the current date/time
+5. The entire process happens client-side - no server processing is involved
+6. The date shown will be the exact moment the JavaScript executes in the user's browser
+
+**Key characteristics:**
+- Page renders immediately in the browser
+- Data fetching happens asynchronously on the client
+- No server-side data fetching
+- Good for highly interactive applications
+
+<video src="https://raw.githubusercontent.com/reynoldputra/nuxt-rendering-type/main/demo-video/csr.mp4" width="100%" controls />
+
+### Server-Side Rendering (SSR)
+
+Server-Side Rendering executes data requests on the server before sending the page to the client. This ensures that users receive a fully rendered page with data already populated.
+
+```vue:pages/ssr.vue
+<template>
+  <h1>SSR (Server side rendering)</h1>
+  <p>Request data in server -> render page -> sent to client</p>
+  <div>
+    {{ res.data }}
+  </div>
+</template>
+
+<script setup>
+  // request is execute before page sent
+  const res = await useAsyncData(async () => {
+    console.log(new Date())
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const date = new Date();
+        resolve(date);
+      }, 5000);
+    });
+  })
+</script>
+```
+
+**What happens:**
+1. When a user requests this page, the request hits the Nuxt server
+2. The server executes the `useAsyncData()` function before rendering
+3. The server waits for the 5-second timeout to complete (simulating an API call)
+4. Once the date is resolved, the server renders the complete HTML with the date already populated
+5. The fully rendered HTML (including the date) is sent to the client
+6. The user sees the page with data immediately - no loading state needed
+7. The console.log runs on the server, so it appears in server logs, not the browser console
+8. Each page request triggers a new server-side execution, so the date will be different for each request
+
+**Key characteristics:**
+- Data is fetched on the server before rendering
+- Fully rendered HTML is sent to the client
+- Better for SEO and initial page load
+- Requires a Node.js server
+
+<video src="https://raw.githubusercontent.com/reynoldputra/nuxt-rendering-type/main/demo-video/ssr.mp4" width="100%" controls />
+
+### Static Site Generation (SSG)
+
+Static Site Generation pre-renders pages at build time. During development, it behaves like SSR, but in production, all pages are generated as static HTML files during the build process.
+
+```vue:pages/ssg.vue
+<template>
+  <h1>SSG (Static side generation)</h1>
+  <p>Page will only redered in build time</p>
+  <div>
+    {{ res.data }}
+  </div>
+</template>
+
+<script setup>
+  // request is execute in build time
+  // run as ssr when development
+  const res = await useAsyncData(async () => {
+    console.log(new Date())
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const date = new Date();
+        resolve(date);
+      }, 5000);
+    });
+  })
+</script>
+```
+
+**What happens:**
+1. During the build process (`npm run build`), Nuxt executes this page's code
+2. The `useAsyncData()` function runs on the build server, waiting for the 5-second timeout
+3. Once the date is resolved, Nuxt renders the complete HTML with the date baked in
+4. This static HTML file is saved to disk (e.g., `dist/ssg.html`)
+5. In production, when users visit this page, they receive the pre-rendered HTML instantly
+6. The date shown will be the date from when the build ran, not when the user visits
+7. In development mode, this behaves like SSR - executing on each request for hot-reload
+8. No server is needed in production - the static HTML can be served from a CDN
+
+**Key characteristics:**
+- Pages are generated at build time
+- No server required in production (can be served from CDN)
+- Fastest possible load times
+- Best for content that doesn't change frequently
+
+<video src="https://raw.githubusercontent.com/reynoldputra/nuxt-rendering-type/main/demo-video/ssg.mp4" width="100%" controls />
+
+### Comparison Table
+
+| Feature | CSR | SSR | SSG |
+|---------|-----|-----|-----|
+| Data Fetching | Client-side | Server-side | Build-time |
+| Initial Load | Fast (empty) | Slower (waits for data) | Fastest (pre-rendered) |
+| SEO | Poor | Excellent | Excellent |
+| Server Required | No | Yes | No (after build) |
+| Dynamic Content | Excellent | Good | Limited (Need ISR) |
+
+## Implementation: Rendering Product Lists
+
+Let's see how these rendering strategies work in practice by implementing a product listing page.
+
+### Client-Side Rendering Implementation
+
+With CSR, the product list is fetched after the page loads in the browser. Users will see a loading state while data is being fetched.
+
+**Product List Page:**
+
+```vue:pages/product/csr/index.vue
+<template>
+  <a href="/product">Back</a>
+  <h1>Product with CSR</h1>
+
+  <div style="margin-top: 20px">
+    <div v-if="products == null">Fetching data on client ...</div>
+    <div v-for="(product, idx) in products" :key="idx">
+      <h5>{{ product.title }}</h5>
+      <a :href="'/product/csr/' + product.id">
+        <p>Open csr</p>
+      </a>
+      <hr />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import axios from 'axios';
+
+const products = ref(null)
+
+onMounted(async () => {
+  const { data } = await axios.get("https://fakestoreapi.com/products")
+  products.value = data
+}) 
+</script>
+```
+
+**What happens:**
+1. The page HTML is sent to the browser with `products` initialized as `null`
+2. Vue immediately renders the page, showing "Fetching data on client ..." because `products == null` is true
+3. Once the component mounts in the browser, the `onMounted()` hook fires
+4. An HTTP request is made from the browser to `https://fakestoreapi.com/products`
+5. While waiting for the response, users see the loading message
+6. When the API responds, `products.value` is updated with the fetched data
+7. Vue's reactivity system detects the change and re-renders the template
+8. The loading message disappears, and the product list is displayed
+9. All of this happens in the user's browser - the server only serves the initial HTML shell
+
+**Product Detail Page:**
+
+```vue:pages/product/csr/[id].vue
+<template>
+  <a href="/product/csr">Back</a>
+  <p v-if="product == null">Fetching data on client ...</p>
+  <h3>{{ product?.title || "" }}</h3>
+  <p>{{ product?.description || "" }}</p>
+</template>
+
+<script setup>
+import axios from 'axios';
+
+const product = ref(null)
+
+// get router information
+const route = useRoute()
+
+onMounted(async () => {
+  console.log(route)
+  const { data } = await axios.get("https://fakestoreapi.com/products/" + route.params.id)
+  product.value = data
+}) 
+</script>
+```
+
+**What happens:**
+1. When navigating to `/product/csr/1`, Nuxt sends the page HTML to the browser
+2. The `route` object contains the dynamic `id` parameter from the URL (e.g., `route.params.id = "1"`)
+3. Initially, `product` is `null`, so "Fetching data on client ..." is displayed
+4. The title and description show empty strings due to the `|| ""` fallback
+5. After the component mounts, `onMounted()` executes in the browser
+6. The route parameter is extracted and used to construct the API URL: `https://fakestoreapi.com/products/1`
+7. The browser makes an HTTP request to fetch the specific product data
+8. Once the data arrives, `product.value` is updated, triggering a re-render
+9. The loading message disappears, and the product details are displayed
+10. The optional chaining (`product?.title`) safely accesses properties that might not exist yet
+
+<video src="https://raw.githubusercontent.com/reynoldputra/nuxt-rendering-type/main/demo-video/product-csr.mp4" width="100%" controls />
+
+### Static Site Generation Implementation
+
+With SSG, the product list is fetched at build time, and all pages are pre-rendered as static HTML. This provides the fastest possible load times.
+
+**Product List Page:**
+
+```vue:pages/product/ssg/index.vue
+<template>
+  <a href="/product">Back</a>
+  <h1>Product with SSG</h1>
+
+  <div style="margin-top: 20px">
+    <div v-for="(product, idx) in products" :key="idx">
+      <h5>{{ product.title }}</h5>
+      <a :href="'/product/ssg/' + product.id">
+        <p>Open ssg</p>
+      </a>
+      <hr />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import axios from 'axios';
+
+const { data } = await useAsyncData(async () => {
+  const res = await axios.get("https://fakestoreapi.com/products")
+  return res.data
+})
+
+const products = data
+</script>
+```
+
+**What happens:**
+1. During the build process, Nuxt executes this page's code before generating static files
+2. The `useAsyncData()` function runs on the build server, making an HTTP request to the API
+3. The API response (product list) is captured and stored
+4. Nuxt renders the complete HTML with all products already in the markup
+5. This pre-rendered HTML file is saved to the build output directory
+6. When users visit this page in production, they receive the static HTML instantly
+7. No API call happens in the browser - all data is already embedded in the HTML
+8. Users see the product list immediately with no loading state
+9. The products shown are from when the build ran, not live data
+10. If you need fresh data, you'd need to rebuild and redeploy the site
+
+**Product Detail Page:**
+```vue:pages/product/ssg/[id].vue
+<template>
+  <a href="/product/ssg">Back</a>
+  <h3>{{ product?.title || "" }}</h3>
+  <p>{{ product?.description || "" }}</p>
+</template>
+
+<script setup>
+import axios from 'axios';
+
+const route = useRoute()
+const { data } = await useAsyncData(async () => {
+  const res = await axios.get("https://fakestoreapi.com/products/" + route.params.id )
+  return res.data
+})
+
+const product = data
+</script>
+```
+
+**What happens:**
+1. During build, Nuxt needs to generate static pages for all possible product IDs
+2. Nuxt calls `generateStaticParams()` (or similar) to determine which product IDs exist
+3. For each product ID, Nuxt executes this page component with that specific `route.params.id`
+4. The `useAsyncData()` function runs for each product, fetching data from the API
+5. Each product's data is fetched and rendered into a separate static HTML file (e.g., `product/ssg/1.html`, `product/ssg/2.html`)
+6. All these static files are generated during the build process
+7. When a user visits `/product/ssg/1`, they receive the pre-rendered HTML for product #1
+8. The product data is already in the HTML - no client-side API call is needed
+9. Navigation between products is instant since all pages are pre-generated
+10. If a new product is added to the API, you must rebuild to include it in the static site
+
+<video src="https://raw.githubusercontent.com/reynoldputra/nuxt-rendering-type/main/demo-video/product-ssg.mp4" width="100%" controls />
+
+## Key Differences in Implementation
+
+### Data Fetching
+
+- **CSR**: Uses `onMounted()` hook to fetch data after component mounts
+- **SSG**: Uses `useAsyncData()` which executes at build time (or during SSR in development)
+
+### Loading States
+
+- **CSR**: Requires explicit loading state handling (`v-if="products == null"`)
+- **SSG**: No loading state needed as data is available immediately
+
+### Performance
+
+- **CSR**: Initial page load is fast, but data fetching adds delay
+- **SSG**: Fastest possible load time as everything is pre-rendered
+
+## When to Use Each Strategy
+
+### Use CSR when:
+- Building highly interactive applications
+- Content changes frequently
+- SEO is not a priority
+- You want to reduce server load
+
+### Use SSR when:
+- SEO is important
+- You need dynamic content that changes per request
+- You want fast initial page loads with fresh data
+- You have a Node.js server available
+
+### Use SSG when:
+- Content is relatively static
+- You want the fastest possible load times
+- You want to host on a CDN without a server
+- Build-time data fetching is acceptable
+
+## Conclusion
+
+Understanding the differences between CSR, SSR, and SSG is essential for building performant Nuxt.js applications. Each strategy has its place, and the best choice depends on your specific use case, performance requirements, and content update frequency.
+
+By implementing product listing pages with both CSR and SSG, we can see the practical differences in how data is fetched and rendered. Choose the strategy that best fits your application's needs!
+

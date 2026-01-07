@@ -1,4 +1,6 @@
-const withMDX = require("@next/mdx")();
+const createMDX = require('@next/mdx');
+const remarkGfm = require('remark-gfm');
+
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -15,6 +17,18 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    mdxRs: true,
+  },
 };
+
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+  },
+  extension: /\.(md|mdx)$/,
+});
+
 
 module.exports = withMDX(nextConfig);

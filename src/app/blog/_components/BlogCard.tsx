@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Typography from "@/components/typography/Typography";
 import { BlogFrontmatter } from "@/modules/blog/blog.type";
 import { FiArrowUpRight } from "react-icons/fi";
+import { readableDate } from "@/libs/helper";
 
 interface BlogCardProps {
   blog: {
@@ -12,7 +13,7 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ blog }: BlogCardProps) {
-  const { title, description, topics } = blog.frontmatter;
+  const { title, description, topics, created_at } = blog.frontmatter;
 
   return (
     <Link href={`/blog/${blog.slug}`}>
@@ -24,29 +25,33 @@ export default function BlogCard({ blog }: BlogCardProps) {
         )}
       >
         <div className="flex-1">
-          <Typography variant="bt" color="white" weight="bold" className="mb-2 group-hover:text-spray-300 transition-colors">
+          <Typography variant="bt" color="white" weight="bold" className="group-hover:text-spray-300 transition-colors">
             {title}
           </Typography>
-          <Typography variant="p" color="gray" className="line-clamp-2">
+          <Typography variant="p" font="mono" color="gray" className="mt-2">
+            {readableDate(new Date(created_at))}
+          </Typography>
+
+          {topics && topics.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {topics.map((topic, idx) => (
+                <span
+                  key={idx}
+                  className={clsx(
+                    "px-3 py-1 rounded-md text-xs font-mono font-semibold",
+                    "bg-spray-300/20 text-spray-300 border border-spray-300/30"
+                  )}
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <Typography variant="p" color="gray" className="line-clamp-2 mt-4">
             {description}
           </Typography>
         </div>
-
-        {topics && topics.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-2">
-            {topics.map((topic, idx) => (
-              <span
-                key={idx}
-                className={clsx(
-                  "px-3 py-1 rounded-md text-xs font-mono font-semibold",
-                  "bg-spray-300/20 text-spray-300 border border-spray-300/30"
-                )}
-              >
-                {topic}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
     </Link>
   );

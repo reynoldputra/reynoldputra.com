@@ -18,5 +18,6 @@ export interface BlogFrontmatter {
   published: boolean;
   order?: number;
   github?: string;
+  link?: string;
 }
 

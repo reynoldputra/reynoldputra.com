@@ -53,7 +53,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { content, frontmatter } = await getBlog(params.slug);
-  const { title, created_at, cover, topics, github } = frontmatter;
+  const { title, created_at, cover, topics, github, link } = frontmatter;
 
   return (
     <div className="mt-12">
@@ -61,6 +61,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <SimpleHeader
         title={title}
         github={github}
+        link={link}
         date={new Date(created_at)}
         className="mt-8"
         img={cover}

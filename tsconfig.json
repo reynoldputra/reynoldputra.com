@@ -25,6 +25,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts", "src/containers/home-page/recent-project-section/ProjectSnippet"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts", "src/containers/home-page/recent-project-section/ProjectSnippet", "src/contents/projects/gemastik-IoT-2023.mdx"],
   "exclude": ["node_modules"]
 }

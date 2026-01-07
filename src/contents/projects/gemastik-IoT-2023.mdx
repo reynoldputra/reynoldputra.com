@@ -1,0 +1,148 @@
+---
+title: Gemastik IoT 2023
+description: "Finalist project in Gemastik XVI (IoT & Embedded Systems) building SMARTER, a smart emotion-relief device for remote workers, where I focused on embedded logic, data pipeline, and backend for emotion monitoring."
+created_at: 2023-09-15T00:00:00.000Z
+category: "side"
+icons: ["iot", "arduino", "c", "python", "ai"]
+article: true
+---
+
+## Context
+
+In 2023 I joined **Gemastik XVI** in the *Piranti Cerdas, Sistem Benam, dan IoT* category with team **Beecop**. We built **SMARTER (Smart Emotion Reliever)** – a device to **detect and respond to negative emotions in remote workers** using a camera, deep-learning based emotion detection, and an IoT device that controls aromatherapy and lighting.
+
+Our project was selected as a **national finalist (top 10 teams)** from universities across Indonesia.
+
+## Problem & Idea
+
+Remote work (WFH / hybrid) makes it easy to blur the line between work and personal time. From the literature we reviewed, key points:
+
+- WFH increases **unplanned meetings** and constant context switching, which leads to **emotional exhaustion** and reduced work–life balance.
+- Negative emotions like stress, anxiety, and frustration can cut productivity by up to **25%** if not handled properly.
+- Simple interventions like **aromatherapy, lighting, and music** have measurable impact on stress reduction.
+
+Our idea:
+
+- Use a **camera + deep learning model** to continuously estimate a worker’s emotional state from facial expressions.
+- When the system detects a **negative emotion cluster** (stress, anger, contempt, etc.), the device **reacts automatically**:
+  - Triggers **aromatherapy** (essential oil diffuser)
+  - Adjusts **ambient lighting** (color / intensity)
+- Log all events to a **web dashboard** so users can see their emotion history and correlate it with work patterns.
+
+## Architecture Overview
+
+At a high level (based on the competition paper and our implementation):
+
+- **Edge device**
+  - ESP32-CAM as the main controller (chosen for cost efficiency)
+  - Built-in camera for capturing the user's face
+  - Actuators:
+    - Relay / driver for aromatherapy diffuser
+    - RGB LED / light module for ambient lighting
+- **Emotion recognition**
+  - CNN model (inspired by EfficientNet / MT-EmotiEffNet research) for facial emotion recognition
+  - Model runs on the cloud, receiving frames from ESP32-CAM and returning emotion labels (Happiness, Contempt, etc.)
+- **Backend & dashboard**
+  - Python backend that receives image frames from ESP32-CAM, runs emotion inference, and sends results back
+  - Database to store timestamped emotion data
+  - Web dashboard to visualize emotion trends and device activity over time
+
+## My Contributions
+
+### 1. Embedded & device control logic
+
+On the edge device (ESP32-CAM), I worked on:
+
+- **Camera pipeline**
+  - Capturing frames at a controlled FPS to balance responsiveness vs bandwidth usage
+  - Compressing and encoding frames before sending them to the cloud API
+  - Managing network connectivity and handling connection drops gracefully
+- **Emotion → action mapping**
+  - Defining a small state machine:
+    - If emotion ∈ (anger, contempt, sadness, fear) for N consecutive frames → trigger "negative emotion" state
+    - If emotion returns to neutral/positive for a window → turn off diffuser / reset lighting
+  - Preventing rapid toggling (debouncing) so the device does not spam actuators on every small change
+- **Actuator control**
+  - Controlling GPIO pins to:
+    - Turn aromatherapy diffuser on/off
+    - Change light colors / intensity based on emotion state
+
+This was written in **C/C++ (Arduino framework)** for ESP32, with careful handling of network requests and non-blocking I/O to keep the device responsive while communicating with the cloud.
+
+### 2. Data pipeline & backend integration
+
+I also handled how data flows from the device to the monitoring dashboard:
+
+- **Event model**
+  - Each emotion detection is converted into a structured event:
+    - `timestamp`
+    - `dominant_emotion`
+    - `confidence`
+    - `device_state` (diffuser on/off, light mode)
+- **Communication layer**
+  - Sending image frames from ESP32-CAM to the cloud backend over HTTP
+  - Receiving emotion predictions from the cloud API
+  - Implementing simple retry / buffering logic so short network glitches don't lose data
+- **Backend endpoints**
+  - API to accept emotion events and store them in the database
+  - Aggregations for:
+    - Emotion distribution over a day
+    - Active “negative emotion” sessions
+    - Before/after comparisons when interventions are triggered
+
+### 3. Dashboard & monitoring UX
+
+On the dashboard side, I focused on:
+
+- Designing **simple visualizations**:
+  - Timeline of emotions (e.g., Happiness vs Contempt over time)
+  - Count of negative emotion episodes per day
+  - Device activation history (when diffuser/light were used)
+- Ensuring the data structure from the backend made it **easy to plot** without heavy post-processing on the frontend.
+
+The goal was not just “pretty graphs”, but something that helps workers see patterns:
+- At what time of day they are most stressed
+- Whether certain tasks or meeting blocks correlate with negative emotions
+
+## Technical Notes
+
+Some implementation decisions worth mentioning:
+
+- We chose **ESP32-CAM over Raspberry Pi** for cost efficiency, as it's significantly cheaper while still providing camera and WiFi connectivity.
+- **AI runs on the cloud** rather than on-device, which allows us to use more sophisticated models without being constrained by the ESP32's limited compute resources.
+- The emotion classifier was **frame-based**, but we applied:
+  - Temporal smoothing (e.g., sliding window majority vote) to reduce noise
+  - Confidence thresholds to filter out low-certainty predictions
+- For the IoT control, we prioritized **predictability over complexity**:
+  - Simple rules instead of trying to be "too smart"
+  - Clear mappings like "if negative for N seconds → turn diffuser on for M minutes"
+- Network optimization was crucial:
+  - Image compression to minimize bandwidth usage
+  - Efficient frame rate to balance responsiveness with API costs
+
+## Competition Experience
+
+In the Gemastik XVI smart device competition, the process was roughly:
+
+- **Proposal phase** — writing the initial concept, background, and method based on research around WFH, stress, aromatherapy, lighting, and music.
+- **Prototype phase** — implementing the first working version of SMARTER with:
+  - ESP32-CAM capturing frames and sending them to cloud API
+  - Cloud-based emotion recognition model
+  - Physical device + actuators
+  - An early version of the dashboard
+- **Final presentation** — demoing the system end-to-end (emotion detection → device response → dashboard logging).
+
+Our team was selected as a **finalist (top 10 teams nationally)** in the IoT / embedded device category, representing ITS.
+
+## Reflection
+
+This project was valuable for a few reasons:
+
+- It combined **embedded systems, machine learning, backend, and UX** into one cohesive idea.
+- I got hands-on experience designing **data pipelines from edge to cloud** rather than only doing backend or only doing device-level code.
+- Working under a competition deadline forced us to **prioritize robustness over perfection**:
+  - Make the model “good enough”
+  - Make the device safe and predictable
+  - Make the dashboard clear and debuggable
+
+It was a good reminder that in real systems, “clearly working” beats “clever but fragile” almost every time.

@@ -1,0 +1,69 @@
+---
+title: Jayamas Motorindo
+description : A desktop application built to turn real customer pain points into a practical, offline-first workflow—my first time shipping a production desktop app, leading a small team end-to-end and handling tricky local database edge cases.
+created_at : 2023-08-01T00:00:00.000Z
+category : "main"
+icons : ["electron", "react", "typescript", "prisma", "sqlite"]
+article: true
+cover : https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-cover/finance.png?updatedAt=1767758505429
+---
+
+## Project Goals
+This project started from customer complaints about their current workflow: too many manual steps, unreliable connectivity, and slow reporting when the system had to depend on a remote server.
+
+My goal was to **convert those pain points into a technical solution** that felt simple for users:
+- Work reliably even when offline
+- Keep data fast and local
+- Sync/export when needed, without blocking daily operations
+- Reduce repetitive work with clear, guided flows
+
+I led a **team of two**, owning the technical direction while staying close to users to ensure each feature mapped to a real operational problem.
+
+## Technology
+This was my **first time building a desktop app**, so I optimized for a stack that balanced speed of development with stability.
+
+### Desktop App
+- **Electron** for cross-platform desktop distribution
+- **React + TypeScript** for UI and maintainable component architecture
+- **Vite** for fast iteration during development
+- **tRPC** for type-safe API communication between frontend and backend processes
+
+### Local Data Layer
+- **Prisma** as the data access layer
+- **SQLite** as the local database (offline-first)
+
+## Features
+- **Transaction and invoice tracking.** Track all transactions and invoices for every merchant, maintaining a complete audit trail of financial activities.
+- **Fast daily installment input.** Streamlined data entry workflow for recording daily installments across multiple merchants, reducing input time and minimizing errors.
+- **Excel import and export.** Quick Excel report generation and bulk data import via Excel format, enabling seamless integration with existing spreadsheet-based workflows.
+- **Offline-first workflow.** Core operations run entirely on local storage so users aren't blocked by network issues.
+- **Guided data entry and validation.** Reduced user mistakes by translating business rules into strict validation and helpful UI states.
+- **Fast local search and history.** Lightweight querying patterns to keep results instant even as data grows.
+
+## Challenge
+### Converting customer pain points into clear technical requirements
+The hardest part wasn’t coding—it was avoiding “feature guessing.” I ran short feedback loops, wrote down each pain point as a measurable outcome (time saved, fewer steps, fewer errors), then designed the UI + data model around that.
+
+### Complex aggregation: calculating total debt per merchant
+One of the most challenging technical problems was computing accurate debt totals for each merchant. This required:
+- **Multi-table aggregations.** Combining data from invoices, payments, returns, and collection records to calculate net debt.
+- **Real-time accuracy.** Ensuring calculations reflect the latest transactions, installments, and payment distributions.
+- **Performance optimization.** Making these complex queries fast enough for instant updates, even with thousands of records.
+- **Edge case handling.** Accounting for partial payments, returns, multiple payment methods, and historical collector assignments.
+
+### Managing local database edge cases (different cases to manage)
+Local databases introduce real-world complexity that's easy to underestimate:
+- **Data integrity.** Preventing partial writes and keeping relationships consistent even when users close the app unexpectedly.
+- **Schema evolution.** Planning for migrations and versioning as features change.
+- **Conflict and state issues.** Handling "same record, different state" scenarios safely (draft vs submitted, edited vs finalized, etc.).
+
+### First time shipping a desktop app
+Desktop brought extra concerns compared to web:
+- Packaging and release flow
+- OS-specific behaviors and permissions
+- Crash recovery and resilient data handling
+
+## Outcome
+- Shipped a desktop app that directly addressed the customer’s biggest operational blockers.
+- Built confidence in desktop delivery (packaging, release, stability) while keeping development velocity.
+- Established a foundation that can scale: clear architecture, typed codebase, and a local-first data model designed for real usage.

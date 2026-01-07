@@ -1,31 +1,13 @@
 "use client";
 
 import clsx from "clsx";
-import { SiAmazon, SiAzuredevops, SiGo, SiLaravel, SiNestjs, SiNextdotjs, SiReact, SiTypescript } from "react-icons/si";
-
-export type Technology = "react" | "nest" | "next" | "laravel" | "typescript" | "aws" | "azure" | "golang" | "iot" | "arduino" | "c" | "python" | "ai";
+import { Technology, technologyMap } from "@/data/technologies";
 
 interface TechnologyFilterProps {
   technologies: Technology[];
   selectedTechnologies: Technology[];
   onToggle: (tech: Technology) => void;
 }
-
-const technologyConfig: Record<Technology, { label: string; icon?: React.ReactNode }> = {
-  react: { label: "React", icon: <SiReact /> },
-  nest: { label: "NestJS", icon: <SiNestjs /> },
-  next: { label: "Next.js", icon: <SiNextdotjs /> },
-  laravel: { label: "Laravel", icon: <SiLaravel /> },
-  typescript: { label: "TypeScript", icon: <SiTypescript /> },
-  aws: { label: "AWS", icon: <SiAmazon /> },
-  azure: { label: "Azure", icon: <SiAzuredevops /> },
-  golang: { label: "Go", icon: <SiGo /> },
-  iot: { label: "IoT" },
-  arduino: { label: "Arduino" },
-  c: { label: "C" },
-  python: { label: "Python" },
-  ai: { label: "AI" },
-};
 
 export default function TechnologyFilter({
   technologies,
@@ -39,7 +21,7 @@ export default function TechnologyFilter({
       <div className="flex justify-center flex-wrap gap-2">
         {technologies.map((tech) => {
           const isSelected = selectedTechnologies.includes(tech);
-          const config = technologyConfig[tech];
+          const config = technologyMap[tech];
           
           return (
             <button
@@ -53,8 +35,8 @@ export default function TechnologyFilter({
                   : "bg-primary-900/50 border-rockblue-900/40 text-rockblue-500 hover:border-rockblue-500 hover:text-rockblue-50"
               )}
             >
-              {config.icon && <span className="text-lg">{config.icon}</span>}
-              <span>{config.label}</span>
+              {config.icon && <span className="text-lg">{config.icon()}</span>}
+              <span>{config.name}</span>
             </button>
           );
         })}

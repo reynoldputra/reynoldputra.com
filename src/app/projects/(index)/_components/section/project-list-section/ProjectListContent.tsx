@@ -4,7 +4,8 @@ import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import FocusedPictureCard from "@/components/article/FocusedPictureCard";
 import TabMenu from "./TabMenu";
-import TechnologyFilter, { Technology } from "./TechnologyFilter";
+import TechnologyFilter from "./TechnologyFilter";
+import { Technology, technologyMap } from "@/data/technologies";
 import { ProjectFrontmatter } from "@/modules/project/project.type";
 
 type TabType = "main" | "side";
@@ -32,7 +33,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
       .filter((project) => project.frontmatter.category === activeTab)
       .forEach((project) => {
         project.frontmatter.icons?.forEach((icon) => {
-          if (["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang", "iot", "arduino", "c", "python", "ai"].includes(icon)) {
+          if (icon in technologyMap) {
             techSet.add(icon as Technology);
           }
         });
@@ -54,7 +55,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
     const techParam = searchParams.get("tech");
     if (techParam) {
       const techs = techParam.split(",").filter((t): t is Technology => 
-        ["react", "nest", "next", "laravel", "typescript", "aws", "azure", "golang", "iot", "arduino", "c", "python", "ai"].includes(t)
+        t in technologyMap
       );
       setSelectedTechnologies(techs);
     } else {

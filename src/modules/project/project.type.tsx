@@ -20,4 +20,5 @@ export interface ProjectFrontmatter {
   link?: string;
   cover?: string;
   order?: number;
+  position?: string;
 }

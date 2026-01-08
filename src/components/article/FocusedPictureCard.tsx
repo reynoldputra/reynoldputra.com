@@ -41,15 +41,16 @@ const FocusedPictureCard = ({
         </div>
         <div className="w-full sm:w-auto max-w-xs sm:max-w-none mx-auto sm:mx-0">
           <div className="flex justify-between">
-            <div>
-              <Typography variant="p" weight="bold" color="white">
-                {project.title}
-              </Typography>
-              <Typography variant="c1" font="mono" color="gray" className="mt-1">
-                {monthYearDateFormat(project.created_at)}
-              </Typography>
-            </div>
+            <Typography variant="p" weight="bold" color="white">
+              {project.title}
+            </Typography>
+            <Typography variant="c1" weight="semibold" color="gray" className="mt-1">
+              {project.position}
+            </Typography>
           </div>
+          <Typography variant="c1" font="mono" color="gray" className="mt-1">
+            {monthYearDateFormat(project.created_at)}
+          </Typography>
           {project.icons && <IconList className="my-2" icons={project.icons} />}
           <Typography variant="c1" className="mt-2" color="gray">
             {project.description}

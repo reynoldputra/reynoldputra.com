@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: "An online portfolio and blog by Reynold Putra. Explore my projects and read my insights on software engineering.",
     images: [
       {
-        url: '/assets/index.webp',
+        url: '/assets/index.png',
         width: 1200,
         height: 630,
       },

@@ -5,6 +5,7 @@ import AOSWrapper from "@/components/animation/AOSWrapper";
 import About from "@/app/_components/about-section";
 import ProjectSnippet from "@/app/_components/project-snippet-section";
 import { Metadata } from "next";
+import ExperienceSection from "./_components/experience-section";
 
 export const metadata: Metadata = {
   title: {
@@ -20,6 +21,7 @@ export default function Page() {
           <Navbar />
           <div className="bg-primary-950 relative z-50 min-h-screen pb-64">
             <About className="mt-24" />
+            <ExperienceSection className="mt-32" />
             <ProjectSnippet className="mt-32" />
           </div>
           <Footer />

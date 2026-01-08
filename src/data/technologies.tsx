@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
-import { SiAmazon, SiAzuredevops, SiC, SiElectron, SiGo, SiLaravel, SiNestjs, SiNextdotjs, SiPython, SiReact, SiTypescript } from "react-icons/si";
+import { SiAmazon, SiC, SiDatadog, SiElectron, SiElixir, SiGo, SiLaravel, SiNestjs, SiNextdotjs, SiPython, SiReact, SiSupabase, SiTerraform, SiTypescript, SiN8N } from "react-icons/si";
+import { VscAzure } from "react-icons/vsc";
 
-export type Technology = "react" | "nest" | "next" | "laravel" | "typescript" | "aws" | "azure" | "golang" | "iot" | "arduino" | "c" | "python" | "ai" | "electron";
+
+export type Technology = "react" | "nest" | "next" | "laravel" | "typescript" | "aws" | "azure" | "golang" | "iot" | "arduino" | "c" | "python" | "ai" | "electron" | "elixir" | "terraform" | "datadog" | "supabase" | "n8n";
 
 export interface TechItem {
   key: Technology;
@@ -44,7 +46,7 @@ export const technologyMap: Record<Technology, TechItem> = {
   "azure": {
     key: "azure",
     name: "Azure",
-    icon: () => <SiAzuredevops />
+    icon: () => <VscAzure />
   },
   "golang": {
     key: "golang",
@@ -65,6 +67,31 @@ export const technologyMap: Record<Technology, TechItem> = {
     key: "electron",
     name: "Electron",
     icon: () => <SiElectron className="text-lg" />
+  },
+  "elixir": {
+    key: "elixir",
+    name: "Elixir",
+    icon: () => <SiElixir className="text-lg" />
+  },
+  "terraform": {
+    key: "terraform",
+    name: "Terraform",
+    icon: () => <SiTerraform className="text-lg" />
+  },
+  "datadog": {
+    key: "datadog",
+    name: "Datadog",
+    icon: () => <SiDatadog className="text-lg" />
+  },
+  "supabase": {
+    key: "supabase",
+    name: "Supabase",
+    icon: () => <SiSupabase className="text-lg" />
+  },
+  "n8n": {
+    key: "n8n",
+    name: "N8N",
+    icon: () => <SiN8N className="text-lg" />
   },
   "iot": {
     key: "iot",

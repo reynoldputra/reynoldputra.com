@@ -42,20 +42,20 @@ const experiences: ExperienceItem[] = [
             "Improved reliability of on-premise multi-tenant servers and AWS-based deployments"
         ]
     },
-    {
-        title: "Founding Full Stack Engineer (Part time)",
-        company: "Generation Health",
-        location: "Remote, London",
-        logo: "https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/company-logo/genaia.png",
-        startDate: "Sep 2025",
-        endDate: "Present",
-        icons: ["next", "typescript", "supabase", "n8n"],
-        description: [
-            "Built healthcare apps with a fast MVP delivery cycle, developing 5+ core features end-to-end",
-            "Integrated GenAI pipelines to parse and extract structured content from documents with N8N",
-            "Initiated Next.js–Supabase integration for rapid development"
-        ]
-    },
+    // {
+    //     title: "Founding Full Stack Engineer (Part time)",
+    //     company: "Generation Health",
+    //     location: "Remote, London",
+    //     logo: "https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/company-logo/genaia.png",
+    //     startDate: "Sep 2025",
+    //     endDate: "Present",
+    //     icons: ["next", "typescript", "supabase", "n8n"],
+    //     description: [
+    //         "Built healthcare apps with a fast MVP delivery cycle, developing 5+ core features end-to-end",
+    //         "Integrated GenAI pipelines to parse and extract structured content from documents with N8N",
+    //         "Initiated Next.js–Supabase integration for rapid development"
+    //     ]
+    // },
     {
         title: "Implementation (DevOps) Engineer Intern",
         company: "Traveloka",

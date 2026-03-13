@@ -25,12 +25,26 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
     {
+        title: "Software Engineer (Founding team)",
+        company: "Generation Health",
+        location: "Remote, London",
+        logo: "https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/company-logo/genaia.png",
+        startDate: "Sep 2025",
+        endDate: "Present",
+        icons: ["next", "typescript", "supabase", "n8n", "openai"],
+        description: [
+            "Built healthcare apps with a fast MVP delivery cycle, developing 5+ core features end-to-end",
+            "Integrated GenAI pipelines to parse and extract structured content from documents with N8N",
+            "Initiated Next.js–Supabase integration for rapid development"
+        ]
+    },
+    {
         title: "Full Stack Engineer",
         company: "KinetixPro",
         location: "Remote, Singapore",
         logo: "https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/company-logo/kinetixpro.jpeg",
         startDate: "Sep 2024",
-        endDate: "Present",
+        endDate: "Mar 2026",
         icons: ["next", "nest", "python", "elixir", "aws"],
         link: "https://www.kinetixpro.ai",
         description: [
@@ -42,20 +56,6 @@ const experiences: ExperienceItem[] = [
             "Improved reliability of on-premise multi-tenant servers and AWS-based deployments"
         ]
     },
-    // {
-    //     title: "Founding Full Stack Engineer (Part time)",
-    //     company: "Generation Health",
-    //     location: "Remote, London",
-    //     logo: "https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/company-logo/genaia.png",
-    //     startDate: "Sep 2025",
-    //     endDate: "Present",
-    //     icons: ["next", "typescript", "supabase", "n8n"],
-    //     description: [
-    //         "Built healthcare apps with a fast MVP delivery cycle, developing 5+ core features end-to-end",
-    //         "Integrated GenAI pipelines to parse and extract structured content from documents with N8N",
-    //         "Initiated Next.js–Supabase integration for rapid development"
-    //     ]
-    // },
     {
         title: "Implementation (DevOps) Engineer Intern",
         company: "Traveloka",

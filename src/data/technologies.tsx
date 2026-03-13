@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
-import { SiAmazon, SiC, SiDatadog, SiElectron, SiElixir, SiGo, SiLaravel, SiNestjs, SiNextdotjs, SiPython, SiReact, SiSupabase, SiTerraform, SiTypescript, SiN8N } from "react-icons/si";
+import { SiAmazon, SiC, SiDatadog, SiElectron, SiElixir, SiGo, SiLaravel, SiNestjs, SiNextdotjs, SiPython, SiReact, SiSupabase, SiTerraform, SiTypescript, SiN8N, SiOpenai } from "react-icons/si";
 import { VscAzure } from "react-icons/vsc";
 
-
-export type Technology = "react" | "nest" | "next" | "laravel" | "typescript" | "aws" | "azure" | "golang" | "iot" | "arduino" | "c" | "python" | "ai" | "electron" | "elixir" | "terraform" | "datadog" | "supabase" | "n8n";
+export type Technology = "react" | "nest" | "next" | "laravel" | "typescript" | "aws" | "azure" | "golang" | "iot" | "arduino" | "c" | "python" | "ai" | "electron" | "elixir" | "terraform" | "datadog" | "supabase" | "n8n" | "openai";
 
 export interface TechItem {
   key: Technology;
@@ -104,6 +103,11 @@ export const technologyMap: Record<Technology, TechItem> = {
   "ai": {
     key: "ai",
     name: "AI"
+  },
+  "openai": {
+    key: "openai",
+    name: "OpenAI",
+    icon: () => <SiOpenai className="text-lg" />
   }
 };
 

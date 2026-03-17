@@ -29,7 +29,7 @@ const experiences: ExperienceItem[] = [
         company: "Generation Health",
         location: "Remote, London",
         logo: "https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/company-logo/genaia.png",
-        startDate: "Sep 2025",
+        startDate: "Mar 2025",
         endDate: "Present",
         icons: ["next", "typescript", "supabase", "n8n", "openai"],
         description: [

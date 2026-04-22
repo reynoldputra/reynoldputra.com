@@ -1,0 +1,233 @@
+---
+title: "Dependency Injection for Testability"
+description: "Why dependency injection makes testing a lot less annoying."
+topics: ["TypeScript", "Testing", "Architecture", "Design Patterns", "Backend"]
+created_at: 2026-04-22T00:00:00.000Z
+published: true
+order: 2
+---
+
+# Dependency Injection for Testability
+
+I keep feeling the same thing lately: AI can write code really fast now. In some cases it is probably faster than a junior engineer, and on a bad day it can even look cleaner than what a mid-level engineer would push.
+
+But faster code does not automatically mean safer code.
+
+If changes are coming in faster, testing matters even more. I do not want to read every line in every diff. I just want to know the important part of the logic is still fine.
+
+That is where dependency injection starts to matter a lot more than people expect.
+
+Because once your code talks directly to a database, Redis, or some other external service, even a tiny test starts to feel annoying. You only wanted to test one function, but now you need Docker, credentials, seed data, and probably a little patience too.
+
+That is usually when I realize: this code is harder to test than it should be.
+
+---
+
+## The annoying part
+
+The problem is not that database or Redis is bad. The problem is when my business logic depends on them directly.
+
+For example, imagine this:
+
+```ts
+class UserService {
+  async register(email: string) {
+    const user = await db.user.create({
+      data: { email },
+    });
+
+    await redis.set(`user:${user.id}`, JSON.stringify(user));
+
+    return user;
+  }
+}
+```
+
+At first glance, this looks fine. It is short, readable, and it does the job.
+
+But the moment I try to test it, the problems start:
+
+1. You need a real `db` instance
+2. You need a real `redis` instance
+3. You need a test database state
+4. You need cleanup after each test
+5. You cannot easily simulate errors
+
+So now the test costs more effort than the code itself.
+
+That is usually a bad sign.
+
+---
+
+## What dependency injection changes
+
+Dependency injection does one simple thing: instead of creating dependencies inside the class, you pass them in from the outside.
+
+It sounds small, but it changes the whole shape of the code.
+
+```ts
+interface UserRepository {
+  create(email: string): Promise<{ id: string; email: string }>;
+}
+
+interface Cache {
+  set(key: string, value: string): Promise<void>;
+}
+
+class UserService {
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly cache: Cache,
+  ) {}
+
+  async register(email: string) {
+    const user = await this.userRepository.create(email);
+
+    await this.cache.set(`user:${user.id}`, JSON.stringify(user));
+
+    return user;
+  }
+}
+```
+
+Now the service does not care whether the repository talks to PostgreSQL, MySQL, or some fake in-memory thing I made for the test.
+
+It only cares about behavior.
+
+That is the part that makes testing way less annoying.
+
+---
+
+## Why this helps testing
+
+When dependencies are injected, I can swap the real implementation with a fake one.
+
+```ts
+class FakeUserRepository implements UserRepository {
+  async create(email: string) {
+    return {
+      id: "user-1",
+      email,
+    };
+  }
+}
+
+class FakeCache implements Cache {
+  public stored: Record<string, string> = {};
+
+  async set(key: string, value: string) {
+    this.stored[key] = value;
+  }
+}
+
+test("register stores user in cache", async () => {
+  const repo = new FakeUserRepository();
+  const cache = new FakeCache();
+  const service = new UserService(repo, cache);
+
+  const user = await service.register("reynold@example.com");
+
+  expect(user.id).toBe("user-1");
+  expect(cache.stored["user:user-1"]).toBe(
+    JSON.stringify({ id: "user-1", email: "reynold@example.com" }),
+  );
+});
+```
+
+Now the test is dead simple:
+
+1. Create fake dependencies
+2. Call the service
+3. Assert the result
+
+No database. No Redis. No extra setup.
+
+That means the test runs faster, breaks less often, and is easier to read later when I forget what I was doing.
+
+---
+
+## Testing failure cases gets easier too
+
+Good tests are not only for happy paths.
+
+I also want to know what happens when the database fails, when Redis is down, or when some external API returns garbage.
+
+With dependency injection, that becomes easy to fake:
+
+```ts
+class FailingCache implements Cache {
+  async set() {
+    throw new Error("Redis is down");
+  }
+}
+
+test("register still returns user when cache fails", async () => {
+  const repo = new FakeUserRepository();
+  const cache = new FailingCache();
+  const service = new UserService(repo, cache);
+
+  await expect(service.register("reynold@example.com")).rejects.toThrow(
+    "Redis is down",
+  );
+});
+```
+
+Or if your service should ignore cache errors, I can test that behavior too.
+
+The point is not only to make the happy path easier. It is to make the ugly cases testable without building a full production-like environment every time.
+
+---
+
+## Dependency injection is not just for tests
+
+People often talk about dependency injection like it is only a testing trick.
+
+I do not think that is the main point.
+
+The bigger win is that it makes the boundaries clearer.
+
+Your business logic should not know too much about infrastructure details. It should know what it needs, not how those things are built.
+
+That is just cleaner:
+
+- the service owns the business rule
+- the repository owns persistence
+- the cache owns caching
+- the email sender owns email delivery
+
+When those responsibilities are separated, tests get smaller and the code is easier to swap later without a big rewrite.
+
+---
+
+## A simple rule
+
+If I have to boot half the system just to test one function, that function is probably depending on too much.
+
+That does not always mean the code is wrong. Sometimes an integration test is exactly what I want.
+
+But for most business logic, I usually want a faster test that only checks the logic itself.
+
+That is where dependency injection helps the most.
+
+---
+
+## My takeaway
+
+These days, code moves fast. AI helps a lot with writing it, but that also means testing matters more than before.
+
+Dependency injection is one of the simplest ways I know to keep code testable.
+
+It makes it easier to:
+
+- replace real services with fakes
+- test edge cases without heavy setup
+- keep business logic separate from infrastructure
+- move faster without breaking everything every time
+
+So if your test feels annoying because it needs a database, Redis, or some other real dependency, that is usually a sign.
+
+Maybe the code is not impossible to test.
+
+Maybe it just needs better boundaries.
+
+---

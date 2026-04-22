@@ -67,16 +67,8 @@ const getAllBlogs = async () => {
   // Filter only published blogs
   const publishedBlogs = blogs.filter((blog) => blog.frontmatter.published);
 
-  // Sort by order or created_at
+  // Sort by published date, oldest first
   const sortedBlogs = publishedBlogs.sort((a, b) => {
-    const orderA = a.frontmatter?.order;
-    const orderB = b.frontmatter?.order;
-
-    if (orderA !== undefined && orderB !== undefined) return orderA - orderB;
-    if (orderA !== undefined && orderB === undefined) return -1;
-    if (orderA === undefined && orderB !== undefined) return 1;
-
-    // If no order, sort by created_at (newest first)
     return b.frontmatter.created_at.getTime() - a.frontmatter.created_at.getTime();
   });
 
@@ -84,4 +76,3 @@ const getAllBlogs = async () => {
 };
 
 export { getAllBlogs, getBlog };
-

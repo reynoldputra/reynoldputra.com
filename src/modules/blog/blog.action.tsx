@@ -4,6 +4,7 @@ import { DIR_BLOGS, BlogFrontmatter } from "./blog.type";
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from 'remark-gfm';
+import rehypeHighlight from "rehype-highlight";
 import MdxComponent from "@/components/mdx/MdxComponent";
 import { getMdSlugs } from "@/libs/mdx";
 
@@ -18,6 +19,7 @@ const getBlog = async (slug: string) => {
         parseFrontmatter: true,
         mdxOptions: {
           remarkPlugins: [remarkGfm],
+          rehypePlugins: [rehypeHighlight],
         },
       },
       components: MdxComponent,
@@ -49,6 +51,7 @@ const getAllBlogs = async () => {
           parseFrontmatter: true,
           mdxOptions: {
             remarkPlugins: [remarkGfm],
+            rehypePlugins: [rehypeHighlight],
           },
         },
       });

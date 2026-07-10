@@ -26,7 +26,10 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "gsap": "^3.12.5",
+    "hast-util-from-html-isomorphic": "^2.0.0",
+    "hast-util-to-string": "^3.0.1",
     "highlight.js": "^11.11.1",
+    "isomorphic-mermaid": "^0.1.1",
     "locomotive-scroll": "^4.1.4",
     "next": "^14.2.3",
     "next-mdx-remote": "6.0.0",
@@ -43,7 +46,8 @@
     "rehype-highlight": "^7.0.2",
     "remark-gfm": "^4.0.1",
     "tailwindcss": "3.3.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",

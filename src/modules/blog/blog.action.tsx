@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from "rehype-highlight";
+import rehypeMermaid from "@/libs/rehype-mermaid";
 import MdxComponent from "@/components/mdx/MdxComponent";
 import { getMdSlugs } from "@/libs/mdx";
 
@@ -19,7 +20,7 @@ const getBlog = async (slug: string) => {
         parseFrontmatter: true,
         mdxOptions: {
           remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypeHighlight],
+          rehypePlugins: [rehypeMermaid, rehypeHighlight],
         },
       },
       components: MdxComponent,

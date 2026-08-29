@@ -51,6 +51,79 @@ function getMermaidState(): Promise<MermaidState> {
       const mermaidDocument = globalThis.document;
       const mermaidCSSStyleSheet = globalThis.CSSStyleSheet;
 
+      // svgdom (the fake DOM isomorphic-mermaid uses) computes an element's
+      // getBBox() by walking its text content, but it resolves the x/y/dx/dy
+      // positional attributes with a bare parseFloat — it has no concept of
+      // CSS units. Mermaid emits each wrapped label row's vertical offset in
+      // em units (e.g. `<tspan y="-0.1em" dy="1.1em">`), so svgdom parses
+      // "1.1em" as the number 1.1 *pixels* instead of 1.1 * font-size px.
+      // That collapses a multi-line label's bounding box height down to
+      // nearly one line, and mermaid sizes the node's label-container rect
+      // from that bad height — so the second line overflows the border.
+      //
+      // Patch around it rather than in node_modules: before delegating to
+      // the real getBBox, rewrite any bare-em x/y/dx/dy attribute on the
+      // element (and its text/tspan descendants) into the equivalent px
+      // number, using the element's inherited font-size (mermaid sets this
+      // via an injected <style> that svgdom's attribute walk can't see, so
+      // fall back to its default of 16). Once rewritten the value is a plain
+      // number and the regex no longer matches, so this is idempotent and
+      // safe even though the same node may pass through getBBox repeatedly.
+      try {
+        const svgGraphicsElementProto = mermaidWindow.SVGGraphicsElement.prototype;
+        const originalGetBBox = svgGraphicsElementProto.getBBox;
+        const emAttrPattern = /^(-?[0-9]*\.?[0-9]+)em$/;
+
+        const resolveFontSizePx = (el: any): number => {
+          let current = el;
+          while (current) {
+            const raw = (current.style && current.style.fontSize) || current.getAttribute?.("font-size");
+            if (raw) {
+              const parsed = parseFloat(raw);
+              if (!Number.isNaN(parsed)) return parsed;
+            }
+            current = current.parentNode;
+          }
+          return 16;
+        };
+
+        const normalizeEmAttrs = (el: any) => {
+          const fontSizePx = resolveFontSizePx(el);
+          for (const attr of ["x", "y", "dx", "dy"]) {
+            const value = el.getAttribute?.(attr);
+            const match = typeof value === "string" ? emAttrPattern.exec(value) : null;
+            if (match) {
+              el.setAttribute(attr, String(parseFloat(match[1]) * fontSizePx));
+            }
+          }
+        };
+
+        svgGraphicsElementProto.getBBox = function (this: any, options?: SVGBoundingBoxOptions) {
+          try {
+            const tagName = this.tagName?.toLowerCase?.();
+            if (tagName === "text" || tagName === "tspan") {
+              normalizeEmAttrs(this);
+            }
+            if (typeof this.getElementsByTagName === "function") {
+              for (const tag of ["text", "tspan"]) {
+                const descendants = this.getElementsByTagName(tag);
+                for (let i = 0; i < descendants.length; i++) {
+                  normalizeEmAttrs(descendants[i]);
+                }
+              }
+            }
+          } catch {
+            // Fall through to the original behavior if normalization fails
+            // for any reason — worst case we're back to today's (buggy but
+            // non-throwing) rendering.
+          }
+          return originalGetBBox.call(this, options);
+        };
+      } catch {
+        // If svgdom's internals ever change shape, skip the patch rather
+        // than breaking mermaid rendering entirely.
+      }
+
       globalThis.window = savedWindow;
       globalThis.document = savedDocument;
       globalThis.CSSStyleSheet = savedCSSStyleSheet;

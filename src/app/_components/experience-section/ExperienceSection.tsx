@@ -33,9 +33,9 @@ const experiences: ExperienceItem[] = [
     endDate: "Present",
     icons: ["next", "typescript", "supabase", "n8n", "openai"],
     description: [
-      "Built healthcare apps with a fast MVP delivery cycle, developing 5+ core features end-to-end",
-      "Integrated GenAI pipelines to parse and extract structured content from documents with N8N",
-      "Initiated Next.js–Supabase integration for rapid development"
+      "Owned end-to-end development of an early-stage healthcare platform as the sole engineer on the AI service and infrastructure, and primary author of the web application.",
+      "Built a Python AI document-parsing service from scratch (FastAPI, Redis, AsyncIO on EC2) that extracts structured clinical data from lab PDFs and medication images via OpenAI, with multi-worker queueing and per-user fair scheduling to prevent one uploader starving the queue.",
+      "Designed and shipped the patient and clinician product in Next.js and React: onboarding, document upload, IVF cycle tracking, biomarker insights dashboard, and practitioner review. Backed by unit tests and a Playwright E2E suite that exercises the live AI pipeline."
     ]
   },
   {

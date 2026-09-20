@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<meta name="robots" content="index" />
+<meta name="description" content="Step-by-step animation of JavaScript execution order: synchronous code, microtasks, and macrotasks moving through the event loop." />
+<title>Event Loop Execution Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary-800: #1E59B5;
+    --primary-900: #10203A;
+    --primary-950: #0B192F;
+    --rockblue-50: #F4F6F9;
+    --rockblue-400: #A7B2CE;
+    --rockblue-600: #7C83AF;
+    --rockblue-900: #4A4E65;
+    --rockblue-950: #2B2D3B;
+    --spray-300: #5FE9D2;
+    --spray-400: #2FD2BD;
+    --t-blue: #7DCFFF;
+    --t-purple: #BB9AF7;
+    --t-red: #F7768E;
+    --t-green: #9ECE6A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background: #0B192F; }
+
+  body {
+    margin: 0 auto;
+    width: 1280px;
+    height: 720px;
+    background: var(--primary-950);
+    color: var(--rockblue-50);
+    font-family: "Poppins", system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .stage {
+    width: 1280px;
+    height: 720px;
+    padding: 28px 32px 24px;
+    display: grid;
+    grid-template-columns: 640px 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 18px 24px;
+  }
+
+  .title {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .title h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.2px; }
+  .title .rule { flex: 1; height: 1px; background: var(--rockblue-900); }
+  .title .step-no {
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+    color: var(--spray-300);
+  }
+
+  .panel {
+    background: var(--primary-900);
+    border: 1px solid rgba(74, 78, 101, 0.4);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+
+  .panel-label {
+    font-family: "Roboto Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--rockblue-600);
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ---- code ---- */
+  .code { font-family: "Roboto Mono", monospace; font-size: 13px; line-height: 23px; }
+  .line {
+    display: flex;
+    gap: 12px;
+    padding: 0 8px;
+    border-left: 2px solid transparent;
+    border-radius: 3px;
+    transition: background 220ms ease, border-color 220ms ease, opacity 220ms ease;
+    opacity: 0.45;
+    white-space: pre;
+  }
+  .line.active { opacity: 1; background: rgba(30, 89, 181, 0.22); border-left-color: var(--spray-300); }
+  .line.seen { opacity: 0.72; }
+  .line .ln { color: #414560; width: 16px; text-align: right; flex: none; }
+  .line.active .ln { color: var(--spray-400); }
+  .line .cm { margin-left: auto; padding-left: 18px; }
+
+  .tok-str { color: var(--t-green); }
+  .tok-kw { color: var(--t-purple); }
+  .tok-fn { color: var(--t-blue); }
+  .tok-num { color: var(--t-red); }
+  .tok-com { color: var(--rockblue-600); font-style: italic; }
+  .tok-punct { color: var(--rockblue-400); }
+
+  /* ---- runtime column ---- */
+  .runtime { display: grid; grid-template-rows: 150px 1fr 1fr; gap: 14px; }
+
+  .slot { min-height: 34px; display: flex; flex-direction: column; gap: 8px; }
+  .slot.queue { flex-direction: row; align-items: flex-start; flex-wrap: wrap; }
+
+  .chip {
+    font-family: "Roboto Mono", monospace;
+    font-size: 12.5px;
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: 1px solid var(--spray-300);
+    background: rgba(95, 233, 210, 0.08);
+    color: var(--rockblue-50);
+    animation: pop 260ms ease both;
+  }
+  .chip.macro { border-color: var(--primary-800); background: rgba(30, 89, 181, 0.25); }
+  .chip.stack { border-color: var(--rockblue-900); background: rgba(74, 78, 101, 0.28); }
+  .chip.leaving { animation: leave 240ms ease both; }
+
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(-6px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes leave {
+    from { opacity: 1; transform: none; }
+    to { opacity: 0; transform: translateX(14px) scale(0.96); }
+  }
+
+  .empty-hint {
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    color: #575C7C;
+  }
+
+  /* ---- console ---- */
+  .console { grid-column: 1 / -1; display: grid; grid-template-columns: 640px 1fr; gap: 24px; }
+  .out { font-family: "Roboto Mono", monospace; font-size: 13.5px; line-height: 22px; min-height: 92px; }
+  .out .row { display: flex; gap: 10px; animation: pop 220ms ease both; color: var(--rockblue-50); }
+  .out .prompt { color: var(--spray-300); }
+
+  .caption {
+    display: block;
+    align-self: center;
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--rockblue-50);
+  }
+  .caption b { color: var(--spray-300); font-weight: 600; }
+
+  .controls {
+    position: fixed;
+    right: 18px;
+    bottom: 14px;
+    display: flex;
+    gap: 8px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+  }
+  .controls button {
+    background: var(--primary-900);
+    border: 1px solid var(--rockblue-900);
+    color: var(--rockblue-400);
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  .controls button:hover { border-color: var(--spray-300); color: var(--spray-300); }
+  body.recording .controls { display: none; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="title">
+      <h1>JavaScript execution order</h1>
+      <div class="rule"></div>
+      <div class="step-no" id="stepNo">step 0 / 13</div>
+    </div>
+
+    <div class="panel code" id="codePanel"></div>
+
+    <div class="runtime">
+      <div class="panel">
+        <div class="panel-label"><span>Call stack</span><span id="stackCount"></span></div>
+        <div class="slot" id="stack"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-label"><span>Microtask queue</span><span>drained completely</span></div>
+        <div class="slot queue" id="micro"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-label"><span>Macrotask queue</span><span>one per turn</span></div>
+        <div class="slot queue" id="macro"></div>
+      </div>
+    </div>
+
+    <div class="console">
+      <div class="panel">
+        <div class="panel-label"><span>Console output</span></div>
+        <div class="out" id="out"></div>
+      </div>
+      <div class="caption" id="caption"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="prev">prev</button>
+    <button id="play">pause</button>
+    <button id="next">next</button>
+    <button id="restart">restart</button>
+  </div>
+
+<script>
+const CODE = [
+  ['console.log("start");', '// sync'],
+  ['', ''],
+  ['setTimeout(() => console.log("timeout 1"), 0);', '// macrotask'],
+  ['', ''],
+  ['Promise.resolve().then(() => console.log("promise 1"));', '// microtask'],
+  ['', ''],
+  ['(async () => {', ''],
+  ['  console.log("async start");', '// sync'],
+  ['  await null;', ''],
+  ['  console.log("async end");', '// microtask'],
+  ['})();', ''],
+  ['', ''],
+  ['setTimeout(() => console.log("timeout 2"), 0);', '// macrotask'],
+  ['', ''],
+  ['console.log("end");', '// sync'],
+];
+
+const STEPS = [
+  { lines: [], stack: [], micro: [], macro: [], out: [],
+    text: 'One thread, one call stack. The event loop only gets a turn when that stack is <b>empty</b>.' },
+  { lines: [0], stack: ['console.log("start")'], micro: [], macro: [], out: ['start'],
+    text: '<b>Synchronous.</b> Runs immediately on the call stack and prints right away.' },
+  { lines: [2], stack: ['setTimeout(...)'], micro: [], macro: ['timeout 1'], out: ['start'],
+    text: '<b>Macrotask.</b> The callback is handed to the host and parked in the macrotask queue. Nothing prints.' },
+  { lines: [4], stack: ['.then(...)'], micro: ['promise 1'], macro: ['timeout 1'], out: ['start'],
+    text: '<b>Microtask.</b> The promise is already resolved, so its callback is queued as a microtask.' },
+  { lines: [6, 7], stack: ['async IIFE', 'console.log("async start")'], micro: ['promise 1'], macro: ['timeout 1'], out: ['start', 'async start'],
+    text: 'An <b>async function body is ordinary synchronous code</b> until it reaches the first await.' },
+  { lines: [8, 9], stack: ['async IIFE'], micro: ['promise 1', 'async end'], macro: ['timeout 1'], out: ['start', 'async start'],
+    text: '<b>await null</b> still yields. Everything after it becomes a microtask, queued behind promise 1.' },
+  { lines: [12], stack: ['setTimeout(...)'], micro: ['promise 1', 'async end'], macro: ['timeout 1', 'timeout 2'], out: ['start', 'async start'],
+    text: 'Second timer joins the macrotask queue. <b>0ms means "as soon as allowed", not "now".</b>' },
+  { lines: [14], stack: ['console.log("end")'], micro: ['promise 1', 'async end'], macro: ['timeout 1', 'timeout 2'], out: ['start', 'async start', 'end'],
+    text: 'Last synchronous line. Note it prints <b>before</b> anything that was queued.' },
+  { lines: [], stack: [], micro: ['promise 1', 'async end'], macro: ['timeout 1', 'timeout 2'], out: ['start', 'async start', 'end'],
+    text: 'Script finished, the call stack is empty. <b>Now</b> the event loop takes over.' },
+  { lines: [4], stack: ['promise 1'], micro: ['async end'], macro: ['timeout 1', 'timeout 2'], out: ['start', 'async start', 'end', 'promise 1'],
+    text: 'Microtasks go first. The loop pulls the front of the queue onto the stack.' },
+  { lines: [9], stack: ['async end'], micro: [], macro: ['timeout 1', 'timeout 2'], out: ['start', 'async start', 'end', 'promise 1', 'async end'],
+    text: 'The queue is <b>drained completely</b>, so the resumed async function runs in the same turn.' },
+  { lines: [2], stack: ['timeout 1'], micro: [], macro: ['timeout 2'], out: ['start', 'async start', 'end', 'promise 1', 'async end', 'timeout 1'],
+    text: 'Only once no microtasks are left does the loop take <b>one</b> macrotask.' },
+  { lines: [12], stack: ['timeout 2'], micro: [], macro: [], out: ['start', 'async start', 'end', 'promise 1', 'async end', 'timeout 1', 'timeout 2'],
+    text: 'Stack empties again, microtask queue is still empty, so the next macrotask runs.' },
+  { lines: [], stack: [], micro: [], macro: [], out: ['start', 'async start', 'end', 'promise 1', 'async end', 'timeout 1', 'timeout 2'],
+    text: 'Sync first, then every microtask, then macrotasks one at a time. <b>That is the whole rule.</b>' },
+];
+
+const HOLD = [2600, 2400, 2600, 2600, 2900, 3000, 2600, 2600, 2600, 2500, 2900, 2600, 2500, 4200];
+
+function highlight(code) {
+  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const html = esc(code)
+    .replace(/(&quot;|")([^"]*)(&quot;|")/g, '<span class="tok-str">"$2"</span>')
+    .replace(/\b(async|await|null|return|const)\b/g, '<span class="tok-kw">$1</span>')
+    .replace(/\b(setTimeout|log|then|resolve)\b/g, '<span class="tok-fn">$1</span>')
+    .replace(/\b(0)\b/g, '<span class="tok-num">0</span>')
+    .replace(/(=&gt;)/g, '<span class="tok-kw">$1</span>');
+  return html;
+}
+
+const codePanel = document.getElementById('codePanel');
+codePanel.innerHTML = CODE.map(([code, comment], i) =>
+  `<div class="line" data-i="${i}"><span class="ln">${i + 1}</span><span>${highlight(code)}</span>` +
+  (comment ? `<span class="cm tok-com">${comment}</span>` : '') + `</div>`
+).join('');
+const lineEls = [...codePanel.querySelectorAll('.line')];
+
+const els = {
+  stack: document.getElementById('stack'),
+  micro: document.getElementById('micro'),
+  macro: document.getElementById('macro'),
+  out: document.getElementById('out'),
+  caption: document.getElementById('caption'),
+  stepNo: document.getElementById('stepNo'),
+  stackCount: document.getElementById('stackCount'),
+};
+
+function fill(el, items, cls, emptyText) {
+  const hint = el.querySelector('.empty-hint');
+  if (hint) hint.remove();
+
+  [...el.querySelectorAll('.chip')].forEach((n) => {
+    if (!items.includes(n.dataset.k)) n.remove();
+  });
+
+  items.forEach((t, i) => {
+    let node = [...el.querySelectorAll('.chip')].find((n) => n.dataset.k === t);
+    if (!node) {
+      node = document.createElement('div');
+      node.className = 'chip ' + cls;
+      node.dataset.k = t;
+      node.textContent = t;
+    }
+    if (el.children[i] !== node) el.insertBefore(node, el.children[i] || null);
+  });
+
+  if (!items.length) {
+    const h = document.createElement('div');
+    h.className = 'empty-hint';
+    h.textContent = emptyText;
+    el.appendChild(h);
+  }
+}
+
+function fillOut(el, items) {
+  [...el.children].slice(items.length).forEach((n) => n.remove());
+  items.forEach((o, i) => {
+    if (el.children[i]) return;
+    const row = document.createElement('div');
+    row.className = 'row';
+    const prompt = document.createElement('span');
+    prompt.className = 'prompt';
+    prompt.textContent = '>';
+    const text = document.createElement('span');
+    text.textContent = o;
+    row.append(prompt, text);
+    el.appendChild(row);
+  });
+}
+
+let index = 0;
+let playing = true;
+let timer = null;
+
+function render(i) {
+  const s = STEPS[i];
+  lineEls.forEach((el, li) => {
+    el.classList.toggle('active', s.lines.includes(li));
+    el.classList.toggle('seen', !s.lines.includes(li) && li <= Math.max(...s.lines, -1));
+  });
+  fill(els.stack, s.stack, 'stack', 'empty');
+  fill(els.micro, s.micro, '', 'empty');
+  fill(els.macro, s.macro, 'macro', 'empty');
+  els.stackCount.textContent = s.stack.length ? `${s.stack.length} frame${s.stack.length > 1 ? 's' : ''}` : '';
+  fillOut(els.out, s.out);
+  els.caption.innerHTML = s.text;
+  els.stepNo.textContent = `step ${i} / ${STEPS.length - 1}`;
+}
+
+function schedule() {
+  clearTimeout(timer);
+  if (!playing) return;
+  timer = setTimeout(() => {
+    index = (index + 1) % STEPS.length;
+    render(index);
+    schedule();
+  }, HOLD[index]);
+}
+
+function go(delta) {
+  index = (index + delta + STEPS.length) % STEPS.length;
+  render(index);
+  schedule();
+}
+
+document.getElementById('next').onclick = () => go(1);
+document.getElementById('prev').onclick = () => go(-1);
+document.getElementById('restart').onclick = () => { index = 0; render(0); schedule(); };
+document.getElementById('play').onclick = (e) => {
+  playing = !playing;
+  e.target.textContent = playing ? 'pause' : 'play';
+  schedule();
+};
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+
+const params = new URLSearchParams(location.search);
+const isRecording = params.has('record');
+const isClean = params.has('clean');
+if (isRecording || isClean) document.body.classList.add('recording');
+
+render(0);
+if (isRecording) {
+  // held at step 0 until started, so an automated capture begins on a known frame
+  playing = false;
+  window.__play = () => { playing = true; schedule(); };
+} else {
+  schedule();
+}
+window.__totalDuration = HOLD.reduce((a, b) => a + b, 0);
+</script>
+</body>
+</html>

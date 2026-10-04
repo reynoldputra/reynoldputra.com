@@ -30,20 +30,10 @@ export const metadata: Metadata = {
   },
   description:
     "An online portfolio and blog by Reynold Putra. Explore my projects and read my insights on software engineering.",
+  metadataBase: new URL(process.env.SITE_URL || "https://reynoldputra.com"),
+  twitter: { card: "summary_large_image" },
   openGraph: {
     description: "An online portfolio and blog by Reynold Putra. Explore my projects and read my insights on software engineering.",
-    images: [
-      {
-        url: '/assets/index.png',
-        width: 1200,
-        height: 630,
-      },
-      {
-        url: '/assets/reynoldputra.png',
-        width: 1200,
-        height: 1200,
-      },
-    ]
   },
   verification: {
     google: "5vSfSGMqthjJyNaNQU3i4lqJAC-xwP9EJhUvujun8kM",

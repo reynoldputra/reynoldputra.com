@@ -8,7 +8,7 @@ const TypescriptLogo = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className="p-2"
-    stroke="#F4F6F9"
+    stroke="currentColor"
     {...props}
   >
     <g clipPath="url(#clip0_26_97)">

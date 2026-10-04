@@ -9,7 +9,7 @@ const LaravelLogo = (props: SVGProps<SVGSVGElement>) => (
     <defs>
       <style>
         {
-          ".cls-laravel{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px;}"
+          ".cls-laravel{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px;}"
         }
       </style>
     </defs>

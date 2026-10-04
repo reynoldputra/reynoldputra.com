@@ -19,8 +19,8 @@ export default function TabMenu({ activeTab, onTabChange, mainCount = 0, archive
         className={clsx(
           "text-md font-mono font-bold transition-colors",
           activeTab === "main"
-            ? "text-white"
-            : "text-rockblue-500 hover:text-rockblue-50"
+            ? "text-foreground"
+            : "text-muted hover:text-foreground"
         )}
         data-umami-event="main-tab-button"
       >
@@ -31,8 +31,8 @@ export default function TabMenu({ activeTab, onTabChange, mainCount = 0, archive
         className={clsx(
           "text-md font-mono font-bold transition-colors",
           activeTab === "archive"
-            ? "text-white"
-            : "text-rockblue-500 hover:text-rockblue-50"
+            ? "text-foreground"
+            : "text-muted hover:text-foreground"
         )}
         data-umami-event="archive-tab-button"
       >

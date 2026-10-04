@@ -10,7 +10,7 @@ const NextLogo = (props: SVGProps<SVGSVGElement>) => (
     preserveAspectRatio="xMidYMid"
     className="p-2"
     {...props}
-    stroke="#F4F6F9"
+    stroke="currentColor"
   >
     <g>
       <path

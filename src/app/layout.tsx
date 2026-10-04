@@ -52,9 +52,19 @@ export const metadata: Metadata = {
   },
 };
 
+// Stored choice wins; otherwise follow the device setting, falling back to light.
+const themeInitScript = `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`;
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={clsx(poppins.variable, roboto_mono.variable)}>
+    <html
+      lang="en"
+      className={clsx(poppins.variable, roboto_mono.variable)}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <Script 
         defer 
         src="https://cloud.umami.is/script.js" 
@@ -62,7 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         data-domains="reynoldputra.com,www.reynoldputra.com"
       />
       <body>
-        <div className="bg-primary-950 text-rockblue-50 min-h-screen">
+        <div className="bg-background text-foreground min-h-screen">
           {children}
         </div>
         <Toaster />

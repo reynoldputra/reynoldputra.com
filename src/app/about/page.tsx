@@ -22,7 +22,7 @@ export default function About() {
       <Section>
         <Grid screenHeight={false}>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
-            <Typography as="h1" variant="h5" color="highlight" weight="bold">
+            <Typography as="h1" variant="h5" color="heading" weight="bold">
               About
             </Typography>
             <div className="mt-6 flex flex-wrap items-start gap-x-6 gap-y-5">
@@ -54,7 +54,7 @@ export default function About() {
                     data-umami-event="resume-button"
                     href="https://docs.google.com/document/d/1rZTrxfzM9Kzvk_KJ7ZTo8ZG2jYFKVrpNTXwVvWM2sfA/edit?tab=t.zh1ixsmuerq9"
                     target="_blank"
-                    className="bg-rockblue-50 text-primary-950 hover:underline px-1"
+                    className="bg-foreground text-background hover:underline px-1"
                   >
                     résumé
                   </Link>

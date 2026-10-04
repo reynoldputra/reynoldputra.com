@@ -15,8 +15,12 @@ export enum TypographyVariant {
 }
 
 export enum TypographyColor {
-  "gray",
+  "foreground",
+  "muted",
+  "accent",
+  "heading",
   "white",
+  "gray",
   "highlight",
 }
 
@@ -41,7 +45,7 @@ export default function Typography<T extends React.ElementType>({
   children,
   weight = "regular",
   className,
-  color = "white",
+  color = "foreground",
   variant = "p",
   font = "sans",
   ...props
@@ -74,9 +78,10 @@ export default function Typography<T extends React.ElementType>({
         ],
 
         [
-          color === "gray" && ["text-rockblue-500"],
-          color === "white" && ["text-rockblue-50"],
-          color === "highlight" && ["text-spray-300"],
+          (color === "foreground" || color === "white") && "text-foreground",
+          (color === "muted" || color === "gray") && "text-muted",
+          (color === "accent" || color === "highlight") && "text-accent",
+          color === "heading" && "text-heading",
         ],
 
         font == "sans" ? "font-sans" : "font-mono",

@@ -13,15 +13,15 @@ const CardButton = ({
 }) => {
   return (
     <Link href={url} target={url.startsWith("http") ? "_blank" : undefined}>
-      <div className="flex gap-x-2 items-center cursor-pointer group hover:border-spray-300">
-        <div className="text-white group-hover:text-spray-300">
-          <Icon.type className="text-white group-hover:text-spray-300" />
+      <div className="flex gap-x-2 items-center cursor-pointer group hover:border-accent">
+        <div className="text-foreground group-hover:text-accent">
+          <Icon.type className="text-foreground group-hover:text-accent" />
         </div>
         <Typography
           font="mono"
           variant="c2"
           color="white"
-          className="group-hover:text-spray-300"
+          className="group-hover:text-accent"
         >
           {text}
         </Typography>

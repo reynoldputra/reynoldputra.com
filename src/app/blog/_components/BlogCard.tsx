@@ -19,13 +19,13 @@ export default function BlogCard({ blog }: BlogCardProps) {
     <Link href={`/blog/${blog.slug}`}>
       <div
         className={clsx(
-          "group relative rounded-lg p-6 border border-rockblue-900/40 bg-primary-900/50",
-          "hover:border-rockblue-500/50 hover:bg-primary-900/70 transition-all duration-300",
+          "group relative rounded-lg p-6 border border-line bg-surface/50",
+          "hover:border-muted/50 hover:bg-surface/70 transition-all duration-300",
           "flex flex-col gap-4 h-full"
         )}
       >
         <div className="flex-1">
-          <Typography variant="bt" color="white" weight="bold" className="group-hover:text-spray-300 transition-colors">
+          <Typography variant="bt" color="white" weight="bold" className="group-hover:text-accent transition-colors">
             {title}
           </Typography>
           <Typography variant="p" font="mono" color="gray" className="mt-2">
@@ -39,7 +39,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
                   key={idx}
                   className={clsx(
                     "px-3 py-1 rounded-md text-xs font-mono font-semibold",
-                    "bg-spray-300/20 text-spray-300 border border-spray-300/30"
+                    "bg-accent/10 text-accent border border-accent/30"
                   )}
                 >
                   {topic}

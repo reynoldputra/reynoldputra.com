@@ -7,7 +7,7 @@ const SVGComponent = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
-    stroke="#F4F6F9"
+    stroke="currentColor"
   >
     <title>{"file_type_nestjs"}</title>
     <path

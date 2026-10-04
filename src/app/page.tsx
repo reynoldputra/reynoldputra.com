@@ -19,7 +19,7 @@ export default function Page() {
       <LenisScrollLayout background={false}>
         <div className="relative">
           <Navbar />
-          <div className="bg-primary-950 relative z-50 min-h-screen pb-64">
+          <div className="bg-background relative z-50 min-h-screen pb-64">
             <Hero className="mt-24" />
             <ProjectSnippet className="mt-32" />
             <RecentBlog className="mt-32" />

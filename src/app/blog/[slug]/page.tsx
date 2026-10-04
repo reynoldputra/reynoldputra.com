@@ -71,7 +71,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           {topics.map((topic, idx) => (
             <span
               key={idx}
-              className="px-3 py-1 rounded-md text-xs font-mono font-semibold bg-spray-300/20 text-spray-300 border border-spray-300/30"
+              className="px-3 py-1 rounded-md text-xs font-mono font-semibold bg-accent/10 text-accent border border-accent/30"
             >
               {topic}
             </span>

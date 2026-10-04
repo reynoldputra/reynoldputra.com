@@ -23,7 +23,7 @@ export default async function RecentBlog({
       <Section>
         <Grid screenHeight={false}>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
-            <Typography variant="h5" color="highlight" weight="bold">
+            <Typography variant="h5" color="heading" weight="bold">
               Recent Blogs
             </Typography>
             <Typography className="mt-2" variant="p" color="white">
@@ -41,7 +41,7 @@ export default async function RecentBlog({
                 variant="t"
                 weight="bold"
                 color="white"
-                className="group-hover:text-spray-300"
+                className="group-hover:text-accent"
               >
                 {latest.frontmatter.title}
               </Typography>
@@ -50,12 +50,12 @@ export default async function RecentBlog({
               </Typography>
             </Link>
             {rest.length > 0 && (
-              <div className="mt-8 flex flex-col border-t border-rockblue-900/60">
+              <div className="mt-8 flex flex-col border-t border-line">
                 {rest.slice(0, 3).map((blog) => (
                   <Link
                     key={blog.slug}
                     href={`/blog/${blog.slug}`}
-                    className="py-3.5 border-b border-rockblue-900/60 flex flex-wrap items-baseline gap-x-6 gap-y-1 group"
+                    className="py-3.5 border-b border-line flex flex-wrap items-baseline gap-x-6 gap-y-1 group"
                   >
                     <Typography
                       as="span"
@@ -71,7 +71,7 @@ export default async function RecentBlog({
                       variant="p"
                       weight="semibold"
                       color="white"
-                      className="flex-1 min-w-[240px] group-hover:text-spray-300"
+                      className="flex-1 min-w-[240px] group-hover:text-accent"
                     >
                       {blog.frontmatter.title}
                     </Typography>
@@ -81,15 +81,15 @@ export default async function RecentBlog({
             )}
             <div className="w-full flex justify-center mt-16">
               <Link href="/blog">
-                <ButtonAnimation data-umami-event="see-more-blogs-button" className="border-rockblue-50" innerClassName="flex items-center gap-2">
+                <ButtonAnimation data-umami-event="see-more-blogs-button" className="border-foreground" innerClassName="flex items-center gap-2">
                   <Typography
                     font="mono"
                     variant="c1"
-                    className="z-20 transition-all group-hover:font-bold text-rockblue-50 group-hover:text-primary-950"
+                    className="z-20 transition-all group-hover:font-bold text-foreground group-hover:text-background"
                   >
                     See more
                   </Typography>
-                  <FaChevronRight className="z-20 h-3  transition-all text-rockblue-50 group-hover:text-primary-950" />
+                  <FaChevronRight className="z-20 h-3  transition-all text-foreground group-hover:text-background" />
                 </ButtonAnimation>
               </Link>
             </div>

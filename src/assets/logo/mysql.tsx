@@ -9,7 +9,7 @@ const MysqlLogo = (props: SVGProps<SVGSVGElement>) => (
     <defs>
       <style>
         {
-          ".cls-1-mysql{fill:#fff;}.cls-2-mysql{fill:none;stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:16px;}"
+          ".cls-1-mysql{fill:currentColor;}.cls-2-mysql{fill:none;stroke:currentColor;stroke-linecap:round;stroke-miterlimit:10;stroke-width:16px;}"
         }
       </style>
     </defs>

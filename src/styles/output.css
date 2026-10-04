@@ -12,7 +12,7 @@
 }
 
 .svg-stroke {
-  stroke : #F4F6F9
+  stroke: rgb(var(--color-foreground));
 }
 
 .typing-demo {

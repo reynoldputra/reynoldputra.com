@@ -75,11 +75,11 @@ export default function ContactMe() {
   ]
 
   return (
-    <Grid className="bg-rockblue-50 text-primary-950">
+    <Grid className="bg-foreground text-background">
       <Cell cols="1_full">
-        <p className="font-bold pt-24 pb-10 md:pb-4 text-2xl md:text-3xl text-primary-950 text-center font-mono" >Get in touch</p>
+        <p className="font-bold pt-24 pb-10 md:pb-4 text-2xl md:text-3xl text-background text-center font-mono" >Get in touch</p>
       </Cell>
-      <Cell cols="1_full" colsMd="1_5" colsLg="2_4" colsXl="3_4" className="flex flex-col gap-2 mt-8 text-primary-950 font-mono font-bold">
+      <Cell cols="1_full" colsMd="1_5" colsLg="2_4" colsXl="3_4" className="flex flex-col gap-2 mt-8 text-background font-mono font-bold">
         <form
           onSubmit={onSubmit}
           className="flex flex-col gap-2"
@@ -93,7 +93,7 @@ export default function ContactMe() {
                   required={input.required}
                   name={input.name}
                   id={input.name}
-                  className="w-full px-4 font-normal h-8 max-w-xs md:max-w-sm md:h-12 rounded-md bg-transparent border-2 border-primary-950"
+                  className="w-full px-4 font-normal h-8 max-w-xs md:max-w-sm md:h-12 rounded-md bg-transparent border-2 border-background"
                   type={(input.type ? input.type : "text")}
                 />
               </div>
@@ -101,11 +101,11 @@ export default function ContactMe() {
           }
           <ButtonAnimation
             mode="dark"
-            className="border-2 mt-8 border-primary-950 font-bold"
+            className="border-2 mt-8 border-background font-bold"
             type="submit"
           >
-            <p className="z-20 transition-all group-hover:font-bold text-rockblue-50 group-hover:text-primary-950">Send</p>
-            <FaChevronRight className="z-20 h-3  transition-all text-rockblue-50 group-hover:text-primary-950" />
+            <p className="z-20 transition-all group-hover:font-bold text-foreground group-hover:text-background">Send</p>
+            <FaChevronRight className="z-20 h-3  transition-all text-foreground group-hover:text-background" />
           </ButtonAnimation>
         </form>
       </Cell>
@@ -113,7 +113,7 @@ export default function ContactMe() {
         {
           dataSocial.map((val, idx) => (
             <a href={val.link} className="text-md font-mono hidden md:block" key={idx}>
-              <div className="text-primary-950 flex gap-4 h-10 items-center" >
+              <div className="text-background flex gap-4 h-10 items-center" >
                 {val.img}
                 <p>{val.text}</p>
               </div>

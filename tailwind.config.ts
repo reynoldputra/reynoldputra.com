@@ -14,8 +14,29 @@ for (const tool of textLogoData) {
   logoColorSafelist.push(name);
 }
 
+export const themes = {
+  light: { background: "#F4F6F9", surface: "#FFFFFF", foreground: "#0B192F", muted: "#5A6088", heading: "#0B192F", accent: "#0E6C64", line: "#CACCD4" },
+  dark: { background: "#0B192F", surface: "#10203A", foreground: "#F4F6F9", muted: "#939DC1", heading: "#5FE9D2", accent: "#5FE9D2", line: "#313950" },
+} as const;
+
+type ThemeToken = keyof typeof themes.light;
+const tokenNames = Object.keys(themes.light) as ThemeToken[];
+
+const hexToChannels = (hex: string) =>
+  [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(" ");
+
+const themeVars = (t: Record<ThemeToken, string>) =>
+  Object.fromEntries(
+    tokenNames.map((n) => [`--color-${n}`, hexToChannels(t[n])]),
+  );
+
+const themeColors = Object.fromEntries(
+  tokenNames.map((n) => [n, `rgb(var(--color-${n}) / <alpha-value>)`]),
+);
+
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   safelist: [
     {
       pattern: /_(cols|rows)-(.+)/,
@@ -113,10 +134,17 @@ export default {
           yellow: "#9ECE6A",
         },
         logo: logoColors,
+        ...themeColors,
       },
     },
   },
   plugins: [
+    plugin(({ addBase }) => {
+      addBase({
+        ":root": { ...themeVars(themes.light), colorScheme: "light" },
+        ".dark": { ...themeVars(themes.dark), colorScheme: "dark" },
+      });
+    }),
     plugin(({ addComponents }) => {
       const [_, ...values]: (string | number)[] = [
         ...Array.from(Array(13).keys()),

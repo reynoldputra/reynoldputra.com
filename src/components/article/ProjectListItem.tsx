@@ -33,7 +33,7 @@ const ProjectListItem = ({
   return (
     <article
       className={clsx(
-        "py-6 border-b border-rockblue-900/60 flex flex-wrap items-start gap-x-5 gap-y-3",
+        "py-6 border-b border-line flex flex-wrap items-start gap-x-5 gap-y-3",
         className,
       )}
       {...props}
@@ -43,7 +43,7 @@ const ProjectListItem = ({
           {project.article ? (
             <Link
               href={"/projects/" + slug}
-              className="hover:text-spray-300"
+              className="hover:text-accent"
             >
               {heading}
             </Link>
@@ -83,7 +83,7 @@ const ProjectListItem = ({
         </div>
       </div>
       {project.cover && (
-        <div className="relative w-40 aspect-video rounded-md overflow-hidden shrink-0 bg-gray-600/30">
+        <div className="relative w-40 aspect-video rounded-md overflow-hidden shrink-0 bg-muted/20">
           <Image
             src={project.cover}
             alt={"image cover " + project.title}

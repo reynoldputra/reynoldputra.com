@@ -20,10 +20,10 @@ export default function Hero({
         <Grid className="h-full text-md z-20" screenHeight={false}>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-spray-300" />
+              <span className="w-2 h-2 rounded-full bg-accent" />
               <Typography variant="c1" font="mono" color="gray">
                 Software Engineer ·{" "}
-                <span className="text-spray-300">
+                <span className="text-accent">
                   {yearsOfExperience()}+ years of experience
                 </span>
               </Typography>
@@ -48,19 +48,19 @@ export default function Hero({
               <Link
                 href="/about"
                 data-umami-event="more-about-me-button"
-                className="border border-rockblue-50 bg-rockblue-50 text-primary-950 px-3 py-2 rounded-md font-mono text-sm font-bold"
+                className="border border-foreground bg-foreground text-background px-3 py-2 rounded-md font-mono text-sm font-bold"
               >
                 More about me
               </Link>
               <Link href="mailto:reynoldputra1@gmail.com" target="_blank">
                 <ButtonAnimation
                   data-umami-event="get-in-touch-button"
-                  className="border-rockblue-50"
+                  className="border-foreground"
                 >
                   <Typography
                     font="mono"
                     variant="c1"
-                    className="z-20 transition-all group-hover:font-bold text-rockblue-50 group-hover:text-primary-950"
+                    className="z-20 transition-all group-hover:font-bold text-foreground group-hover:text-background"
                   >
                     Get in touch
                   </Typography>

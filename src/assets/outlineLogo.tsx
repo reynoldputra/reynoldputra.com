@@ -9,7 +9,7 @@ const OutlineLogo = (props: SVGProps<SVGSVGElement>) => (
     <defs>
       <style>
         {
-          ".logo-cls-1,.logo-cls-2,.logo-cls-3{fill:none;}.logo-cls-1,.logo-cls-2{stroke:#fff;}.logo-cls-1,.logo-cls-3{stroke-miterlimit:10;}.logo-cls-1{stroke-width:84px;}.logo-cls-2{stroke-linejoin:round;}.logo-cls-2,.logo-cls-3{stroke-width:84.56px;}.logo-cls-3{stroke:#45bc96;stroke-linecap:square;}"
+          ".logo-cls-1,.logo-cls-2,.logo-cls-3{fill:none;}.logo-cls-1,.logo-cls-2{stroke:currentColor;}.logo-cls-1,.logo-cls-3{stroke-miterlimit:10;}.logo-cls-1{stroke-width:84px;}.logo-cls-2{stroke-linejoin:round;}.logo-cls-2,.logo-cls-3{stroke-width:84.56px;}.logo-cls-3{stroke:#45bc96;stroke-linecap:square;}"
         }
       </style>
     </defs>

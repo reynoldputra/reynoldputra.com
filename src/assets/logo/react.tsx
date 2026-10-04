@@ -9,7 +9,7 @@ const ReactLogo = (props: SVGProps<SVGSVGElement>) => (
       strokeWidth: 14,
       fill: "none",
     }}
-    stroke="#F4F6F9"
+    stroke="currentColor"
   >
     <path
       className="cls-1"

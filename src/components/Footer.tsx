@@ -39,11 +39,11 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
   ];
 
   return (
-    <div className={clsx(className, " h-96 relative", "bg-white z-0")}>
+    <div className={clsx(className, " h-96 relative", "bg-foreground z-0")}>
       <div className="z-10 w-full h-12 absolute top-0">
-        <div className="w-full h-full rounded-b-3xl -translate-y-1 md:rounded-b-full bg-primary-950"></div>
+        <div className="w-full h-full rounded-b-3xl -translate-y-1 md:rounded-b-full bg-background"></div>
       </div>
-      <div className="z-0 fixed flex items-end bottom-0 w-full mt-12 h-80 text-primary-950 overflow-hidden">
+      <div className="z-0 fixed flex items-end bottom-0 w-full mt-12 h-80 text-background overflow-hidden">
         <Grid screenHeight={false} className="w-full pb-4 z-0">
           <Cell cols="1_full">
             <div className="flex w-full justify-center gap-4 mb-6 md:mb-2">
@@ -65,7 +65,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
                 <Link href={item.href} key={idx}>
                   <p
                     className={
-                      "text-md text-primary-950 font-bold font-mono " +
+                      "text-md text-background font-bold font-mono " +
                       (pathname == item.href && "underline")
                     }
                   >
@@ -84,9 +84,9 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
               <Link href="mailto:reynoldputra1@gmail.com" target="_blank">
                 <ButtonAnimation
                   mode="light"
-                  className="border-2 border-primary-950 bg-transparent"
+                  className="border-2 border-background bg-transparent"
                 >
-                  <p className="font-mono text-sm group-hover:text-rockblue-50 font-bold">
+                  <p className="font-mono text-sm group-hover:text-foreground font-bold">
                     Get in touch
                   </p>
                 </ButtonAnimation>

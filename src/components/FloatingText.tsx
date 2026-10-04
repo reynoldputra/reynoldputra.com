@@ -11,7 +11,7 @@ const FloatingText = ({
       className={clsx("flex justify-center items-end", className)}
       {...props}
     >
-      <p className="font-bold text-primary-100 text-stroke opacity-10 text-[192px] [writing-mode:vertical-lr]">
+      <p className="font-bold text-foreground text-stroke opacity-10 text-[192px] [writing-mode:vertical-lr]">
         {children}
       </p>
     </div>

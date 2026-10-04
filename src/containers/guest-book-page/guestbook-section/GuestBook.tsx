@@ -4,8 +4,10 @@ import Grid from "@/components/Grid";
 import Cell from "@/components/Cell";
 import Section from "@/components/Section";
 import Typography from "@/components/typography/Typography";
+import { useTheme } from "@/hooks/useTheme";
 
 export default function GuestBook() {
+  const { theme } = useTheme();
   return (
     <Section className="relative z-30">
       <Grid className="mt-24">
@@ -13,7 +15,7 @@ export default function GuestBook() {
           <Typography
             variant="h5"
             className="md:text-h4 text-center"
-            color="white"
+            color="foreground"
             weight="bold"
           >
             Welcome to my
@@ -21,7 +23,7 @@ export default function GuestBook() {
           <Typography
             variant="h5"
             className="md:text-h4 text-center"
-            color="highlight"
+            color="heading"
             weight="bold"
             font="mono"
           >
@@ -30,21 +32,23 @@ export default function GuestBook() {
         </Cell>
         <Cell cols="1_full" colsMd="3_8" colsLg="4_6" className="mt-12 pb-24">
           <figure>
-            <Giscus
-              id="comments"
-              repo="reynoldputra/reynoldputra.com"
-              repoId="R_kgDOJYXGGQ"
-              category="General"
-              categoryId="DIC_kwDOJYXGGc4CW4Nl"
-              mapping="specific"
-              term="Welcome to @giscus/react component!"
-              reactionsEnabled="1"
-              emitMetadata="0"
-              inputPosition="top"
-              theme="cobalt"
-              lang="en"
-              loading="lazy"
-            />
+            {theme && (
+              <Giscus
+                id="comments"
+                repo="reynoldputra/reynoldputra.com"
+                repoId="R_kgDOJYXGGQ"
+                category="General"
+                categoryId="DIC_kwDOJYXGGc4CW4Nl"
+                mapping="specific"
+                term="Welcome to @giscus/react component!"
+                reactionsEnabled="1"
+                emitMetadata="0"
+                inputPosition="top"
+                theme={theme === "dark" ? "cobalt" : "light"}
+                lang="en"
+                loading="lazy"
+              />
+            )}
           </figure>
         </Cell>
       </Grid>

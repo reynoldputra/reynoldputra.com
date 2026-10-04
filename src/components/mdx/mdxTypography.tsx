@@ -8,7 +8,7 @@ export const MdxArticle = ({
   return (
     <article
       className={clsx(
-        "w-full max-w-none prose prose-invert prose-code:before:hidden prose-code:after:hidden",
+        "w-full max-w-none prose dark:prose-invert prose-headings:text-foreground prose-strong:text-foreground prose-blockquote:text-foreground prose-blockquote:border-line prose-hr:border-line prose-th:text-foreground prose-thead:border-line prose-tr:border-line prose-pre:bg-primary-900 prose-pre:text-rockblue-50 prose-code:before:hidden prose-code:after:hidden",
         className,
       )}
       {...props}
@@ -38,7 +38,7 @@ export const MdxHeadingTwo = ({
         {...props}
       >
         {children}
-        <div className="absolute w-12 h-1 bg-spray-300 mx-w-full group-hover:w-full transition-all" />
+        <div className="absolute w-12 h-1 bg-accent mx-w-full group-hover:w-full transition-all" />
       </h2>
     </a>
   );
@@ -52,7 +52,7 @@ export const MdxAnchor = ({
 }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
     <a
-      className={clsx("cursor-pointer text-spray-300", className)}
+      className={clsx("cursor-pointer text-accent", className)}
       href={href}
       target="_blank"
       rel="noreferer noopener"
@@ -71,7 +71,7 @@ export const MdxCode = ({
   return (
     <code
       className={clsx(
-        "bg-gray-600 text-spray-300 rounded-full px-2",
+        "bg-surface text-foreground border border-line rounded-md px-1.5",
         className,
       )}
       {...props}

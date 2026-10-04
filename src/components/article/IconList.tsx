@@ -22,7 +22,7 @@ const IconList = ({ className, icons, ...props }: IconListProps) => {
           className={clsx(
             "absolute bottom-full left-1/2 -translate-x-1/2 mb-2",
             "px-2 py-1 rounded-md text-xs font-mono",
-            "bg-primary-900 text-rockblue-50 border border-rockblue-500/50",
+            "bg-surface text-foreground border border-line",
             "opacity-0 invisible group-hover:opacity-100 group-hover:visible",
             "transition-all duration-200 pointer-events-none",
             "whitespace-nowrap z-10"
@@ -36,7 +36,7 @@ const IconList = ({ className, icons, ...props }: IconListProps) => {
 
   return (
     <div
-      className={clsx("flex items-center gap-x-2 text-bt text-rockblue-500", className)}
+      className={clsx("flex items-center gap-x-2 text-bt text-muted", className)}
       {...props}
     >
       {icons.map((icon, idx) => renderIcon(icon, idx))}

@@ -31,8 +31,8 @@ export default function TechnologyFilter({
                 "flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-mono font-semibold transition-colors",
                 "border",
                 isSelected
-                  ? "bg-spray-300/20 border-spray-300 text-spray-300"
-                  : "bg-primary-900/50 border-rockblue-900/40 text-rockblue-500 hover:border-rockblue-500 hover:text-rockblue-50"
+                  ? "bg-accent/10 border-accent text-accent"
+                  : "bg-surface/50 border-line text-muted hover:border-muted hover:text-foreground"
               )}
               data-umami-event={`technology-filter-button`}
               data-umami-event-tech={tech}

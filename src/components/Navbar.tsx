@@ -8,6 +8,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { navigationItems } from "@/data/navigationItems";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 import Section from "./Section";
 
 interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
@@ -41,10 +42,10 @@ export default function Navbar({
                 <Link href={item.href} key={idx}>
                   <p
                     className={clsx(
-                      "text-md font-mono text-rockblue-500 font-bold hover:text-rockblue-50",
+                      "text-md font-mono text-muted font-bold hover:text-foreground",
                       (item.href == "/" && pathname == item.href) ||
                         (item.href != "/" && pathname.startsWith(item.href))
-                        ? "underline text-white"
+                        ? "underline text-foreground"
                         : "",
                     )}
                   >
@@ -52,6 +53,7 @@ export default function Navbar({
                   </p>
                 </Link>
               ))}
+              <ThemeToggle />
             </div>
           </Cell>
         </Grid>

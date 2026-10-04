@@ -7,7 +7,7 @@ const VueLogo = (props : SVGProps<SVGSVGElement>) => (
     viewBox="0 0 66 66"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    stroke="#F4F6F9"
+    stroke="currentColor"
     {...props}
   >
     <path

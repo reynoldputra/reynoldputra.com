@@ -75,17 +75,17 @@ const experiences: ExperienceItem[] = [
 export default function ExperienceSection({ className }: { className?: string }) {
   return (
     <section className={className}>
-      <Typography as="h2" variant="h5" color="highlight" weight="bold">
+      <Typography as="h2" variant="h5" color="heading" weight="bold">
         Experience
       </Typography>
       <Typography className="mt-2" variant="p" color="white">
         Where I&apos;ve worked, most recent first.
       </Typography>
-      <div className="mt-8 flex flex-col border-t border-rockblue-900/60">
+      <div className="mt-8 flex flex-col border-t border-line">
         {experiences.map((exp) => (
           <article
             key={`${exp.company}-${exp.startDate}`}
-            className="py-6 border-b border-rockblue-900/60 flex flex-col gap-1.5"
+            className="py-6 border-b border-line flex flex-col gap-1.5"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
               <Typography as="h3" variant="p" weight="bold" color="white">
@@ -98,7 +98,7 @@ export default function ExperienceSection({ className }: { className?: string })
             <Typography variant="c1" font="mono" color="gray">
               {exp.company} · {exp.location}
             </Typography>
-            <ul className="mt-1.5 list-disc list-outside pl-5 flex flex-col gap-1.5 text-rockblue-500">
+            <ul className="mt-1.5 list-disc list-outside pl-5 flex flex-col gap-1.5 text-muted">
               {exp.description.map((item, idx) => (
                 <li key={idx} className="text-sm">
                   {item}

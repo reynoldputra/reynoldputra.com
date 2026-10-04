@@ -19,7 +19,7 @@ const ImageWithLoader = ({ width, height, src, priority = false, alt, className,
     return (
         <div className="w-full relative">
             {isLoading &&
-                <div className="absolute w-full h-full aspect-video bg-gray-700 animate-pulse" />
+                <div className="absolute w-full h-full aspect-video bg-muted/20 animate-pulse" />
             }
             <Image
                 src={src}

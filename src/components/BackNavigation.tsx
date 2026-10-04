@@ -4,7 +4,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 const BackNavigation = ({ href, text }: { href: string, text: string }) => {
   return (
-    <Link href={href} className="hover:underline decoration-rockblue-500">
+    <Link href={href} className="hover:underline decoration-muted">
       <Typography font="mono" color="gray" className="flex items-center gap-2">
         <IoArrowBackOutline />
         {text}

@@ -22,13 +22,13 @@ export default async function ProjectSnippet({
       <Section>
         <Grid screenHeight={false}>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
-            <Typography variant="h5" color="highlight" weight="bold">
+            <Typography variant="h5" color="heading" weight="bold">
               Featured Projects
             </Typography>
             <Typography className="mt-2" variant="p" color="white">
               A few products I built and can walk you through in full.
             </Typography>
-            <div className="mt-12 flex flex-col border-t border-rockblue-900/60">
+            <div className="mt-12 flex flex-col border-t border-line">
               {featuredProjects.slice(0, 3).map((project, idx) => {
                 const { frontmatter: fm, slug } = project;
                 const meta = [
@@ -41,7 +41,7 @@ export default async function ProjectSnippet({
                 return (
                   <article
                     key={slug}
-                    className="py-5 border-b border-rockblue-900/60 flex flex-wrap items-center gap-x-4 gap-y-3"
+                    className="py-5 border-b border-line flex flex-wrap items-center gap-x-4 gap-y-3"
                   >
                     <Typography
                       as="span"
@@ -61,7 +61,7 @@ export default async function ProjectSnippet({
                       >
                         <Link
                           href={`/projects/${slug}`}
-                          className="hover:text-spray-300"
+                          className="hover:text-accent"
                         >
                           {fm.headline ?? fm.title}
                         </Link>
@@ -71,7 +71,7 @@ export default async function ProjectSnippet({
                       </Typography>
                     </div>
                     {fm.cover && (
-                      <div className="relative w-32 aspect-video rounded-md overflow-hidden shrink-0 bg-gray-600/30">
+                      <div className="relative w-32 aspect-video rounded-md overflow-hidden shrink-0 bg-muted/20">
                         <Image
                           src={fm.cover}
                           alt={`image cover ${fm.title}`}
@@ -87,15 +87,15 @@ export default async function ProjectSnippet({
             </div>
             <div className="w-full flex justify-center mt-16">
               <Link href="/projects">
-                <ButtonAnimation data-umami-event="see-more-projects-button" className="border-rockblue-50" innerClassName="flex items-center gap-2">
+                <ButtonAnimation data-umami-event="see-more-projects-button" className="border-foreground" innerClassName="flex items-center gap-2">
                   <Typography
                     font="mono"
                     variant="c1"
-                    className="z-20 transition-all group-hover:font-bold text-rockblue-50 group-hover:text-primary-950"
+                    className="z-20 transition-all group-hover:font-bold text-foreground group-hover:text-background"
                   >
                     See more
                   </Typography>
-                  <FaChevronRight className="z-20 h-3  transition-all text-rockblue-50 group-hover:text-primary-950" />
+                  <FaChevronRight className="z-20 h-3  transition-all text-foreground group-hover:text-background" />
                 </ButtonAnimation>
               </Link>
             </div>

@@ -7,7 +7,7 @@ const PhpLogo = (props : SVGProps<SVGSVGElement>) => (
     height="100%"
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
-    stroke="#F4F6F9"
+    stroke="currentColor"
     {...props}
   >
     <title>{"php"}</title>

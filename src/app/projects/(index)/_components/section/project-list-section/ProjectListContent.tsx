@@ -130,7 +130,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
       <div
         className={clsx(
           "flex flex-col",
-          filteredProjects.length > 0 && "border-t border-rockblue-900/60",
+          filteredProjects.length > 0 && "border-t border-line",
         )}
       >
         {filteredProjects.length > 0 ? (
@@ -144,7 +144,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
             );
           })
         ) : (
-          <div className="text-rockblue-500 font-mono text-md">
+          <div className="text-muted font-mono text-md">
             No {activeTab} projects found{selectedTechnologies.length > 0 ? " with selected technologies" : ""}. Check back soon!
           </div>
         )}

@@ -12,9 +12,17 @@ const navigationItems = [
     href: "/blog",
   },
   {
+    tag: "About",
+    href: "/about",
+  },
+];
+
+const footerNavigationItems = [
+  ...navigationItems,
+  {
     tag: "Guestbook",
     href: "/guestbook",
   },
 ];
 
-export { navigationItems };
+export { navigationItems, footerNavigationItems };

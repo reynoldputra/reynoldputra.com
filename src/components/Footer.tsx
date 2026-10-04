@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { HTMLAttributes } from "react";
 import clsx from "clsx";
-import { navigationItems } from "@/data/navigationItems";
+import { footerNavigationItems } from "@/data/navigationItems";
 
 export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
   const pathname = usePathname();
@@ -61,7 +61,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
           </Cell>
           <Cell cols="1_full">
             <div className="w-full flex flex-wrap justify-center gap-x-6 gap-y-2">
-              {navigationItems.map((item, idx) => (
+              {footerNavigationItems.map((item, idx) => (
                 <Link href={item.href} key={idx}>
                   <p
                     className={
@@ -78,11 +78,8 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
           <Cell cols="1_full">
             <div className="w-full flex flex-col items-center gap-4 mt-4">
               <div className="text-sm text-center">
-                Ready to bring your digital ideas to life? I&apos;m here to
-                help. <br className="hidden sm:block" />
-                Let&apos;s collaborate and create something extraordinary
-                together. <br className="hidden sm:block" />
-                Get in touch with me today to discuss your project!
+                Open to freelance and consulting work. <br className="hidden sm:block" />
+                Get in touch with me to talk about your project.
               </div>
               <Link href="mailto:reynoldputra1@gmail.com" target="_blank">
                 <ButtonAnimation

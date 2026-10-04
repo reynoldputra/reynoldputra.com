@@ -1,14 +1,15 @@
 "use client";
 
+import clsx from "clsx";
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import FocusedPictureCard from "@/components/article/FocusedPictureCard";
+import ProjectListItem from "@/components/article/ProjectListItem";
 import TabMenu from "./TabMenu";
 import TechnologyFilter from "./TechnologyFilter";
 import { Technology, technologyMap } from "@/data/technologies";
 import { ProjectFrontmatter } from "@/modules/project/project.type";
 
-type TabType = "main" | "side";
+type TabType = "main" | "archive";
 
 interface ProjectListContentProps {
   projects: Array<{
@@ -23,7 +24,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
   const pathname = usePathname();
   const categoryParam = searchParams.get("category") as TabType | null;
   const [activeTab, setActiveTab] = useState<TabType>(
-    categoryParam === "side" ? "side" : "main"
+    categoryParam === "archive" ? "archive" : "main"
   );
 
   // Extract unique technologies from projects in the current tab
@@ -46,7 +47,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
   // Sync state with URL parameter on mount and when URL changes
   useEffect(() => {
     const category = searchParams.get("category") as TabType | null;
-    if (category === "side" || category === "main") {
+    if (category === "archive" || category === "main") {
       setActiveTab(category);
     } else {
       setActiveTab("main");
@@ -94,7 +95,7 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
   };
 
   const mainCount = projects.filter((project) => project.frontmatter.category === "main").length;
-  const sideCount = projects.filter((project) => project.frontmatter.category === "side").length;
+  const archiveCount = projects.filter((project) => project.frontmatter.category === "archive").length;
 
   // Filter projects by category and selected technologies
   const filteredProjects = useMemo(() => {
@@ -119,18 +120,23 @@ export default function ProjectListContent({ projects }: ProjectListContentProps
         activeTab={activeTab} 
         onTabChange={handleTabChange}
         mainCount={mainCount}
-        sideCount={sideCount}
+        archiveCount={archiveCount}
       />
       <TechnologyFilter
         technologies={availableTechnologies}
         selectedTechnologies={selectedTechnologies}
         onToggle={handleTechnologyToggle}
       />
-      <div className="flex flex-col gap-y-4">
+      <div
+        className={clsx(
+          "flex flex-col",
+          filteredProjects.length > 0 && "border-t border-rockblue-900/60",
+        )}
+      >
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project, idx) => {
             return (
-              <FocusedPictureCard
+              <ProjectListItem
                 project={project.frontmatter}
                 slug={project.slug}
                 key={idx}

@@ -3,6 +3,9 @@ title: Jayamas Motorindo
 description : A desktop application built to turn real customer pain points into a practical, offline-first workflow—my first time shipping a production desktop app, leading a small team end-to-end and handling tricky local database edge cases.
 created_at : 2023-08-01T00:00:00.000Z
 category : "main"
+featured : true
+headline: Desktop invoice tracking app
+order: 3
 icons : ["electron", "react", "typescript", "prisma", "sqlite"]
 article: true
 cover : https://ik.imagekit.io/cndlyiyfg/reynoldputra-com/project-cover/finance.png?updatedAt=1767758505429
@@ -20,6 +23,14 @@ My goal was to **convert those pain points into a technical solution** that felt
 
 I led a **team of two**, owning the technical direction while staying close to users to ensure each feature mapped to a real operational problem.
 
+## Features
+- **Transaction and invoice tracking.** Track all transactions and invoices for every merchant, maintaining a complete audit trail of financial activities.
+- **Fast daily installment input.** Streamlined data entry workflow for recording daily installments across multiple merchants, reducing input time and minimizing errors.
+- **Excel import and export.** Quick Excel report generation and bulk data import via Excel format, enabling seamless integration with existing spreadsheet-based workflows.
+- **Offline-first workflow.** Core operations run entirely on local storage so users aren't blocked by network issues.
+- **Guided data entry and validation.** Reduced user mistakes by translating business rules into strict validation and helpful UI states.
+- **Fast local search and history.** Lightweight querying patterns to keep results instant even as data grows.
+
 ## Technology
 This was my **first time building a desktop app**, so I optimized for a stack that balanced speed of development with stability.
 
@@ -32,14 +43,6 @@ This was my **first time building a desktop app**, so I optimized for a stack th
 ### Local Data Layer
 - **Prisma** as the data access layer
 - **SQLite** as the local database (offline-first)
-
-## Features
-- **Transaction and invoice tracking.** Track all transactions and invoices for every merchant, maintaining a complete audit trail of financial activities.
-- **Fast daily installment input.** Streamlined data entry workflow for recording daily installments across multiple merchants, reducing input time and minimizing errors.
-- **Excel import and export.** Quick Excel report generation and bulk data import via Excel format, enabling seamless integration with existing spreadsheet-based workflows.
-- **Offline-first workflow.** Core operations run entirely on local storage so users aren't blocked by network issues.
-- **Guided data entry and validation.** Reduced user mistakes by translating business rules into strict validation and helpful UI states.
-- **Fast local search and history.** Lightweight querying patterns to keep results instant even as data grows.
 
 ## Challenge
 ### Converting customer pain points into clear technical requirements

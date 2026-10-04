@@ -1,11 +1,12 @@
 import Cell from "@/components/Cell";
 import Grid from "@/components/Grid";
 import Section from "@/components/Section";
-import FocusedPictureCard from "@/components/article/FocusedPictureCard";
 import ButtonAnimation from "@/components/button/ButtonAnimation";
 import Typography from "@/components/typography/Typography";
+import { monthYearDateFormat } from "@/libs/helper";
 import { getFeaturedProjects } from "@/modules/project/project.action";
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
 import { FaChevronRight } from "react-icons/fa";
@@ -25,13 +26,64 @@ export default async function ProjectSnippet({
               Featured Projects
             </Typography>
             <Typography className="mt-2" variant="p" color="white">
-              Here, you’ll find a collection of my work that reflects my journey
-              in the world of software development.
+              A few products I built and can walk you through in full.
             </Typography>
-            <div className="flex flex-col gap-y-8 sm:gap-y-4 mt-16">
-              {featuredProjects.slice(0, 3).map((project, idx) => (
-                <FocusedPictureCard project={project.frontmatter} slug={project.slug} key={idx} />
-              ))}
+            <div className="mt-12 flex flex-col border-t border-rockblue-900/60">
+              {featuredProjects.slice(0, 3).map((project, idx) => {
+                const { frontmatter: fm, slug } = project;
+                const meta = [
+                  fm.title,
+                  fm.position,
+                  monthYearDateFormat(fm.created_at),
+                ]
+                  .filter(Boolean)
+                  .join(" · ");
+                return (
+                  <article
+                    key={slug}
+                    className="py-5 border-b border-rockblue-900/60 flex flex-wrap items-center gap-x-4 gap-y-3"
+                  >
+                    <Typography
+                      as="span"
+                      variant="c1"
+                      font="mono"
+                      color="gray"
+                      className="w-8 shrink-0 self-start leading-6"
+                    >
+                      {String(idx + 1).padStart(2, "0")}
+                    </Typography>
+                    <div className="flex-1 min-w-[240px] flex flex-col gap-1.5">
+                      <Typography
+                        as="h3"
+                        variant="bt"
+                        weight="bold"
+                        color="white"
+                      >
+                        <Link
+                          href={`/projects/${slug}`}
+                          className="hover:text-spray-300"
+                        >
+                          {fm.headline ?? fm.title}
+                        </Link>
+                      </Typography>
+                      <Typography variant="c1" font="mono" color="gray">
+                        {meta}
+                      </Typography>
+                    </div>
+                    {fm.cover && (
+                      <div className="relative w-32 aspect-video rounded-md overflow-hidden shrink-0 bg-gray-600/30">
+                        <Image
+                          src={fm.cover}
+                          alt={`image cover ${fm.title}`}
+                          fill
+                          sizes="128px"
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
             </div>
             <div className="w-full flex justify-center mt-16">
               <Link href="/projects">

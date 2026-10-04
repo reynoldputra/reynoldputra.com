@@ -2,16 +2,16 @@
 
 import clsx from "clsx";
 
-type TabType = "main" | "side";
+type TabType = "main" | "archive";
 
 interface TabMenuProps {
   activeTab: TabType;
   onTabChange: (tab: TabType) => void;
   mainCount?: number;
-  sideCount?: number;
+  archiveCount?: number;
 }
 
-export default function TabMenu({ activeTab, onTabChange, mainCount = 0, sideCount = 0 }: TabMenuProps) {
+export default function TabMenu({ activeTab, onTabChange, mainCount = 0, archiveCount = 0 }: TabMenuProps) {
   return (
     <div className="flex justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 mb-8">
       <button
@@ -27,16 +27,16 @@ export default function TabMenu({ activeTab, onTabChange, mainCount = 0, sideCou
         Main{mainCount > 0 && ` (${mainCount})`}
       </button>
       <button
-        onClick={() => onTabChange("side")}
+        onClick={() => onTabChange("archive")}
         className={clsx(
           "text-md font-mono font-bold transition-colors",
-          activeTab === "side"
+          activeTab === "archive"
             ? "text-white"
             : "text-rockblue-500 hover:text-rockblue-50"
         )}
-        data-umami-event="side-tab-button"
+        data-umami-event="archive-tab-button"
       >
-        Side{sideCount > 0 && ` (${sideCount})`}
+        Archive{archiveCount > 0 && ` (${archiveCount})`}
       </button>
     </div>
   );

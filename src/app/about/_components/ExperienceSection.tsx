@@ -1,9 +1,15 @@
+import Image from "next/image";
+import Link from "next/link";
+import IconList from "@/components/article/IconList";
 import Typography from "@/components/typography/Typography";
 
 interface ExperienceItem {
   title: string;
   company: string;
   location: string;
+  logo?: string;
+  link?: string;
+  icons: string[];
   startDate: string;
   endDate: string;
   description: string[];
@@ -14,6 +20,7 @@ const experiences: ExperienceItem[] = [
     title: "Software Engineer, first hire",
     company: "Stealth startup",
     location: "Remote, London",
+    icons: ["next", "typescript", "supabase", "n8n", "openai"],
     startDate: "Mar 2026",
     endDate: "Present",
     description: [
@@ -26,6 +33,9 @@ const experiences: ExperienceItem[] = [
     title: "Full Stack Engineer",
     company: "KinetixPro",
     location: "Remote, Singapore",
+    logo: "/media/company-logo/kinetixpro.jpeg",
+    link: "https://www.kinetixpro.ai",
+    icons: ["next", "nest", "python", "elixir", "aws"],
     startDate: "Sep 2024",
     endDate: "Mar 2026",
     description: [
@@ -41,6 +51,9 @@ const experiences: ExperienceItem[] = [
     title: "Implementation (DevOps) Engineer Intern",
     company: "Traveloka",
     location: "On site, Banten",
+    logo: "/media/company-logo/traveloka.png",
+    link: "https://traveloka.com",
+    icons: ["aws", "terraform", "datadog"],
     startDate: "Feb 2024",
     endDate: "Jun 2024",
     description: [
@@ -53,6 +66,9 @@ const experiences: ExperienceItem[] = [
     title: "Web Developer",
     company: "Arkalearn",
     location: "Remote, Jakarta",
+    logo: "/media/company-logo/arkalearn.png",
+    link: "https://arkalearn.com",
+    icons: ["next", "nest", "typescript"],
     startDate: "Aug 2023",
     endDate: "Jan 2024",
     description: [
@@ -61,9 +77,23 @@ const experiences: ExperienceItem[] = [
     ],
   },
   {
+    title: "Web Developer Intern",
+    company: "PT Ousean Global Digital",
+    location: "Tangerang Selatan, Banten",
+    logo: "/media/company-logo/ousean.jpg",
+    icons: ["laravel"],
+    startDate: "Sep 2022",
+    endDate: "Nov 2022",
+    description: [
+      "Maintained the company profile website and its CMS, built with Laravel.",
+    ],
+  },
+  {
     title: "Freelance",
     company: "Self-employed",
     location: "Remote",
+    logo: "/media/company-logo/reynoldputra.png",
+    icons: ["next", "laravel"],
     startDate: "Sep 2022",
     endDate: "Present",
     description: [
@@ -95,9 +125,39 @@ export default function ExperienceSection({ className }: { className?: string })
                 {exp.startDate} – {exp.endDate}
               </Typography>
             </div>
-            <Typography variant="c1" font="mono" color="gray">
-              {exp.company} · {exp.location}
-            </Typography>
+            <div className="sm:flex justify-between items-center">
+              <div className="flex items-center gap-x-2">
+                {exp.logo && (
+                  <div className="relative w-6 h-6 rounded-md overflow-hidden bg-surface">
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.company} logo`}
+                      fill
+                      className="object-cover object-center"
+                      sizes="24px"
+                    />
+                  </div>
+                )}
+                <Typography
+                  variant="c1"
+                  weight="semibold"
+                  color="gray"
+                  className={exp.link ? "hover:underline" : undefined}
+                >
+                  {exp.link ? (
+                    <Link href={exp.link} target="_blank">
+                      {exp.company}
+                    </Link>
+                  ) : (
+                    exp.company
+                  )}
+                </Typography>
+                <Typography variant="c1" color="gray">
+                  - {exp.location}
+                </Typography>
+              </div>
+              <IconList className="my-2 sm:my-0" icons={exp.icons} />
+            </div>
             <ul className="mt-1.5 list-disc list-outside pl-5 flex flex-col gap-1.5 text-muted">
               {exp.description.map((item, idx) => (
                 <li key={idx} className="text-sm">

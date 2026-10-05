@@ -39,7 +39,7 @@ const ProjectListItem = ({
       {...props}
     >
       <div className="flex-1 min-w-[280px] flex flex-col gap-2">
-        <Typography as="h3" variant="bt" weight="bold" color="white">
+        <Typography as="h2" variant="bt" weight="bold" color="white">
           {project.article ? (
             <Link
               href={"/projects/" + slug}
@@ -65,17 +65,18 @@ const ProjectListItem = ({
           {project.icons ? <IconList icons={project.icons} /> : <span />}
           <div className="flex gap-x-4">
             {project.github && (
-              <CardButton Icon={<FiGithub />} text="Source Code" url={project.github} />
+              <CardButton Icon={<FiGithub />} text="Source Code" url={project.github} srSuffix={"for " + project.title} />
             )}
 
             {project.link && (
-              <CardButton Icon={<AiOutlineLink />} text="Visit Site" url={project.link} />
+              <CardButton Icon={<AiOutlineLink />} text="Visit Site" url={project.link} srSuffix={"for " + project.title} />
             )}
 
             {project.article && (
               <CardButton
                 Icon={<FiArrowUpRight />}
                 text="Read more"
+                srSuffix={"about " + heading}
                 url={"/projects/" + slug}
               />
             )}

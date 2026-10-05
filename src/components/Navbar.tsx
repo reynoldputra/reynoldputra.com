@@ -33,7 +33,7 @@ export default function Navbar({
             className="flex justify-center md:justify-between w-full"
           >
             <div className="hidden md:block w-10 h-10 relative p-1 cursor-pointer">
-              <Link href="/">
+              <Link href="/" aria-label="Home">
                 <OutlineLogo />
               </Link>
             </div>

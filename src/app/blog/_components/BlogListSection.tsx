@@ -14,7 +14,7 @@ const BlogListSection = async () => {
       <Section>
         <Grid screenHeight={false}>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
-            <Typography variant="h5" color="heading" weight="bold">
+            <Typography as="h1" variant="h5" color="heading" weight="bold">
               Blog
             </Typography>
             <Typography className="mt-2" variant="p" color="white">

@@ -23,7 +23,7 @@ export default async function RecentBlog({
       <Section>
         <Grid screenHeight={false}>
           <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
-            <Typography variant="h5" color="heading" weight="bold">
+            <Typography as="h2" variant="h5" color="heading" weight="bold">
               Recent Blogs
             </Typography>
             <Typography className="mt-2" variant="p" color="white">
@@ -87,9 +87,9 @@ export default async function RecentBlog({
                     variant="c1"
                     className="z-20 transition-all group-hover:font-bold text-foreground group-hover:text-background"
                   >
-                    See more
+                    See more<span className="sr-only"> blog posts</span>
                   </Typography>
-                  <FaChevronRight className="z-20 h-3  transition-all text-foreground group-hover:text-background" />
+                  <FaChevronRight aria-hidden="true" className="z-20 h-3  transition-all text-foreground group-hover:text-background" />
                 </ButtonAnimation>
               </Link>
             </div>

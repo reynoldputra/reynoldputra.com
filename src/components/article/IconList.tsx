@@ -17,7 +17,8 @@ const IconList = ({ className, icons, ...props }: IconListProps) => {
         key={idx}
         className="relative group cursor-pointer"
       >
-        {tech.icon()}
+        <span aria-hidden="true" className="contents">{tech.icon()}</span>
+        <span className="sr-only">{tech.name}</span>
         <div
           className={clsx(
             "absolute bottom-full left-1/2 -translate-x-1/2 mb-2",

@@ -12,23 +12,27 @@ export default function GuestBook() {
     <Section className="relative z-30">
       <Grid className="mt-24">
         <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
-          <Typography
-            variant="h5"
-            className="md:text-h4 text-center"
-            color="foreground"
-            weight="bold"
-          >
-            Welcome to my
-          </Typography>
-          <Typography
-            variant="h5"
-            className="md:text-h4 text-center"
-            color="heading"
-            weight="bold"
-            font="mono"
-          >
-            Guest Book !
-          </Typography>
+          <h1>
+            <Typography
+              as="span"
+              variant="h5"
+              className="md:text-h4 text-center block"
+              color="foreground"
+              weight="bold"
+            >
+              Welcome to my
+            </Typography>
+            <Typography
+              as="span"
+              variant="h5"
+              className="md:text-h4 text-center block"
+              color="heading"
+              weight="bold"
+              font="mono"
+            >
+              Guest Book !
+            </Typography>
+          </h1>
         </Cell>
         <Cell cols="1_full" colsMd="3_8" colsLg="4_6" className="mt-12 pb-24">
           <figure>

@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <LenisScrollLayout>
         <Navbar />
-        {children}
+        <main>{children}</main>
         <Footer />
     </LenisScrollLayout>
   );

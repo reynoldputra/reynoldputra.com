@@ -37,7 +37,7 @@ export default function TechnologyFilter({
               data-umami-event={`technology-filter-button`}
               data-umami-event-tech={tech}
             >
-              {config.icon && <span className="text-lg">{config.icon()}</span>}
+              {config.icon && <span aria-hidden="true" className="text-lg">{config.icon()}</span>}
               <span>{config.name}</span>
             </button>
           );

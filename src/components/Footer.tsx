@@ -22,17 +22,20 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
 
   const dataSocial = [
     {
-      img: <FaGithub className={classNameSocial} />,
+      img: <FaGithub className={classNameSocial} aria-hidden="true" />,
+      label: "GitHub",
       text: "reynoldputra",
       link: "https://github.com/reynoldputra",
     },
     {
-      img: <FaLinkedin className={classNameSocial} />,
+      img: <FaLinkedin className={classNameSocial} aria-hidden="true" />,
+      label: "LinkedIn",
       text: "in/reynoldputra",
       link: "https://www.linkedin.com/in/reynoldputra",
     },
     {
-      img: <FaEnvelopeOpen className={classNameSocial} />,
+      img: <FaEnvelopeOpen className={classNameSocial} aria-hidden="true" />,
+      label: "Email",
       text: "reynoldputra1@gmail.com",
       link: "mailto:reynoldputra1@gmail.com",
     },
@@ -51,6 +54,7 @@ export default function Footer({ className }: HTMLAttributes<HTMLDivElement>) {
                 <a
                   className="cursor-pointer"
                   href={val.link}
+                  aria-label={val.label}
                   target="_blank"
                   key={idx}
                 >

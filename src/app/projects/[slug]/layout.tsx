@@ -12,6 +12,7 @@ export default function MdxLayout({ children }: { children: ReactNode }) {
     <LenisScrollLayout>
       <>
         <Navbar />
+        <main>
         <Section className="pb-32 z-30">
           <Grid>
             <Cell cols="1_full" colsMd="3_8" colsLg="4_6">
@@ -19,6 +20,7 @@ export default function MdxLayout({ children }: { children: ReactNode }) {
             </Cell>
           </Grid>
         </Section>
+        </main>
         <Footer />
       </>
     </LenisScrollLayout>

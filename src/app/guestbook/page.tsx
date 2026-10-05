@@ -17,7 +17,9 @@ export default function Projects() {
     <AOSWrapper>
       <LenisScrollLayout>
         <Navbar />
-        <GuestBookSection />
+        <main>
+          <GuestBookSection />
+        </main>
         <Footer />
       </LenisScrollLayout>
     </AOSWrapper>

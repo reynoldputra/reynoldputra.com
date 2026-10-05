@@ -25,7 +25,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
         )}
       >
         <div className="flex-1">
-          <Typography variant="bt" color="white" weight="bold" className="group-hover:text-accent transition-colors">
+          <Typography as="h2" variant="bt" color="white" weight="bold" className="group-hover:text-accent transition-colors">
             {title}
           </Typography>
           <Typography variant="p" font="mono" color="gray" className="mt-2">

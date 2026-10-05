@@ -30,16 +30,16 @@ const SimpleHeader = ({ title, date, img, github, position, link, ...props }: Si
           />
       )}
       <div className="pb-8">
-        <Typography variant="h4" weight="bold">{title}</Typography>
+        <Typography as="h1" variant="h4" weight="bold">{title}</Typography>
         {position && <Typography variant="p" weight="semibold" color="gray" className="mb-1">{position}</Typography>}
         <Typography variant="p" font="mono" color="gray">{readableDate(date)}</Typography>
       </div>
       <div className="flex gap-x-6">
         {github && (
-          <CardButton Icon={<FiGithub />} text="Source Code" url={github} />
+          <CardButton Icon={<FiGithub />} text="Source Code" url={github} srSuffix={"for " + title} />
         )}
         {link && (
-          <CardButton Icon={<AiOutlineLink />} text="Visit Site" url={link} />
+          <CardButton Icon={<AiOutlineLink />} text="Visit Site" url={link} srSuffix={"for " + title} />
         )}
       </div>
     </div>
